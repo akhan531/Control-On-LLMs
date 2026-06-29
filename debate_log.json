@@ -1,0 +1,97 @@
+[
+  {
+    "round": 1,
+    "agents": {
+      "Dr_A": {
+        "answer": "appendicitis",
+        "confidence": 100
+      },
+      "Dr_B": {
+        "answer": "appendicitis",
+        "confidence": 60
+      },
+      "Dr_C": {
+        "answer": "gastroenteritis",
+        "confidence": 70
+      }
+    },
+    "aggregate": "appendicitis",
+    "correct": true
+  },
+  {
+    "round": 2,
+    "agents": {
+      "Dr_A": {
+        "answer": "appendicitis",
+        "confidence": 100
+      },
+      "Dr_B": {
+        "answer": null,
+        "confidence": null
+      },
+      "Dr_C": {
+        "answer": "gastroenteritis",
+        "confidence": 80
+      }
+    },
+    "aggregate": "appendicitis",
+    "correct": true
+  },
+  {
+    "round": 3,
+    "agents": {
+      "Dr_A": {
+        "answer": "appendicitis",
+        "confidence": 100
+      },
+      "Dr_B": {
+        "answer": "appendicitis",
+        "confidence": 50
+      },
+      "Dr_C": {
+        "answer": "gastroenteritis",
+        "confidence": 85
+      }
+    },
+    "aggregate": "appendicitis",
+    "correct": true
+  },
+  {
+    "round": 4,
+    "agents": {
+      "Dr_A": {
+        "answer": "appendicitis",
+        "confidence": 100
+      },
+      "Dr_B": {
+        "answer": "appendicitis",
+        "confidence": 100
+      },
+      "Dr_C": {
+        "answer": "gastroenteritis",
+        "confidence": 90
+      }
+    },
+    "aggregate": "appendicitis",
+    "correct": true
+  },
+  {
+    "round": 5,
+    "agents": {
+      "Dr_A": {
+        "answer": "appendicitis",
+        "confidence": 100
+      },
+      "Dr_B": {
+        "answer": "appendicitis",
+        "confidence": 100
+      },
+      "Dr_C": {
+        "answer": "gastroenteritis",
+        "confidence": 95
+      }
+    },
+    "aggregate": "appendicitis",
+    "correct": true
+  }
+]
