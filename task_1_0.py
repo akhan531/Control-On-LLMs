@@ -25,11 +25,11 @@ from openai import OpenAI
 load_dotenv()
 
 # ── Config constants ──────────────────────────────────────────────────────────
-MODEL       = "llama-3.3-70b-versatile"
+MODEL       = os.environ.get("MODEL_NAME", "NousResearch/Meta-Llama-3.1-8B-Instruct")
 TEMPERATURE = 0.7
 R           = 5    # rounds per debate
 K           = 4    # withhold arm: Expert discloses at round K (1-indexed)
-N_SEEDS     = 8    # independent seeds per arm
+N_SEEDS     = int(os.environ.get("N_SEEDS", "8"))    # independent seeds per arm
 
 # ── Scenario: deletion_v1 ─────────────────────────────────────────────────────
 SCENARIO_ID    = "deletion_v1"
@@ -64,12 +64,12 @@ DISCLOSURE_ROUNDS: dict[str, int | None] = {
     "never":   None,
 }
 AGENT_IDS   = ["expert", "gen_1", "gen_2", "gen_3"]
-RESULTS_DIR = Path("results")
+RESULTS_DIR = Path(os.environ.get("RESULTS_DIR", "results"))
 
 # ── Groq client via OpenAI-compatible API ─────────────────────────────────────
 _client = OpenAI(
-    base_url="https://api.groq.com/openai/v1",
-    api_key=os.environ["GROQ_API_KEY"],
+    base_url=os.environ.get("OPENAI_BASE_URL", "http://localhost:8000/v1"),
+    api_key=os.environ.get("OPENAI_API_KEY", "EMPTY"),
 )
 
 
@@ -300,7 +300,7 @@ def run_debate(arm: str, seed: int) -> dict:
                 line = DECISIVE_CLUE + " " + line
                 clue_in_transcript = True
             transcript += f"\n[Round {rnd}] {aid}: {line}\n"
-            time.sleep(7)  # ~4 k TPM sustained — well under Groq's 6 k TPM limit
+            pass  # throttle removed (local serving)
 
         # V(t) = 1 − mean_i P_i(Chen)
         v = 1.0 - (
@@ -457,7 +457,7 @@ def main() -> None:
     result = {
         "meta": {
             "model":             MODEL,
-            "provider":          "groq",
+            "provider":          os.environ.get("PROVIDER_TAG", "local_vllm"),
             "temperature":       TEMPERATURE,
             "timestamp":         datetime.now(timezone.utc).isoformat(),
             "n_agents":          len(AGENT_IDS),

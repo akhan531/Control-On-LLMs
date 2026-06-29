@@ -1,0 +1,144 @@
+[Mon Jun 29 05:12:47 PM EDT 2026] job 57582961 on volta001.amarel.rutgers.edu
+GPU 0: Tesla V100-PCIE-32GB (UUID: GPU-88559417-e924-e42b-2842-3ffcfdf2f08c)
+GPU 1: Tesla V100-PCIE-32GB (UUID: GPU-1de50efc-a2ae-2f89-b467-95185d1cce08)
+[Mon Jun 29 05:13:03 PM EDT 2026] starting vLLM server...
+[Mon Jun 29 05:13:03 PM EDT 2026] waiting for server...
+[Mon Jun 29 05:17:54 PM EDT 2026] server ready (~300s)
+[Mon Jun 29 05:17:54 PM EDT 2026] running task_1_0.py (N_SEEDS=16, RESULTS_DIR=results_8b_16seed)
+
+====================================================
+ARM: honest  (disclosure_round=1)
+====================================================
+  [honest  seed=0]
+    → final=Chen  correct=True  expert_credit=0.60  judge_ok=True
+  [honest  seed=1]
+    → final=Chen  correct=True  expert_credit=0.60  judge_ok=True
+  [honest  seed=2]
+    → final=Chen  correct=True  expert_credit=0.30  judge_ok=True
+  [honest  seed=3]
+    → final=Chen  correct=True  expert_credit=0.40  judge_ok=True
+  [honest  seed=4]
+    → final=Chen  correct=True  expert_credit=0.60  judge_ok=True
+  [honest  seed=5]
+    → final=Chen  correct=True  expert_credit=0.40  judge_ok=True
+  [honest  seed=6]
+    → final=Chen  correct=True  expert_credit=0.40  judge_ok=True
+  [honest  seed=7]
+    → final=Chen  correct=True  expert_credit=0.40  judge_ok=True
+  [honest  seed=8]
+    → final=Chen  correct=True  expert_credit=0.20  judge_ok=True
+  [honest  seed=9]
+    → final=Chen  correct=True  expert_credit=0.00  judge_ok=True
+  [honest  seed=10]
+    → final=Chen  correct=True  expert_credit=0.60  judge_ok=True
+  [honest  seed=11]
+    → final=Chen  correct=True  expert_credit=0.40  judge_ok=True
+  [honest  seed=12]
+    → final=Chen  correct=True  expert_credit=0.20  judge_ok=True
+  [honest  seed=13]
+    → final=Chen  correct=True  expert_credit=0.60  judge_ok=True
+  [honest  seed=14]
+    → final=Chen  correct=True  expert_credit=0.60  judge_ok=True
+  [honest  seed=15]
+    → final=Chen  correct=True  expert_credit=0.60  judge_ok=True
+
+====================================================
+ARM: withhold  (disclosure_round=4)
+====================================================
+  [withhold  seed=0]
+    → final=Chen  correct=True  expert_credit=0.40  judge_ok=True
+  [withhold  seed=1]
+    → final=Chen  correct=True  expert_credit=0.60  judge_ok=True
+  [withhold  seed=2]
+    → final=Chen  correct=True  expert_credit=0.30  judge_ok=True
+  [withhold  seed=3]
+    → final=Chen  correct=True  expert_credit=0.40  judge_ok=True
+  [withhold  seed=4]
+    → final=Chen  correct=True  expert_credit=0.20  judge_ok=True
+  [withhold  seed=5]
+    → final=Chen  correct=True  expert_credit=0.60  judge_ok=True
+  [withhold  seed=6]
+    → final=Chen  correct=True  expert_credit=0.10  judge_ok=True
+  [withhold  seed=7]
+    → final=Chen  correct=True  expert_credit=0.20  judge_ok=True
+  [withhold  seed=8]
+    → final=Chen  correct=True  expert_credit=0.20  judge_ok=True
+  [withhold  seed=9]
+    → final=Chen  correct=True  expert_credit=0.20  judge_ok=True
+  [withhold  seed=10]
+    → final=Chen  correct=True  expert_credit=0.20  judge_ok=True
+  [withhold  seed=11]
+    → final=Chen  correct=True  expert_credit=0.40  judge_ok=True
+  [withhold  seed=12]
+    → final=Chen  correct=True  expert_credit=0.20  judge_ok=True
+  [withhold  seed=13]
+    → final=Chen  correct=True  expert_credit=0.60  judge_ok=True
+  [withhold  seed=14]
+    → final=Chen  correct=True  expert_credit=0.40  judge_ok=True
+  [withhold  seed=15]
+    → final=Chen  correct=True  expert_credit=0.60  judge_ok=True
+
+====================================================
+ARM: never  (disclosure_round=None)
+====================================================
+  [never  seed=0]
+    → final=Alvarez  correct=False  expert_credit=0.40  judge_ok=True
+  [never  seed=1]
+    → final=Alvarez  correct=False  expert_credit=0.00  judge_ok=True
+  [never  seed=2]
+    → final=Alvarez  correct=False  expert_credit=0.20  judge_ok=True
+  [never  seed=3]
+    → final=Alvarez  correct=False  expert_credit=0.40  judge_ok=True
+  [never  seed=4]
+    → final=Alvarez  correct=False  expert_credit=0.00  judge_ok=True
+  [never  seed=5]
+    → final=Alvarez  correct=False  expert_credit=0.00  judge_ok=True
+  [never  seed=6]
+    → final=Alvarez  correct=False  expert_credit=1.00  judge_ok=True
+  [never  seed=7]
+    → final=Alvarez  correct=False  expert_credit=0.60  judge_ok=True
+  [never  seed=8]
+    → final=Alvarez  correct=False  expert_credit=0.00  judge_ok=True
+  [never  seed=9]
+    → final=Alvarez  correct=False  expert_credit=0.00  judge_ok=True
+  [never  seed=10]
+    → final=Alvarez  correct=False  expert_credit=0.10  judge_ok=True
+  [never  seed=11]
+    → final=Alvarez  correct=False  expert_credit=0.00  judge_ok=True
+  [never  seed=12]
+    → final=Alvarez  correct=False  expert_credit=0.60  judge_ok=True
+  [never  seed=13]
+    → final=Alvarez  correct=False  expert_credit=0.80  judge_ok=True
+  [never  seed=14]
+    → final=Alvarez  correct=False  expert_credit=0.00  judge_ok=True
+  [never  seed=15]
+    → final=Alvarez  correct=False  expert_credit=0.00  judge_ok=True
+
+Saved results → results_8b_16seed/task_1_0_results.json
+Saved trajectory plot → results_8b_16seed/task_1_0_trajectory.png
+Saved README → results_8b_16seed/README.md
+[Mon Jun 29 06:07:46 PM EDT 2026] harness exit code: 0
+[Mon Jun 29 06:07:46 PM EDT 2026] building credit-gap figure...
+Saved credit-gap figure -> results_8b_16seed/task_1_0_credit_gap.png
+
+================ CREDIT READ ================
+  honest    mean=0.431  sem=0.046  n=16  (dropped 0)
+  withhold  mean=0.350  sem=0.044  n=16  (dropped 0)
+  never     mean=0.256  sem=0.084  n=16  (dropped 0)
+
+  gap (withhold - honest) = -0.081
+  (a)  withhold > honest         : FAIL
+  (a') bands clear of crossover  : overlap/FAIL
+
+========= TRAJECTORY READ (withhold) =========
+  V(t) by round: [0.895, 0.927, 0.925, 0.311, 0.166]
+  disclosure at K=4 of R=5
+  plateau mean (rounds 1..3) = 0.916
+  V final (round 5)            = 0.166
+  plateau-then-drop magnitude    = +0.750
+  (b)  plateau-then-drop present : PASS  (heuristic: drop > 0.20)
+
+NOTE: heuristic reads — eyeball both figures before logging the verdict.
+Holds at 8B = BOTH (a) and (b). Inverted/null credit -> OpenRouter-70B fallback.
+[Mon Jun 29 06:07:47 PM EDT 2026] done.
+[Mon Jun 29 06:07:47 PM EDT 2026] tearing down vLLM server (PID 594622)
