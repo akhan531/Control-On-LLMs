@@ -72,21 +72,28 @@ _client = OpenAI(
     api_key=os.environ.get("OPENAI_API_KEY", "EMPTY"),
 )
 
+# True when pointed at OpenRouter; gates provider routing + seed handling.
+_USE_OPENROUTER = "openrouter" in os.environ.get("OPENAI_BASE_URL", "").lower()
+
 
 # ── LLM helpers ───────────────────────────────────────────────────────────────
 def _llm(messages: list[dict], seed: int, max_tokens: int = 500,
          temp: float = TEMPERATURE) -> str:
     """Single LLM call with exponential backoff on rate-limit errors."""
+    create_kwargs = dict(
+        model=MODEL,
+        messages=messages,
+        max_tokens=max_tokens,
+        temperature=temp,
+        response_format={"type": "json_object"},
+    )
+    if _USE_OPENROUTER:
+        create_kwargs["extra_body"] = {"provider": {"require_parameters": True}}
+    else:
+        create_kwargs["seed"] = seed
     for attempt in range(6):
         try:
-            resp = _client.chat.completions.create(
-                model=MODEL,
-                messages=messages,
-                max_tokens=max_tokens,
-                temperature=temp,
-                seed=seed,
-                response_format={"type": "json_object"},
-            )
+            resp = _client.chat.completions.create(**create_kwargs)
             return resp.choices[0].message.content or ""
         except Exception as exc:
             msg = str(exc)
@@ -109,13 +116,20 @@ def _parse(raw: str, label: str) -> dict:
     Parse JSON from LLM output; validate and normalize probabilities.
     Raises RuntimeError on failure — caller retries once, then fails loudly.
     """
+    cleaned = raw.strip()
+    if cleaned.startswith("```"):
+        cleaned = re.sub(r"^```(?:json)?\s*", "", cleaned)
+        cleaned = re.sub(r"\s*```$", "", cleaned).strip()
     try:
-        data = json.loads(raw)
+        data = json.loads(cleaned)
     except json.JSONDecodeError:
-        m = re.search(r"\{.*\}", raw, re.DOTALL)
+        m = re.search(r"\{.*\}", cleaned, re.DOTALL)
         if not m:
             raise RuntimeError(f"{label}: no JSON found in: {raw[:300]!r}")
-        data = json.loads(m.group())
+        try:
+            data = json.loads(m.group())
+        except json.JSONDecodeError as exc:
+            raise RuntimeError(f"{label}: malformed JSON ({exc}): {m.group()[:200]!r}")
 
     probs = data.get("probabilities", {})
     if set(probs.keys()) != set(ANSWER_SET):
@@ -207,16 +221,25 @@ def agent_turn(
     ]
     label = f"{agent_id}/r{rnd}/{arm}"
 
-    raw = _llm(msgs, seed=seed, max_tokens=450)
     try:
-        parsed = _parse(raw, label)
-    except RuntimeError:
-        # One retry with a stricter instruction, then fail loudly.
+        parsed = _parse(_llm(msgs, seed=seed, max_tokens=450), label)
+    except RuntimeError as first_exc:
         msgs[-1]["content"] = (
-            user + "\n\nCRITICAL: Return ONLY the JSON object {…}. No markdown, no prose."
+            user + "\n\nCRITICAL: Return ONLY the JSON object {…}. No markdown, no prose, no trailing text."
         )
-        raw2 = _llm(msgs, seed=seed + 99999, max_tokens=450)
-        parsed = _parse(raw2, label + "/retry")
+        parsed = None
+        last_exc = first_exc
+        for j in range(4):
+            try:
+                parsed = _parse(
+                    _llm(msgs, seed=seed + 99999 * (j + 1), max_tokens=450),
+                    label + f"/retry{j+1}",
+                )
+                break
+            except RuntimeError as exc:
+                last_exc = exc
+        if parsed is None:
+            raise RuntimeError(f"{label}: agent JSON unrecoverable after retries ({last_exc})")
 
     return {
         "agent_id":       agent_id,
@@ -448,7 +471,11 @@ def main() -> None:
             f"{'='*52}"
         )
         for seed in remaining:
-            run = run_debate(arm, seed)
+            try:
+                run = run_debate(arm, seed)
+            except RuntimeError as exc:
+                print(f"    [seed FAILED — skipping] {arm} seed={seed}: {exc}")
+                continue
             all_runs.setdefault(arm, []).append(run)
             _save_checkpoint(all_runs)  # persist after each debate
 
