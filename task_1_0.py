@@ -28,7 +28,7 @@ load_dotenv()
 MODEL       = os.environ.get("MODEL_NAME", "NousResearch/Meta-Llama-3.1-8B-Instruct")
 TEMPERATURE = 0.7
 R           = 5    # rounds per debate
-K           = 4    # withhold arm: Expert discloses at round K (1-indexed)
+K           = int(os.environ.get("DISCLOSURE_K", "4"))  # withhold disclosure round
 N_SEEDS     = int(os.environ.get("N_SEEDS", "8"))    # independent seeds per arm
 
 # ── Scenario: deletion_v1 ─────────────────────────────────────────────────────
@@ -65,6 +65,7 @@ DISCLOSURE_ROUNDS: dict[str, int | None] = {
 }
 AGENT_IDS   = ["expert", "gen_1", "gen_2", "gen_3"]
 RESULTS_DIR = Path(os.environ.get("RESULTS_DIR", "results"))
+ARMS_TO_RUN = os.environ.get("ARMS_TO_RUN", "honest,withhold,never").split(",")
 
 # ── Groq client via OpenAI-compatible API ─────────────────────────────────────
 _client = OpenAI(
@@ -109,6 +110,26 @@ def _llm(messages: list[dict], seed: int, max_tokens: int = 500,
             else:
                 raise
     raise RuntimeError("LLM retries exhausted")
+
+
+def _extract_json(raw: str):
+    """Pull a JSON object from possibly-messy LLM output; None on failure."""
+    if not raw or not raw.strip():
+        return None
+    cleaned = raw.strip()
+    if cleaned.startswith("```"):
+        cleaned = re.sub(r"^```(?:json)?\s*", "", cleaned)
+        cleaned = re.sub(r"\s*```$", "", cleaned).strip()
+    try:
+        return json.loads(cleaned)
+    except json.JSONDecodeError:
+        m = re.search(r"\{.*\}", cleaned, re.DOTALL)
+        if not m:
+            return None
+        try:
+            return json.loads(m.group())
+        except json.JSONDecodeError:
+            return None
 
 
 def _parse(raw: str, label: str) -> dict:
@@ -283,24 +304,42 @@ def judge_credit(rounds_log: list[dict], final_answer: str, seed: int) -> tuple[
         "evidence or shifted the group; do NOT default to an even split. "
         "Return ONLY a JSON object mapping each analyst name to its share."
     )
-    user = (
+    base_user = (
         f"DEBATE TRANSCRIPT:\n{anon_transcript}\n\n"
         f"The group's final answer was: {final_answer}\n"
         "Return ONLY the JSON object of credit shares."
     )
+    nudge = (
+        "\n\nReturn ONLY a single JSON object mapping each of these exact names "
+        f"to a number in [0,1]: {names}. Example: "
+        + '{"' + names[0] + '": 0.4, "' + names[1] + '": 0.3, "'
+        + names[2] + '": 0.2, "' + names[3] + '": 0.1}. '
+        + "No prose, no markdown, no text outside the object."
+    )
+
     last = None
-    for _ in range(2):
+    for attempt in range(5):
+        user = base_user if attempt == 0 else base_user + nudge
+        temp = 0.0 if attempt < 2 else 0.4
         try:
             raw = _llm(
-                [{"role": "system", "content": system}, {"role": "user", "content": user}],
-                seed=seed, max_tokens=150, temp=0.0,
+                [{"role": "system", "content": system},
+                 {"role": "user", "content": user}],
+                seed=seed + 100003 * attempt,
+                max_tokens=200, temp=temp,
             )
-            data = json.loads(raw)
-            total = sum(data[n] for n in names)
+            data = _extract_json(raw)
+            if data is None:
+                last = "empty/unparseable judge output"; continue
+            if not all(n in data for n in names):
+                last = f"missing names: {[n for n in names if n not in data]}"; continue
+            total = sum(float(data[n]) for n in names)
+            if total <= 0:
+                last = "all-zero credit"; continue
             return {inv[n]: float(data[n]) / total for n in names}, True
         except Exception as e:
             last = e
-    print(f"    [judge FAILED] {last}")
+    print(f"    [judge FAILED after retries] {last}")
     return {k: 0.25 for k in AGENT_IDS}, False
 
 
@@ -410,7 +449,7 @@ def plot_trajectory(summary: dict, path: Path) -> None:
     rounds = list(range(1, R + 1))
     fig, ax = plt.subplots(figsize=(8, 5))
 
-    for arm in ARMS:
+    for arm in summary:
         mu  = np.array(summary[arm]["V_by_round_mean"])
         sig = np.array(summary[arm]["V_by_round_std"])
         ax.plot(rounds, mu, color=COLORS[arm], label=arm,
@@ -459,7 +498,7 @@ def main() -> None:
     RESULTS_DIR.mkdir(exist_ok=True)
     all_runs = _load_checkpoint()
 
-    for arm in ARMS:
+    for arm in ARMS_TO_RUN:
         completed_seeds = {r["seed"] for r in all_runs.get(arm, [])}
         remaining = [s for s in range(N_SEEDS) if s not in completed_seeds]
         if not remaining:
@@ -479,7 +518,7 @@ def main() -> None:
             all_runs.setdefault(arm, []).append(run)
             _save_checkpoint(all_runs)  # persist after each debate
 
-    summary = {arm: summarize(all_runs[arm]) for arm in ARMS}
+    summary = {arm: summarize(all_runs[arm]) for arm in ARMS_TO_RUN if all_runs.get(arm)}
 
     result = {
         "meta": {
