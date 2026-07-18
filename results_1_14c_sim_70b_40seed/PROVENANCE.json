@@ -1,0 +1,77 @@
+{
+  "extended_from": "results_1_14c_sim_70b_16seed",
+  "pilot_n_seeds": 16,
+  "pilot_timestamp": "2026-07-17T23:28:20.204767+00:00",
+  "target_n_seeds": 40,
+  "confirmation_seeds": [
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39
+  ],
+  "note": "Seeds 0..16 are the PILOT and estimated dz ~ 0.47 for the timing effect. Seeds 16..40 are the pre-specified CONFIRMATION sample: paired on the matched assignment, sign-flip permutation, two-sided, direction predicted positive. Report the confirmation on its own as well as pooled; if reporting pooled, state that n was chosen from a pilot.",
+  "fingerprint": {
+    "debate_mode": "simultaneous",
+    "model": "meta-llama/llama-3.3-70b-instruct",
+    "provider": "openrouter",
+    "temperature": 0.7,
+    "scenario_id": "meridian_v1",
+    "n_agents": 4,
+    "n_rounds": 5,
+    "answer_set": [
+      "Alvarez",
+      "Boyd",
+      "Chen"
+    ],
+    "correct_answer": "Chen",
+    "misleading_answer": "Alvarez",
+    "clue_text": {
+      "c1": "THE COMPLAINT: Two weeks before his death, Reyes filed a formal internal complaint naming Alvarez. Had it gone to the board, Alvarez would have been dismissed.",
+      "c2": "THE BADGE LOG: Building access logs show Alvarez badged onto the floor at 9:40pm and did not badge out until 11:15pm. Reyes died between 9pm and midnight.",
+      "c3": "THE OLD GUARD: Reyes's assistant reports that he agreed to a late meeting that night with someone he called \"one of the old guard.\" Alvarez and Boyd have each been at the firm over a decade. Chen joined fourteen months ago.",
+      "c4": "THE DNA: Skin recovered from beneath Reyes's fingernails yields a single-source profile. It matches Chen. Alvarez and Boyd are both excluded as contributors."
+    },
+    "arms_tau_by_clue": {
+      "honest": {
+        "c1": 1,
+        "c2": 1,
+        "c3": 1,
+        "c4": 1
+      },
+      "withhold": {
+        "c1": 1,
+        "c2": 1,
+        "c3": 1,
+        "c4": 4
+      },
+      "never": {
+        "c1": 1,
+        "c2": 1,
+        "c3": 1,
+        "c4": null
+      }
+    },
+    "group_belief_instrument": "observer_probe",
+    "epsilon_floor": null
+  }
+}
