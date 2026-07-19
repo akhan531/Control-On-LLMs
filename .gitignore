@@ -6,3 +6,4 @@ __pycache__/
 results_70b_smoke/
 results_70b_smoke2/
 *.log
+results_*_smoke/
