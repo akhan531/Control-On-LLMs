@@ -42,7 +42,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 
-import fig_common as FC
+import poster_plots.fig_common as FC
 
 ORDER = ["honest", "withhold", "never"]
 TAU = {"honest": r"$\tau_4=1$", "withhold": r"$\tau_4=4$", "never": r"$\tau_4=\infty$"}
@@ -62,7 +62,7 @@ def main() -> None:
     data = {arm: np.array([r["pivotal_credit"] for r in d["runs"][arm]]) for arm in ORDER}
     xs = np.arange(1, len(ORDER) + 1)
 
-    fig, ax = plt.subplots(figsize=(7.4, 5.6))
+    fig, ax = plt.subplots(figsize=(7.4, 3.5))
 
     bp = ax.boxplot(
         [data[a] for a in ORDER], positions=xs, widths=0.55,
@@ -87,7 +87,7 @@ def main() -> None:
     )
     ax.set_xlim(0.4, len(ORDER) + 0.6)
     ax.set_ylim(-0.05, 1.08)
-    ax.set_ylabel("pivotal credit  $c$   (share to the $c_4$ holder)")
+    ax.set_ylabel("Share to $c_4$ holder")
     ax.set_title("Credit by Decisive-Clue Disclosure Behavior", fontsize=13.5)
 
     fig.tight_layout()
