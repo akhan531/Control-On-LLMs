@@ -29,7 +29,7 @@
     38,
     39
   ],
-  "note": "Seeds 0..16 are the PILOT and estimated dz ~ 0.47 for the timing effect. Seeds 16..40 are the pre-specified CONFIRMATION sample: paired on the matched assignment, sign-flip permutation, two-sided, direction predicted positive. Report the confirmation on its own as well as pooled; if reporting pooled, state that n was chosen from a pilot.",
+  "note": "Seeds 0..15 are the PILOT and estimated dz ~ 0.47 for the timing effect. Seeds 16..39 are the pre-specified CONFIRMATION sample: paired on the matched assignment, sign-flip permutation, two-sided, direction predicted positive. Report the confirmation on its own as well as pooled; if reporting pooled, state that n was chosen from a pilot.",
   "fingerprint": {
     "debate_mode": "simultaneous",
     "model": "meta-llama/llama-3.3-70b-instruct",

@@ -131,13 +131,13 @@ def main() -> int:
         "target_n_seeds": a.seeds,
         "confirmation_seeds": list(range(meta["n_seeds"], a.seeds)),
         "note": (
-            "Seeds 0..{p} are the PILOT and estimated dz ~ 0.47 for the timing "
-            "effect. Seeds {p}..{t} are the pre-specified CONFIRMATION sample: "
+            "Seeds 0..{pe} are the PILOT and estimated dz ~ 0.47 for the timing "
+            "effect. Seeds {cs}..{ce} are the pre-specified CONFIRMATION sample: "
             "paired on the matched assignment, sign-flip permutation, "
             "two-sided, direction predicted positive. Report the confirmation "
             "on its own as well as pooled; if reporting pooled, state that n "
             "was chosen from a pilot."
-        ).format(p=meta["n_seeds"], t=a.seeds),
+        ).format(pe=meta["n_seeds"] - 1, cs=meta["n_seeds"], ce=a.seeds - 1),
         "fingerprint": fingerprint,
     }, indent=2))
 
