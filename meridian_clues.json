@@ -1,0 +1,85 @@
+{
+  "artifact": "meridian_v2 clue texts",
+  "version": 1,
+  "status": "draft_not_frozen",
+  "authored": "2026-08-04",
+  "task": "2.1f",
+  "spec": "meridian_v2_scenario.md section 1.6, as amended by the premise revision of 2026-08-04",
+  "suspect_slot_placeholder": "{SUSPECT}",
+  "outcomes": [
+    "A",
+    "C",
+    "O"
+  ],
+  "notes": [
+    "A and C texts are the accusatory template instantiated with the slot-0 and slot-1 suspect names respectively.",
+    "Surname assignment to slots is counterbalanced per seed; templates are name-agnostic.",
+    "Templates are pronoun-free by design.",
+    "Channels are nested: N=3 uses 1-3, N=5 uses 1-5, N=7 uses 1-7, N=9 uses 1-9."
+  ],
+  "channels": [
+    {
+      "index": 1,
+      "line_of_inquiry": "forensic examination of the office",
+      "evidentiary_type": "physical trace at the scene",
+      "accusatory_template": "A partial palm print in blood was lifted from the underside of the desk drawer in Reyes's office. It matches {SUSPECT}.",
+      "null_text": "Eleven usable prints were recovered from the office. All eleven are Reyes's own. Nothing on the desk, the door handle or the window frame is attributable to anyone else."
+    },
+    {
+      "index": 2,
+      "line_of_inquiry": "building access and badge logs",
+      "evidentiary_type": "access timing at a specific door",
+      "accusatory_template": "The card reader outside Reyes's office logged {SUSPECT}'s badge at 10:52pm. Reyes's own badge was not used again after 9:20pm.",
+      "null_text": "The badge system was mid-upgrade that night. Reads between 9pm and midnight were not written to the log."
+    },
+    {
+      "index": 3,
+      "line_of_inquiry": "phone and messaging records",
+      "evidentiary_type": "contact pattern with the victim",
+      "accusatory_template": "{SUSPECT} placed four calls to Reyes between 9:05pm and 9:40pm. The first three lasted under ten seconds each. The fourth lasted nine minutes.",
+      "null_text": "No call or message passed between Reyes and either suspect that evening. The firm's messaging platform retains nothing from that window for any of the three."
+    },
+    {
+      "index": 4,
+      "line_of_inquiry": "financial and billing audit",
+      "evidentiary_type": "motive, financial",
+      "accusatory_template": "The internal billing audit Reyes opened in March had reached {SUSPECT}'s client accounts. About $240,000 in billed hours across two years cannot be matched to any work product.",
+      "null_text": "The audit Reyes opened in March had not yet reached any individual partner's accounts. Its working papers cover firm-wide overhead only."
+    },
+    {
+      "index": 5,
+      "line_of_inquiry": "lobby and elevator camera review",
+      "evidentiary_type": "material removed from the building",
+      "accusatory_template": "Lobby footage shows {SUSPECT} leaving the building at 11:18pm carrying a document box. Footage from the same camera earlier that evening shows {SUSPECT} arriving empty-handed.",
+      "null_text": "The lobby and elevator cameras were writing to a full disk. Nothing recorded after 7:04pm was retained."
+    },
+    {
+      "index": 6,
+      "line_of_inquiry": "canvass of staff who were in the building",
+      "evidentiary_type": "earwitness to a dispute",
+      "accusatory_template": "A paralegal working on the floor below heard raised voices overhead shortly after ten and recognized one of them as {SUSPECT}'s. The exchange went on for several minutes.",
+      "null_text": "Four staff were in the building after nine, all of them on the second and third floors. None heard anything unusual and none went above the fourth floor."
+    },
+    {
+      "index": 7,
+      "line_of_inquiry": "firm email and document archive",
+      "evidentiary_type": "documented professional conflict",
+      "accusatory_template": "A draft partnership memo sitting in the archive proposes removing {SUSPECT} from the executive committee. Reyes wrote it in June and never circulated it.",
+      "null_text": "The archive was searched across the six weeks before the death. Nothing in it refers to either suspect outside routine matter assignments."
+    },
+    {
+      "index": 8,
+      "line_of_inquiry": "the victim's calendar and correspondence",
+      "evidentiary_type": "the victim's own intent",
+      "accusatory_template": "Reyes's calendar carries a private entry for 10:30pm Thursday reading only \"{SUSPECT}: resolve\". No invitation was sent and no room was booked.",
+      "null_text": "Reyes's calendar is empty after a 6pm client call on Thursday, and the outgoing correspondence for that week is entirely routine."
+    },
+    {
+      "index": 9,
+      "line_of_inquiry": "building services, waste and disposal",
+      "evidentiary_type": "post-hoc disposal",
+      "accusatory_template": "Waste pulled from the floor's bins on Friday morning included a pair of latex gloves and a hardware store receipt dated Thursday afternoon, paid with {SUSPECT}'s firm card.",
+      "null_text": "The floor's waste was compacted and hauled off-site at 5am Friday, before anyone thought to hold it. The compactor log confirms the load left the building."
+    }
+  ]
+}
