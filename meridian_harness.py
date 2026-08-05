@@ -124,16 +124,36 @@ def premise(names: dict[int, str]) -> str:
 # LLM plumbing. Carried from task_1_14c.py.
 # ─────────────────────────────────────────────────────────────────────────────
 
+OPENROUTER_URL = "https://openrouter.ai/api/v1"
+
 if not FAKE_LLM:
     from dotenv import load_dotenv
     from openai import OpenAI
     load_dotenv()
-    _client = OpenAI(
-        base_url=os.environ.get("OPENAI_BASE_URL", "http://localhost:8000/v1"),
-        api_key=os.environ.get("OPENAI_API_KEY", "EMPTY"),
-    )
-    _USE_OPENROUTER = "openrouter" in os.environ.get("OPENAI_BASE_URL", "").lower()
+
+    # Resolution order, deliberately explicit. Passing OPENAI_BASE_URL and
+    # OPENAI_API_KEY inline still wins, so extend_run.py and the Amarel vLLM
+    # path in run_1_0a.sbatch keep working unchanged. What is new is that a
+    # bare OPENROUTER_API_KEY in .env is enough, because the alternative was
+    # silently falling back to a localhost vLLM server that is not running and
+    # burning ten minutes per call in the connection-retry ladder.
+    _base = os.environ.get("OPENAI_BASE_URL")
+    _key = os.environ.get("OPENAI_API_KEY")
+    if not _base and os.environ.get("OPENROUTER_API_KEY"):
+        _base = OPENROUTER_URL
+        _key = _key or os.environ["OPENROUTER_API_KEY"]
+        _resolved_via = "OPENROUTER_API_KEY"
+    elif _base:
+        _resolved_via = "OPENAI_BASE_URL"
+    else:
+        _base, _resolved_via = "http://localhost:8000/v1", "default (local vLLM)"
+    _key = _key or "EMPTY"
+
+    BASE_URL = _base
+    _client = OpenAI(base_url=_base, api_key=_key)
+    _USE_OPENROUTER = "openrouter" in _base.lower()
 else:
+    BASE_URL, _resolved_via = "(fake)", "MERIDIAN_FAKE_LLM"
     _client = None
     _USE_OPENROUTER = False
 
@@ -183,6 +203,7 @@ def _llm(messages: list[dict], seed: int, max_tokens: int = 450,
     else:
         create_kwargs["seed"] = seed
 
+    conn_fails = 0
     for attempt in range(6):
         try:
             resp = _client.chat.completions.create(**create_kwargs)
@@ -191,12 +212,23 @@ def _llm(messages: list[dict], seed: int, max_tokens: int = 450,
             msg = str(exc)
             if "429" in msg or "rate" in msg.lower():
                 wait = 360 if attempt == 0 else 600
-                print(f"    [rate-limit] waiting {wait}s ...")
+                print(f"    [rate-limit] waiting {wait}s ...", flush=True)
                 time.sleep(wait)
             elif ("connection" in msg.lower() or "errno 8" in msg.lower()
                   or "connect" in msg.lower()):
-                wait = 30 * (attempt + 1)
-                print(f"    [connection error] waiting {wait}s ... ({msg[:60]})")
+                # A refused connection is usually a misconfigured endpoint, not
+                # a transient blip, so this ladder is short by design: the old
+                # 30/60/90/120/150/180 schedule spent 10.5 minutes per call
+                # failing against a server that was never going to answer.
+                conn_fails += 1
+                if conn_fails > 3:
+                    raise RuntimeError(
+                        f"cannot reach {BASE_URL} after {conn_fails} attempts. "
+                        f"Endpoint resolved via {_resolved_via}. "
+                        f"Original error: {msg[:200]}") from exc
+                wait = 10 * conn_fails
+                print(f"    [connection error] waiting {wait}s ... ({msg[:60]})",
+                      flush=True)
                 time.sleep(wait)
             else:
                 raise
@@ -669,11 +701,39 @@ def _save_ckpt(store: dict) -> None:
     tmp.replace(_ckpt_path())
 
 
+def preflight() -> None:
+    """
+    One cheap call before any debate starts, so a misconfigured endpoint costs
+    seconds rather than a whole run. Prints the resolved endpoint so it lands
+    in the log and in the provenance rather than living in a shell history.
+    """
+    print(f"  endpoint {BASE_URL}  (resolved via {_resolved_via})")
+    if FAKE_LLM:
+        print("  preflight skipped: offline stub\n")
+        return
+    t0 = time.time()
+    try:
+        raw = _llm([{"role": "system",
+                     "content": 'Reply with ONLY the JSON object '
+                                '{"probabilities": {"Alvarez": 0.5, "Chen": 0.5}}.'},
+                    {"role": "user", "content": "Reply now."}],
+                   seed=1, max_tokens=60, temp=0.0, kind="agent")
+    except Exception as exc:
+        raise SystemExit(f"\nPREFLIGHT FAILED against {BASE_URL}\n  {exc}\n")
+    _CALLS["agent"] -= 0
+    ok = _extract_json(raw) is not None
+    print(f"  preflight ok in {time.time()-t0:.1f}s, "
+          f"JSON parseable: {ok}\n")
+    if not ok:
+        raise SystemExit(f"preflight returned unparseable output: {raw[:200]!r}")
+
+
 def main() -> int:
     print(f"meridian_v2 harness | model {MODEL} | fake_llm {FAKE_LLM}")
     print(f"  group sizes {GROUP_SIZES} | arms {ARMS} | {N_SEEDS} seeds/cell")
     print(f"  R={R} K={K} probe draws {PROBE_DRAWS} @ temp {PROBE_TEMPERATURE}")
-    print(f"  clue hash {CLUE_HASH[:16]}...\n")
+    print(f"  clue hash {CLUE_HASH[:16]}...")
+    preflight()
 
     store = _load_ckpt()
     todo = [(N, arm, s) for N in GROUP_SIZES for arm in ARMS
