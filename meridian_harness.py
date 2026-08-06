@@ -59,6 +59,19 @@ GROUP_SIZES = tuple(int(x) for x in
                     os.environ.get("GROUP_SIZES", "3,5,7,9").split(","))
 ARMS = tuple(os.environ.get("ARMS_TO_RUN", "honest,selective,delayed").split(","))
 N_SEEDS = int(os.environ.get("N_SEEDS", "80"))
+SEED_START = int(os.environ.get("SEED_START", "0"))
+
+# Debates are independent and the workload is I/O-bound on the API, so threads
+# are the right tool. Wall clock, not budget, is the binding constraint
+# (scenario 4.7). Serial measurement on 2026-08-05: ~3.7 s per call.
+WORKERS = int(os.environ.get("WORKERS", "8"))
+
+# Probe B's input provably cannot change once a round's evidence block is
+# fixed (scenario 3.2), so most of its calls repeat one prompt. We compute each
+# distinct block TWICE: once for the measurement, once more to preserve the
+# free instrument-noise calibration, which is exactly the round-to-round
+# movement on identical input. Further repeats are reused and flagged.
+PROBE_B_REPEATS = int(os.environ.get("PROBE_B_REPEATS", "2"))
 
 SURNAMES = ("Alvarez", "Chen")          # listed alphabetically wherever shown
 RESULTS_DIR = Path(os.environ.get("RESULTS_DIR", "results_2_1f"))
@@ -157,7 +170,25 @@ else:
     _client = None
     _USE_OPENROUTER = False
 
-_CALLS = {"agent": 0, "probe_b": 0, "probe_p": 0}
+class CreditExhausted(RuntimeError):
+    """Provider is out of credit. Fatal for the run, not for one debate."""
+
+
+# Set the moment a credit error is seen, so in-flight workers stop instead of
+# racing through the remaining queue marking every debate as errored. Wave two
+# on 2026-08-05 burned 480 debates into 349 skips in 46 minutes this way,
+# because a credit error fell through to the generic raise and each debate died
+# on its first call.
+ABORT = __import__("threading").Event()
+
+_CALLS = {"agent": 0, "probe_b": 0, "probe_p": 0, "probe_b_reused": 0,
+          "hard_zero_rounds": 0}
+_CALLS_LOCK = __import__("threading").Lock()
+
+
+def _bump(kind: str, n: int = 1) -> None:
+    with _CALLS_LOCK:
+        _CALLS[kind] = _CALLS.get(kind, 0) + n
 
 
 def _fake_llm(messages: list[dict], seed: int, kind: str) -> str:
@@ -205,11 +236,18 @@ def _llm(messages: list[dict], seed: int, max_tokens: int = 450,
 
     conn_fails = 0
     for attempt in range(6):
+        if ABORT.is_set():
+            raise CreditExhausted("run aborted")
         try:
             resp = _client.chat.completions.create(**create_kwargs)
             return resp.choices[0].message.content or ""
         except Exception as exc:
             msg = str(exc)
+            low = msg.lower()
+            if ("insufficient credits" in low or "requires more credits" in low
+                    or "402" in msg):
+                ABORT.set()
+                raise CreditExhausted(msg[:200]) from exc
             if "429" in msg or "rate" in msg.lower():
                 wait = 360 if attempt == 0 else 600
                 print(f"    [rate-limit] waiting {wait}s ...", flush=True)
@@ -396,7 +434,7 @@ def agent_turn(finding: dict, arm: str, rnd: int, names: dict[int, str],
         [{"role": "system", "content": system},
          {"role": "user", "content": user}],
         seed, label, 450, AGENT_TEMPERATURE, "agent")
-    _CALLS["agent"] += 1
+    _bump("agent")
 
     leaked = _leak_check(parsed["argument"], finding) if holding else []
     return {
@@ -516,7 +554,7 @@ def _multi_draw(system: str, user: str, names: dict[int, str], seed: int,
             seed + 31337 * (d + 1), f"{label}/d{d}", 300,
             PROBE_TEMPERATURE, kind)
         draws.append(_to_slots(parsed["probabilities"], names))
-        _CALLS[kind] += 1
+        _bump(kind)
 
     arr = np.array(draws)
     mean = arr.mean(axis=0)
@@ -532,6 +570,23 @@ def _multi_draw(system: str, user: str, names: dict[int, str], seed: int,
 # One debate
 # ─────────────────────────────────────────────────────────────────────────────
 
+def _safe_kl(p: tuple[float, float], q: tuple[float, float]) -> tuple[float, bool]:
+    """
+    Reverse KL that survives a hard zero instead of raising.
+
+    An LLM probe can report a coordinate as exactly 0.0. When it does, and the
+    reference distribution puts mass there, D(p||q) is genuinely infinite. We
+    record inf and flag it. We do NOT floor: scenario 6 makes flooring an
+    analysis-side decision requiring an explicit sensitivity table, so the raw
+    draws stay in the log and the choice stays downstream. Discovered on the
+    first threaded live smoke, 2026-08-05, at N=3 honest.
+    """
+    for pi, qi in zip(p, q):
+        if pi > 0.0 and qi <= 0.0:
+            return float("inf"), True
+    return M.kl(p, q), False
+
+
 def run_debate(N: int, arm: str, s: int) -> dict:
     d = design(N, s)
     names = d["names"]
@@ -543,6 +598,7 @@ def run_debate(N: int, arm: str, s: int) -> dict:
     transcript = ""
     rounds = []
     public = [False] * N
+    probe_b_cache: dict[str, dict] = {}
 
     for rnd in range(1, R + 1):
         S = M.disclosure_set(arm, rnd)
@@ -565,9 +621,30 @@ def run_debate(N: int, arm: str, s: int) -> dict:
             f"\n[round {rnd}] investigator {i+1}: {t['argument']}"
             for i, t in enumerate(turns))
 
-        b = probe_b(ev_after, names, base_seed + 7000 + rnd, rnd)
+        # Probe B sees the evidence block and nothing else, so identical blocks
+        # give identical inputs. Compute each distinct block PROBE_B_REPEATS
+        # times, then reuse. The repeats are the scenario 3.2 calibration:
+        # movement on identical input is pure instrument noise.
+        entry = probe_b_cache.setdefault(ev_after, {"computed": 0, "last": None})
+        if entry["computed"] < PROBE_B_REPEATS:
+            b = probe_b(ev_after, names, base_seed + 7000 + rnd, rnd)
+            b["reused"] = False
+            b["block_visit"] = entry["computed"] + 1
+            entry["computed"] += 1
+            entry["last"] = b
+        else:
+            b = dict(entry["last"])
+            b["reused"] = True
+            b["block_visit"] = entry["computed"]
+            _bump("probe_b_reused", PROBE_DRAWS)
+
         p = probe_p(ev_after, transcript, names, base_seed + 8000 + rnd, rnd,
                     N, arm)
+
+        V_hat, zero_b = _safe_kl(tuple(exact["b_star"]), tuple(b["slots"]))
+        eps_hat, zero_p = _safe_kl(tuple(p["slots"]), tuple(b["slots"]))
+        if zero_b or zero_p:
+            _bump("hard_zero_rounds")
 
         rounds.append({
             "round": rnd,
@@ -576,8 +653,10 @@ def run_debate(N: int, arm: str, s: int) -> dict:
             "turns": turns,
             "probe_b": b,
             "probe_p": p,
-            "V_hat": M.kl(tuple(exact["b_star"]), tuple(b["slots"])),
-            "eps_hat": M.kl(tuple(p["slots"]), tuple(b["slots"])),
+            "V_hat": None if V_hat == float("inf") else V_hat,
+            "eps_hat": None if eps_hat == float("inf") else eps_hat,
+            "hard_zero_b": zero_b,
+            "hard_zero_p": zero_p,
             "exact_V": exact["V"][rnd],
             "exact_dV": exact["dV"][rnd],
             "exact_eps": exact["eps"][rnd],
@@ -720,7 +799,6 @@ def preflight() -> None:
                    seed=1, max_tokens=60, temp=0.0, kind="agent")
     except Exception as exc:
         raise SystemExit(f"\nPREFLIGHT FAILED against {BASE_URL}\n  {exc}\n")
-    _CALLS["agent"] -= 0
     ok = _extract_json(raw) is not None
     print(f"  preflight ok in {time.time()-t0:.1f}s, "
           f"JSON parseable: {ok}\n")
@@ -730,41 +808,91 @@ def preflight() -> None:
 
 def main() -> int:
     print(f"meridian_v2 harness | model {MODEL} | fake_llm {FAKE_LLM}")
-    print(f"  group sizes {GROUP_SIZES} | arms {ARMS} | {N_SEEDS} seeds/cell")
-    print(f"  R={R} K={K} probe draws {PROBE_DRAWS} @ temp {PROBE_TEMPERATURE}")
+    print(f"  group sizes {GROUP_SIZES} | arms {ARMS} | "
+          f"seeds {SEED_START}..{N_SEEDS-1} | {WORKERS} workers")
+    print(f"  R={R} K={K} probe draws {PROBE_DRAWS} @ temp {PROBE_TEMPERATURE} "
+          f"| probe B repeats {PROBE_B_REPEATS}")
     print(f"  clue hash {CLUE_HASH[:16]}...")
     preflight()
 
     store = _load_ckpt()
+    # A key holding an error record is NOT done. Filtering on presence alone
+    # would silently treat a failed run as complete on the next invocation.
+    def _pending(key):
+        rec = store.get(key)
+        return rec is None or "error" in rec
+
     todo = [(N, arm, s) for N in GROUP_SIZES for arm in ARMS
-            for s in range(N_SEEDS)]
-    done = set(store.keys())
-    print(f"  {len(todo)} debates total, {len(done)} already in checkpoint\n")
+            for s in range(SEED_START, N_SEEDS)
+            if _pending(f"{N}|{arm}|{s}")]
+    n_retry = sum(1 for N, arm, s in todo if f"{N}|{arm}|{s}" in store)
+    print(f"  {len(todo)} debates to run ({n_retry} retries of failed records), "
+          f"{len(store)} in checkpoint\n")
+    if not todo:
+        _write_results(store)
+        return 0
 
+    from concurrent.futures import ThreadPoolExecutor, as_completed
+    import threading
+    lock = threading.Lock()
     t0 = time.time()
-    for idx, (N, arm, s) in enumerate(todo):
-        key = f"{N}|{arm}|{s}"
-        if key in done:
-            continue
-        try:
-            store[key] = run_debate(N, arm, s)
-        except Exception as exc:
-            print(f"  [SKIP] {key}: {exc}")
-            store[key] = {"error": str(exc), "N": N, "arm": arm, "seed_index": s}
-        if (idx + 1) % 10 == 0:
-            _save_ckpt(store)
-            el = time.time() - t0
-            print(f"  {idx+1}/{len(todo)}  {el/60:.1f} min  calls {_CALLS}")
-    _save_ckpt(store)
+    completed = 0
 
+    def work(job):
+        N, arm, s = job
+        if ABORT.is_set():
+            return None, None
+        try:
+            return f"{N}|{arm}|{s}", run_debate(N, arm, s)
+        except CreditExhausted:
+            return None, None
+        except Exception as exc:
+            return f"{N}|{arm}|{s}", {"error": str(exc), "N": N, "arm": arm,
+                                      "seed_index": s}
+
+    with ThreadPoolExecutor(max_workers=WORKERS) as pool:
+        futures = [pool.submit(work, j) for j in todo]
+        for fut in as_completed(futures):
+            key, rec = fut.result()
+            if key is None:
+                continue
+            with lock:
+                store[key] = rec
+                completed += 1
+                if "error" in rec:
+                    print(f"  [SKIP] {key}: {rec['error'][:120]}", flush=True)
+                if completed % 20 == 0 or completed == len(todo):
+                    _save_ckpt(store)
+                    el = time.time() - t0
+                    rate = completed / el if el else 0
+                    eta = (len(todo) - completed) / rate / 60 if rate else 0
+                    print(f"  {completed}/{len(todo)}  {el/60:.1f} min elapsed  "
+                          f"ETA {eta:.0f} min  calls {_CALLS}", flush=True)
+
+    _save_ckpt(store)
+    _write_results(store)
+    if ABORT.is_set():
+        print("\nRUN ABORTED: provider out of credit. Nothing is lost; the\n"
+              "checkpoint holds every completed debate. Top up and rerun the\n"
+              "identical command to resume.")
+        return 4
+    return 0
+
+
+def _write_results(store: dict) -> None:
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
     out = RESULTS_DIR / "meridian_v2_results.json"
+    errs = sum(1 for r in store.values() if "error" in r)
     with open(out, "w") as fh:
         json.dump({"runs": store, "calls": _CALLS, "clue_hash": CLUE_HASH,
                    "model": MODEL, "fake_llm": FAKE_LLM,
-                   "spec_version": SPEC_VERSION}, fh)
-    print(f"\nwrote {out}  ({len(store)} debates, calls {_CALLS})")
-    return 0
+                   "spec_version": SPEC_VERSION,
+                   "probe_draws": PROBE_DRAWS,
+                   "probe_b_repeats": PROBE_B_REPEATS,
+                   "probe_temperature": PROBE_TEMPERATURE,
+                   "endpoint": BASE_URL}, fh)
+    print(f"\nwrote {out}  ({len(store)} debates, {errs} errored, "
+          f"calls {_CALLS})")
 
 
 if __name__ == "__main__":

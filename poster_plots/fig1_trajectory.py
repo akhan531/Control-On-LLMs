@@ -41,7 +41,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 
-import fig_common as FC
+import poster_plots.fig_common as FC
 
 ARMS = ["honest", "withhold", "never"]
 
