@@ -1,0 +1,567 @@
+{
+  "anchor|A": {
+    "low_thr": 0.4,
+    "high_thr": 0.6,
+    "lo_dist": 0.1,
+    "hi_dist": 0.1,
+    "asym": 0.0,
+    "modes": {
+      "0.1": [
+        "THETA",
+        "Strongly"
+      ],
+      "0.2": [
+        "THETA",
+        "Strongly"
+      ],
+      "0.3": [
+        "THETA",
+        "Strongly"
+      ],
+      "0.4": [
+        "THETA",
+        "Strongly"
+      ],
+      "0.6": [
+        "SIGMA",
+        "Strongly"
+      ],
+      "0.7": [
+        "SIGMA",
+        "Strongly"
+      ],
+      "0.8": [
+        "SIGMA",
+        "Strongly"
+      ],
+      "0.9": [
+        "SIGMA",
+        "Strongly"
+      ]
+    }
+  },
+  "anchor|B": {
+    "low_thr": 0.3,
+    "high_thr": 0.8,
+    "lo_dist": 0.2,
+    "hi_dist": 0.3,
+    "asym": 0.1,
+    "modes": {
+      "0.1": [
+        "THETA",
+        "Very confident"
+      ],
+      "0.2": [
+        "THETA",
+        "Very confident"
+      ],
+      "0.3": [
+        "THETA",
+        "Very confident"
+      ],
+      "0.4": [
+        "THETA",
+        "Somewhat confident"
+      ],
+      "0.6": [
+        "SIGMA",
+        "Somewhat confident"
+      ],
+      "0.7": [
+        "SIGMA",
+        "Somewhat confident"
+      ],
+      "0.8": [
+        "SIGMA",
+        "Very confident"
+      ],
+      "0.9": [
+        "SIGMA",
+        "Very confident"
+      ]
+    }
+  },
+  "deepseek|A": {
+    "low_thr": 0.3,
+    "high_thr": 0.7,
+    "lo_dist": 0.2,
+    "hi_dist": 0.2,
+    "asym": 0.0,
+    "modes": {
+      "0.1": [
+        "THETA",
+        "Strongly"
+      ],
+      "0.2": [
+        "THETA",
+        "Strongly"
+      ],
+      "0.3": [
+        "THETA",
+        "Strongly"
+      ],
+      "0.4": null,
+      "0.6": null,
+      "0.7": [
+        "SIGMA",
+        "Strongly"
+      ],
+      "0.8": [
+        "SIGMA",
+        "Strongly"
+      ],
+      "0.9": [
+        "SIGMA",
+        "Strongly"
+      ]
+    }
+  },
+  "deepseek|B": {
+    "low_thr": 0.2,
+    "high_thr": 0.8,
+    "lo_dist": 0.3,
+    "hi_dist": 0.3,
+    "asym": 0.0,
+    "modes": {
+      "0.1": [
+        "THETA",
+        "Very confident"
+      ],
+      "0.2": [
+        "THETA",
+        "Very confident"
+      ],
+      "0.3": [
+        "THETA",
+        "Somewhat confident"
+      ],
+      "0.4": [
+        "THETA",
+        "Somewhat confident"
+      ],
+      "0.6": [
+        "SIGMA",
+        "Somewhat confident"
+      ],
+      "0.7": [
+        "SIGMA",
+        "Somewhat confident"
+      ],
+      "0.8": [
+        "SIGMA",
+        "Very confident"
+      ],
+      "0.9": [
+        "SIGMA",
+        "Very confident"
+      ]
+    }
+  },
+  "deepseek-high|A": {
+    "low_thr": 0.2,
+    "high_thr": 0.8,
+    "lo_dist": 0.3,
+    "hi_dist": 0.3,
+    "asym": 0.0,
+    "modes": {
+      "0.1": [
+        "THETA",
+        "Strongly"
+      ],
+      "0.2": [
+        "THETA",
+        "Strongly"
+      ],
+      "0.3": [
+        "THETA",
+        "Slightly"
+      ],
+      "0.4": [
+        "THETA",
+        "Slightly"
+      ],
+      "0.6": [
+        "SIGMA",
+        "Slightly"
+      ],
+      "0.7": null,
+      "0.8": [
+        "SIGMA",
+        "Strongly"
+      ],
+      "0.9": [
+        "SIGMA",
+        "Strongly"
+      ]
+    }
+  },
+  "deepseek-high|B": {
+    "low_thr": 0.2,
+    "high_thr": 0.8,
+    "lo_dist": 0.3,
+    "hi_dist": 0.3,
+    "asym": 0.0,
+    "modes": {
+      "0.1": [
+        "THETA",
+        "Very confident"
+      ],
+      "0.2": [
+        "THETA",
+        "Very confident"
+      ],
+      "0.3": [
+        "THETA",
+        "Somewhat confident"
+      ],
+      "0.4": [
+        "THETA",
+        "Somewhat confident"
+      ],
+      "0.6": [
+        "SIGMA",
+        "Somewhat confident"
+      ],
+      "0.7": [
+        "SIGMA",
+        "Somewhat confident"
+      ],
+      "0.8": [
+        "SIGMA",
+        "Very confident"
+      ],
+      "0.9": [
+        "SIGMA",
+        "Very confident"
+      ]
+    }
+  },
+  "glm|A": {
+    "low_thr": 0.3,
+    "high_thr": 0.7,
+    "lo_dist": 0.2,
+    "hi_dist": 0.2,
+    "asym": 0.0,
+    "modes": {
+      "0.1": [
+        "THETA",
+        "Strongly"
+      ],
+      "0.2": [
+        "THETA",
+        "Strongly"
+      ],
+      "0.3": [
+        "THETA",
+        "Strongly"
+      ],
+      "0.4": [
+        "THETA",
+        "Slightly"
+      ],
+      "0.6": [
+        "SIGMA",
+        "Slightly"
+      ],
+      "0.7": [
+        "SIGMA",
+        "Strongly"
+      ],
+      "0.8": [
+        "SIGMA",
+        "Strongly"
+      ],
+      "0.9": [
+        "SIGMA",
+        "Strongly"
+      ]
+    }
+  },
+  "glm|B": {
+    "low_thr": 0.2,
+    "high_thr": 0.8,
+    "lo_dist": 0.3,
+    "hi_dist": 0.3,
+    "asym": 0.0,
+    "modes": {
+      "0.1": [
+        "THETA",
+        "Very confident"
+      ],
+      "0.2": [
+        "THETA",
+        "Very confident"
+      ],
+      "0.3": [
+        "THETA",
+        "Somewhat confident"
+      ],
+      "0.4": [
+        "THETA",
+        "Somewhat confident"
+      ],
+      "0.6": [
+        "SIGMA",
+        "Somewhat confident"
+      ],
+      "0.7": [
+        "SIGMA",
+        "Somewhat confident"
+      ],
+      "0.8": [
+        "SIGMA",
+        "Very confident"
+      ],
+      "0.9": [
+        "SIGMA",
+        "Very confident"
+      ]
+    }
+  },
+  "glm-high|A": {
+    "low_thr": 0.3,
+    "high_thr": 0.7,
+    "lo_dist": 0.2,
+    "hi_dist": 0.2,
+    "asym": 0.0,
+    "modes": {
+      "0.1": [
+        "THETA",
+        "Strongly"
+      ],
+      "0.2": [
+        "THETA",
+        "Strongly"
+      ],
+      "0.3": [
+        "THETA",
+        "Strongly"
+      ],
+      "0.4": [
+        "THETA",
+        "Slightly"
+      ],
+      "0.6": [
+        "SIGMA",
+        "Slightly"
+      ],
+      "0.7": [
+        "SIGMA",
+        "Strongly"
+      ],
+      "0.8": [
+        "SIGMA",
+        "Strongly"
+      ],
+      "0.9": [
+        "SIGMA",
+        "Strongly"
+      ]
+    }
+  },
+  "glm-high|B": {
+    "low_thr": 0.2,
+    "high_thr": 0.8,
+    "lo_dist": 0.3,
+    "hi_dist": 0.3,
+    "asym": 0.0,
+    "modes": {
+      "0.1": [
+        "THETA",
+        "Very confident"
+      ],
+      "0.2": [
+        "THETA",
+        "Very confident"
+      ],
+      "0.3": [
+        "THETA",
+        "Somewhat confident"
+      ],
+      "0.4": [
+        "THETA",
+        "Somewhat confident"
+      ],
+      "0.6": [
+        "SIGMA",
+        "Somewhat confident"
+      ],
+      "0.7": [
+        "SIGMA",
+        "Somewhat confident"
+      ],
+      "0.8": [
+        "SIGMA",
+        "Very confident"
+      ],
+      "0.9": [
+        "SIGMA",
+        "Very confident"
+      ]
+    }
+  },
+  "sol-high|A": {
+    "low_thr": 0.3,
+    "high_thr": 0.7,
+    "lo_dist": 0.2,
+    "hi_dist": 0.2,
+    "asym": 0.0,
+    "modes": {
+      "0.1": [
+        "THETA",
+        "Strongly"
+      ],
+      "0.2": [
+        "THETA",
+        "Strongly"
+      ],
+      "0.3": [
+        "THETA",
+        "Strongly"
+      ],
+      "0.4": [
+        "THETA",
+        "Slightly"
+      ],
+      "0.6": [
+        "SIGMA",
+        "Slightly"
+      ],
+      "0.7": [
+        "SIGMA",
+        "Strongly"
+      ],
+      "0.8": [
+        "SIGMA",
+        "Strongly"
+      ],
+      "0.9": [
+        "SIGMA",
+        "Strongly"
+      ]
+    }
+  },
+  "sol-high|B": {
+    "low_thr": 0.2,
+    "high_thr": 0.8,
+    "lo_dist": 0.3,
+    "hi_dist": 0.3,
+    "asym": 0.0,
+    "modes": {
+      "0.1": [
+        "THETA",
+        "Very confident"
+      ],
+      "0.2": [
+        "THETA",
+        "Very confident"
+      ],
+      "0.3": [
+        "THETA",
+        "Somewhat confident"
+      ],
+      "0.4": [
+        "THETA",
+        "Somewhat confident"
+      ],
+      "0.6": [
+        "SIGMA",
+        "Somewhat confident"
+      ],
+      "0.7": [
+        "SIGMA",
+        "Somewhat confident"
+      ],
+      "0.8": [
+        "SIGMA",
+        "Very confident"
+      ],
+      "0.9": [
+        "SIGMA",
+        "Very confident"
+      ]
+    }
+  },
+  "sol-none|A": {
+    "low_thr": 0.3,
+    "high_thr": 0.7,
+    "lo_dist": 0.2,
+    "hi_dist": 0.2,
+    "asym": 0.0,
+    "modes": {
+      "0.1": [
+        "THETA",
+        "Strongly"
+      ],
+      "0.2": [
+        "THETA",
+        "Strongly"
+      ],
+      "0.3": [
+        "THETA",
+        "Strongly"
+      ],
+      "0.4": [
+        "THETA",
+        "Slightly"
+      ],
+      "0.6": [
+        "SIGMA",
+        "Slightly"
+      ],
+      "0.7": [
+        "SIGMA",
+        "Strongly"
+      ],
+      "0.8": [
+        "SIGMA",
+        "Strongly"
+      ],
+      "0.9": [
+        "SIGMA",
+        "Strongly"
+      ]
+    }
+  },
+  "sol-none|B": {
+    "low_thr": 0.2,
+    "high_thr": 0.8,
+    "lo_dist": 0.3,
+    "hi_dist": 0.3,
+    "asym": 0.0,
+    "modes": {
+      "0.1": [
+        "THETA",
+        "Very confident"
+      ],
+      "0.2": [
+        "THETA",
+        "Very confident"
+      ],
+      "0.3": [
+        "THETA",
+        "Somewhat confident"
+      ],
+      "0.4": [
+        "THETA",
+        "Somewhat confident"
+      ],
+      "0.6": [
+        "SIGMA",
+        "Somewhat confident"
+      ],
+      "0.7": [
+        "SIGMA",
+        "Somewhat confident"
+      ],
+      "0.8": [
+        "SIGMA",
+        "Very confident"
+      ],
+      "0.9": [
+        "SIGMA",
+        "Very confident"
+      ]
+    }
+  }
+}

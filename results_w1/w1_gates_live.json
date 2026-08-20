@@ -1,0 +1,613 @@
+{
+  "G1": {
+    "anchor": {
+      "per_wording": {
+        "A": {
+          "mode_k_low": "Slightly",
+          "mode_k_high": "Strongly",
+          "n_low": 6,
+          "n_high": 6,
+          "pass": true
+        },
+        "B": {
+          "mode_k_low": "Somewhat confident",
+          "mode_k_high": "Very confident",
+          "n_low": 6,
+          "n_high": 6,
+          "pass": true
+        }
+      },
+      "pass": true
+    },
+    "deepseek": {
+      "per_wording": {
+        "A": {
+          "mode_k_low": "Slightly",
+          "mode_k_high": "Strongly",
+          "n_low": 5,
+          "n_high": 6,
+          "pass": true
+        },
+        "B": {
+          "mode_k_low": "Somewhat confident",
+          "mode_k_high": "Very confident",
+          "n_low": 6,
+          "n_high": 6,
+          "pass": true
+        }
+      },
+      "pass": true
+    },
+    "deepseek-high": {
+      "per_wording": {
+        "A": {
+          "mode_k_low": "Slightly",
+          "mode_k_high": "Strongly",
+          "n_low": 6,
+          "n_high": 6,
+          "pass": true
+        },
+        "B": {
+          "mode_k_low": "Somewhat confident",
+          "mode_k_high": "Very confident",
+          "n_low": 6,
+          "n_high": 6,
+          "pass": true
+        }
+      },
+      "pass": true
+    },
+    "glm": {
+      "per_wording": {
+        "A": {
+          "mode_k_low": "Slightly",
+          "mode_k_high": "Strongly",
+          "n_low": 6,
+          "n_high": 6,
+          "pass": true
+        },
+        "B": {
+          "mode_k_low": "Somewhat confident",
+          "mode_k_high": "Very confident",
+          "n_low": 6,
+          "n_high": 6,
+          "pass": true
+        }
+      },
+      "pass": true
+    },
+    "glm-high": {
+      "per_wording": {
+        "A": {
+          "mode_k_low": "Slightly",
+          "mode_k_high": "Strongly",
+          "n_low": 6,
+          "n_high": 6,
+          "pass": true
+        },
+        "B": {
+          "mode_k_low": "Somewhat confident",
+          "mode_k_high": "Very confident",
+          "n_low": 6,
+          "n_high": 6,
+          "pass": true
+        }
+      },
+      "pass": true
+    },
+    "sol-high": {
+      "per_wording": {
+        "A": {
+          "mode_k_low": "Slightly",
+          "mode_k_high": "Strongly",
+          "n_low": 6,
+          "n_high": 6,
+          "pass": true
+        },
+        "B": {
+          "mode_k_low": "Somewhat confident",
+          "mode_k_high": "Very confident",
+          "n_low": 6,
+          "n_high": 6,
+          "pass": true
+        }
+      },
+      "pass": true
+    },
+    "sol-none": {
+      "per_wording": {
+        "A": {
+          "mode_k_low": "Slightly",
+          "mode_k_high": "Strongly",
+          "n_low": 6,
+          "n_high": 6,
+          "pass": true
+        },
+        "B": {
+          "mode_k_low": "Somewhat confident",
+          "mode_k_high": "Very confident",
+          "n_low": 6,
+          "n_high": 6,
+          "pass": true
+        }
+      },
+      "pass": true
+    }
+  },
+  "G1_verdict": {
+    "default_passing": 3,
+    "high_passing": 3,
+    "pass": true
+  },
+  "G2": {
+    "anchor": {
+      "per_wording": {
+        "A": {
+          "n_options_reached": 2,
+          "reached": [
+            [
+              "SIGMA",
+              "Strongly"
+            ],
+            [
+              "THETA",
+              "Strongly"
+            ]
+          ],
+          "pass": false
+        },
+        "B": {
+          "n_options_reached": 4,
+          "reached": [
+            [
+              "SIGMA",
+              "Somewhat confident"
+            ],
+            [
+              "SIGMA",
+              "Very confident"
+            ],
+            [
+              "THETA",
+              "Somewhat confident"
+            ],
+            [
+              "THETA",
+              "Very confident"
+            ]
+          ],
+          "pass": true
+        }
+      },
+      "pass": false
+    },
+    "deepseek": {
+      "per_wording": {
+        "A": {
+          "n_options_reached": 4,
+          "reached": [
+            [
+              "SIGMA",
+              "Slightly"
+            ],
+            [
+              "SIGMA",
+              "Strongly"
+            ],
+            [
+              "THETA",
+              "Slightly"
+            ],
+            [
+              "THETA",
+              "Strongly"
+            ]
+          ],
+          "pass": true
+        },
+        "B": {
+          "n_options_reached": 4,
+          "reached": [
+            [
+              "SIGMA",
+              "Somewhat confident"
+            ],
+            [
+              "SIGMA",
+              "Very confident"
+            ],
+            [
+              "THETA",
+              "Somewhat confident"
+            ],
+            [
+              "THETA",
+              "Very confident"
+            ]
+          ],
+          "pass": true
+        }
+      },
+      "pass": true
+    },
+    "deepseek-high": {
+      "per_wording": {
+        "A": {
+          "n_options_reached": 4,
+          "reached": [
+            [
+              "SIGMA",
+              "Slightly"
+            ],
+            [
+              "SIGMA",
+              "Strongly"
+            ],
+            [
+              "THETA",
+              "Slightly"
+            ],
+            [
+              "THETA",
+              "Strongly"
+            ]
+          ],
+          "pass": true
+        },
+        "B": {
+          "n_options_reached": 4,
+          "reached": [
+            [
+              "SIGMA",
+              "Somewhat confident"
+            ],
+            [
+              "SIGMA",
+              "Very confident"
+            ],
+            [
+              "THETA",
+              "Somewhat confident"
+            ],
+            [
+              "THETA",
+              "Very confident"
+            ]
+          ],
+          "pass": true
+        }
+      },
+      "pass": true
+    },
+    "glm": {
+      "per_wording": {
+        "A": {
+          "n_options_reached": 4,
+          "reached": [
+            [
+              "SIGMA",
+              "Slightly"
+            ],
+            [
+              "SIGMA",
+              "Strongly"
+            ],
+            [
+              "THETA",
+              "Slightly"
+            ],
+            [
+              "THETA",
+              "Strongly"
+            ]
+          ],
+          "pass": true
+        },
+        "B": {
+          "n_options_reached": 4,
+          "reached": [
+            [
+              "SIGMA",
+              "Somewhat confident"
+            ],
+            [
+              "SIGMA",
+              "Very confident"
+            ],
+            [
+              "THETA",
+              "Somewhat confident"
+            ],
+            [
+              "THETA",
+              "Very confident"
+            ]
+          ],
+          "pass": true
+        }
+      },
+      "pass": true
+    },
+    "glm-high": {
+      "per_wording": {
+        "A": {
+          "n_options_reached": 4,
+          "reached": [
+            [
+              "SIGMA",
+              "Slightly"
+            ],
+            [
+              "SIGMA",
+              "Strongly"
+            ],
+            [
+              "THETA",
+              "Slightly"
+            ],
+            [
+              "THETA",
+              "Strongly"
+            ]
+          ],
+          "pass": true
+        },
+        "B": {
+          "n_options_reached": 4,
+          "reached": [
+            [
+              "SIGMA",
+              "Somewhat confident"
+            ],
+            [
+              "SIGMA",
+              "Very confident"
+            ],
+            [
+              "THETA",
+              "Somewhat confident"
+            ],
+            [
+              "THETA",
+              "Very confident"
+            ]
+          ],
+          "pass": true
+        }
+      },
+      "pass": true
+    },
+    "sol-high": {
+      "per_wording": {
+        "A": {
+          "n_options_reached": 4,
+          "reached": [
+            [
+              "SIGMA",
+              "Slightly"
+            ],
+            [
+              "SIGMA",
+              "Strongly"
+            ],
+            [
+              "THETA",
+              "Slightly"
+            ],
+            [
+              "THETA",
+              "Strongly"
+            ]
+          ],
+          "pass": true
+        },
+        "B": {
+          "n_options_reached": 4,
+          "reached": [
+            [
+              "SIGMA",
+              "Somewhat confident"
+            ],
+            [
+              "SIGMA",
+              "Very confident"
+            ],
+            [
+              "THETA",
+              "Somewhat confident"
+            ],
+            [
+              "THETA",
+              "Very confident"
+            ]
+          ],
+          "pass": true
+        }
+      },
+      "pass": true
+    },
+    "sol-none": {
+      "per_wording": {
+        "A": {
+          "n_options_reached": 4,
+          "reached": [
+            [
+              "SIGMA",
+              "Slightly"
+            ],
+            [
+              "SIGMA",
+              "Strongly"
+            ],
+            [
+              "THETA",
+              "Slightly"
+            ],
+            [
+              "THETA",
+              "Strongly"
+            ]
+          ],
+          "pass": true
+        },
+        "B": {
+          "n_options_reached": 4,
+          "reached": [
+            [
+              "SIGMA",
+              "Somewhat confident"
+            ],
+            [
+              "SIGMA",
+              "Very confident"
+            ],
+            [
+              "THETA",
+              "Somewhat confident"
+            ],
+            [
+              "THETA",
+              "Very confident"
+            ]
+          ],
+          "pass": true
+        }
+      },
+      "pass": true
+    }
+  },
+  "G3": {
+    "anchor": {
+      "switch_point": {
+        "A": 0.6,
+        "B": 0.8
+      },
+      "steps_apart": 2,
+      "stable": false
+    },
+    "deepseek": {
+      "switch_point": {
+        "A": 0.7,
+        "B": 0.8
+      },
+      "steps_apart": 1,
+      "stable": true
+    },
+    "deepseek-high": {
+      "switch_point": {
+        "A": 0.8,
+        "B": 0.8
+      },
+      "steps_apart": 0,
+      "stable": true
+    },
+    "glm": {
+      "switch_point": {
+        "A": 0.7,
+        "B": 0.8
+      },
+      "steps_apart": 1,
+      "stable": true
+    },
+    "glm-high": {
+      "switch_point": {
+        "A": 0.7,
+        "B": 0.8
+      },
+      "steps_apart": 1,
+      "stable": true
+    },
+    "sol-high": {
+      "switch_point": {
+        "A": 0.7,
+        "B": 0.8
+      },
+      "steps_apart": 1,
+      "stable": true
+    },
+    "sol-none": {
+      "switch_point": {
+        "A": 0.7,
+        "B": 0.8
+      },
+      "steps_apart": 1,
+      "stable": true
+    }
+  },
+  "G4": {
+    "anchor": {
+      "cells": 8,
+      "agreeing": 8,
+      "rate": 1.0
+    },
+    "deepseek": {
+      "cells": 8,
+      "agreeing": 6,
+      "rate": 0.75
+    },
+    "deepseek-high": {
+      "cells": 8,
+      "agreeing": 7,
+      "rate": 0.875
+    },
+    "glm": {
+      "cells": 8,
+      "agreeing": 8,
+      "rate": 1.0
+    },
+    "glm-high": {
+      "cells": 8,
+      "agreeing": 7,
+      "rate": 0.875
+    },
+    "sol-high": {
+      "cells": 8,
+      "agreeing": 8,
+      "rate": 1.0
+    },
+    "sol-none": {
+      "cells": 8,
+      "agreeing": 8,
+      "rate": 1.0
+    }
+  },
+  "determinism": {
+    "anchor": {
+      "stimuli": 32,
+      "unanimous": 32,
+      "rate": 1.0
+    },
+    "deepseek": {
+      "stimuli": 32,
+      "unanimous": 25,
+      "rate": 0.781
+    },
+    "deepseek-high": {
+      "stimuli": 32,
+      "unanimous": 24,
+      "rate": 0.75
+    },
+    "glm": {
+      "stimuli": 32,
+      "unanimous": 26,
+      "rate": 0.812
+    },
+    "glm-high": {
+      "stimuli": 32,
+      "unanimous": 32,
+      "rate": 1.0
+    },
+    "sol-high": {
+      "stimuli": 32,
+      "unanimous": 30,
+      "rate": 0.938
+    },
+    "sol-none": {
+      "stimuli": 32,
+      "unanimous": 32,
+      "rate": 1.0
+    }
+  },
+  "verdict": "GO",
+  "note": "Freeze the v2 spec on four bins. Proceed to W2/W3/W4."
+}
