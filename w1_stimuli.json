@@ -1,0 +1,1623 @@
+{
+  "alt_edges": [
+    0.2,
+    0.5,
+    0.8
+  ],
+  "bands_stated_to_model": false,
+  "blind_k": [
+    1,
+    2,
+    4,
+    6
+  ],
+  "cal_p_first": [
+    0.1,
+    0.2,
+    0.3,
+    0.4,
+    0.6,
+    0.7,
+    0.8,
+    0.9
+  ],
+  "decision_k": {
+    "high": 6,
+    "low": 1
+  },
+  "labels": [
+    "SIGMA",
+    "THETA"
+  ],
+  "n_stimuli": 32,
+  "p": "3/5",
+  "primary_edges": [
+    0.25,
+    0.5,
+    0.75
+  ],
+  "purpose": "go/no-go on the D1 four-bin ordinal response format",
+  "r": "2/5",
+  "sha256": "e747d942f5b14d46ecb5ed81b60e769878e2ca95cf6739d47a5e9ec66ad7bbe0",
+  "stimuli": [
+    {
+      "edge_distance_alt": 0.1,
+      "edge_distance_primary": 0.1,
+      "expected_answer": "Slightly / SIGMA",
+      "expected_candidate": "SIGMA",
+      "expected_confidence": "Slightly",
+      "family": "BLIND",
+      "id": "BLIND-k1-m0-A",
+      "in_decision_rule": true,
+      "k": 1,
+      "level_alt": 2,
+      "level_primary": 2,
+      "level_target": 2,
+      "level_target_alt": 2,
+      "p_first": 0.6,
+      "p_first_exact": "3/5",
+      "p_target": 0.6,
+      "prompt": "One of the following is responsible for the contamination event. Exactly one is.\n\n    Candidate SIGMA\n    Candidate THETA\n\nBefore any testing, each candidate is considered equally likely.\n\nAnalysts were each assigned a different assay. Each assay returns POSITIVE or\nNEGATIVE, and the assays have the following known characteristics:\n\n    If SIGMA is responsible, an assay returns POSITIVE with probability 0.60.\n    If THETA is responsible, an assay returns POSITIVE with probability 0.40.\n\nAssay results are independent of one another given which candidate is responsible.\n\nREPORTS ON FILE\n    Assay returned POSITIVE\n\nName the candidate you believe is responsible, and how strongly you\nhold that.\n\nReply with only a JSON object with keys \"candidate\" and \"confidence\".\n\"candidate\" must be exactly SIGMA or THETA.\n\"confidence\" must be exactly Slightly or Strongly.\n",
+      "response_format": {
+        "json_schema": {
+          "name": "silence_probe_ordinal",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate": {
+                "enum": [
+                  "SIGMA",
+                  "THETA"
+                ],
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "Slightly",
+                  "Strongly"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "target_is_first": true,
+      "wording": "A"
+    },
+    {
+      "edge_distance_alt": 0.1,
+      "edge_distance_primary": 0.1,
+      "expected_answer": "Slightly / THETA",
+      "expected_candidate": "THETA",
+      "expected_confidence": "Slightly",
+      "family": "BLIND",
+      "id": "BLIND-k1-m1-A",
+      "in_decision_rule": true,
+      "k": 1,
+      "level_alt": 1,
+      "level_primary": 1,
+      "level_target": 2,
+      "level_target_alt": 2,
+      "p_first": 0.4,
+      "p_first_exact": "2/5",
+      "p_target": 0.6,
+      "prompt": "One of the following is responsible for the contamination event. Exactly one is.\n\n    Candidate SIGMA\n    Candidate THETA\n\nBefore any testing, each candidate is considered equally likely.\n\nAnalysts were each assigned a different assay. Each assay returns POSITIVE or\nNEGATIVE, and the assays have the following known characteristics:\n\n    If SIGMA is responsible, an assay returns POSITIVE with probability 0.40.\n    If THETA is responsible, an assay returns POSITIVE with probability 0.60.\n\nAssay results are independent of one another given which candidate is responsible.\n\nREPORTS ON FILE\n    Assay returned POSITIVE\n\nName the candidate you believe is responsible, and how strongly you\nhold that.\n\nReply with only a JSON object with keys \"candidate\" and \"confidence\".\n\"candidate\" must be exactly SIGMA or THETA.\n\"confidence\" must be exactly Slightly or Strongly.\n",
+      "response_format": {
+        "json_schema": {
+          "name": "silence_probe_ordinal",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate": {
+                "enum": [
+                  "SIGMA",
+                  "THETA"
+                ],
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "Slightly",
+                  "Strongly"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "target_is_first": false,
+      "wording": "A"
+    },
+    {
+      "edge_distance_alt": 0.1077,
+      "edge_distance_primary": 0.0577,
+      "expected_answer": "Slightly / SIGMA",
+      "expected_candidate": "SIGMA",
+      "expected_confidence": "Slightly",
+      "family": "BLIND",
+      "id": "BLIND-k2-m0-A",
+      "in_decision_rule": false,
+      "k": 2,
+      "level_alt": 2,
+      "level_primary": 2,
+      "level_target": 2,
+      "level_target_alt": 2,
+      "p_first": 0.692308,
+      "p_first_exact": "9/13",
+      "p_target": 0.692308,
+      "prompt": "One of the following is responsible for the contamination event. Exactly one is.\n\n    Candidate SIGMA\n    Candidate THETA\n\nBefore any testing, each candidate is considered equally likely.\n\nAnalysts were each assigned a different assay. Each assay returns POSITIVE or\nNEGATIVE, and the assays have the following known characteristics:\n\n    If SIGMA is responsible, an assay returns POSITIVE with probability 0.60.\n    If THETA is responsible, an assay returns POSITIVE with probability 0.40.\n\nAssay results are independent of one another given which candidate is responsible.\n\nREPORTS ON FILE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n\nName the candidate you believe is responsible, and how strongly you\nhold that.\n\nReply with only a JSON object with keys \"candidate\" and \"confidence\".\n\"candidate\" must be exactly SIGMA or THETA.\n\"confidence\" must be exactly Slightly or Strongly.\n",
+      "response_format": {
+        "json_schema": {
+          "name": "silence_probe_ordinal",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate": {
+                "enum": [
+                  "SIGMA",
+                  "THETA"
+                ],
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "Slightly",
+                  "Strongly"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "target_is_first": true,
+      "wording": "A"
+    },
+    {
+      "edge_distance_alt": 0.1077,
+      "edge_distance_primary": 0.0577,
+      "expected_answer": "Slightly / THETA",
+      "expected_candidate": "THETA",
+      "expected_confidence": "Slightly",
+      "family": "BLIND",
+      "id": "BLIND-k2-m1-A",
+      "in_decision_rule": false,
+      "k": 2,
+      "level_alt": 1,
+      "level_primary": 1,
+      "level_target": 2,
+      "level_target_alt": 2,
+      "p_first": 0.307692,
+      "p_first_exact": "4/13",
+      "p_target": 0.692308,
+      "prompt": "One of the following is responsible for the contamination event. Exactly one is.\n\n    Candidate SIGMA\n    Candidate THETA\n\nBefore any testing, each candidate is considered equally likely.\n\nAnalysts were each assigned a different assay. Each assay returns POSITIVE or\nNEGATIVE, and the assays have the following known characteristics:\n\n    If SIGMA is responsible, an assay returns POSITIVE with probability 0.40.\n    If THETA is responsible, an assay returns POSITIVE with probability 0.60.\n\nAssay results are independent of one another given which candidate is responsible.\n\nREPORTS ON FILE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n\nName the candidate you believe is responsible, and how strongly you\nhold that.\n\nReply with only a JSON object with keys \"candidate\" and \"confidence\".\n\"candidate\" must be exactly SIGMA or THETA.\n\"confidence\" must be exactly Slightly or Strongly.\n",
+      "response_format": {
+        "json_schema": {
+          "name": "silence_probe_ordinal",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate": {
+                "enum": [
+                  "SIGMA",
+                  "THETA"
+                ],
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "Slightly",
+                  "Strongly"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "target_is_first": false,
+      "wording": "A"
+    },
+    {
+      "edge_distance_alt": 0.0351,
+      "edge_distance_primary": 0.0851,
+      "expected_answer": "Strongly / SIGMA",
+      "expected_candidate": "SIGMA",
+      "expected_confidence": "Strongly",
+      "family": "BLIND",
+      "id": "BLIND-k4-m0-A",
+      "in_decision_rule": false,
+      "k": 4,
+      "level_alt": 3,
+      "level_primary": 3,
+      "level_target": 3,
+      "level_target_alt": 3,
+      "p_first": 0.835052,
+      "p_first_exact": "81/97",
+      "p_target": 0.835052,
+      "prompt": "One of the following is responsible for the contamination event. Exactly one is.\n\n    Candidate SIGMA\n    Candidate THETA\n\nBefore any testing, each candidate is considered equally likely.\n\nAnalysts were each assigned a different assay. Each assay returns POSITIVE or\nNEGATIVE, and the assays have the following known characteristics:\n\n    If SIGMA is responsible, an assay returns POSITIVE with probability 0.60.\n    If THETA is responsible, an assay returns POSITIVE with probability 0.40.\n\nAssay results are independent of one another given which candidate is responsible.\n\nREPORTS ON FILE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n\nName the candidate you believe is responsible, and how strongly you\nhold that.\n\nReply with only a JSON object with keys \"candidate\" and \"confidence\".\n\"candidate\" must be exactly SIGMA or THETA.\n\"confidence\" must be exactly Slightly or Strongly.\n",
+      "response_format": {
+        "json_schema": {
+          "name": "silence_probe_ordinal",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate": {
+                "enum": [
+                  "SIGMA",
+                  "THETA"
+                ],
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "Slightly",
+                  "Strongly"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "target_is_first": true,
+      "wording": "A"
+    },
+    {
+      "edge_distance_alt": 0.0351,
+      "edge_distance_primary": 0.0851,
+      "expected_answer": "Strongly / THETA",
+      "expected_candidate": "THETA",
+      "expected_confidence": "Strongly",
+      "family": "BLIND",
+      "id": "BLIND-k4-m1-A",
+      "in_decision_rule": false,
+      "k": 4,
+      "level_alt": 0,
+      "level_primary": 0,
+      "level_target": 3,
+      "level_target_alt": 3,
+      "p_first": 0.164948,
+      "p_first_exact": "16/97",
+      "p_target": 0.835052,
+      "prompt": "One of the following is responsible for the contamination event. Exactly one is.\n\n    Candidate SIGMA\n    Candidate THETA\n\nBefore any testing, each candidate is considered equally likely.\n\nAnalysts were each assigned a different assay. Each assay returns POSITIVE or\nNEGATIVE, and the assays have the following known characteristics:\n\n    If SIGMA is responsible, an assay returns POSITIVE with probability 0.40.\n    If THETA is responsible, an assay returns POSITIVE with probability 0.60.\n\nAssay results are independent of one another given which candidate is responsible.\n\nREPORTS ON FILE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n\nName the candidate you believe is responsible, and how strongly you\nhold that.\n\nReply with only a JSON object with keys \"candidate\" and \"confidence\".\n\"candidate\" must be exactly SIGMA or THETA.\n\"confidence\" must be exactly Slightly or Strongly.\n",
+      "response_format": {
+        "json_schema": {
+          "name": "silence_probe_ordinal",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate": {
+                "enum": [
+                  "SIGMA",
+                  "THETA"
+                ],
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "Slightly",
+                  "Strongly"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "target_is_first": false,
+      "wording": "A"
+    },
+    {
+      "edge_distance_alt": 0.1193,
+      "edge_distance_primary": 0.1693,
+      "expected_answer": "Strongly / SIGMA",
+      "expected_candidate": "SIGMA",
+      "expected_confidence": "Strongly",
+      "family": "BLIND",
+      "id": "BLIND-k6-m0-A",
+      "in_decision_rule": true,
+      "k": 6,
+      "level_alt": 3,
+      "level_primary": 3,
+      "level_target": 3,
+      "level_target_alt": 3,
+      "p_first": 0.919294,
+      "p_first_exact": "729/793",
+      "p_target": 0.919294,
+      "prompt": "One of the following is responsible for the contamination event. Exactly one is.\n\n    Candidate SIGMA\n    Candidate THETA\n\nBefore any testing, each candidate is considered equally likely.\n\nAnalysts were each assigned a different assay. Each assay returns POSITIVE or\nNEGATIVE, and the assays have the following known characteristics:\n\n    If SIGMA is responsible, an assay returns POSITIVE with probability 0.60.\n    If THETA is responsible, an assay returns POSITIVE with probability 0.40.\n\nAssay results are independent of one another given which candidate is responsible.\n\nREPORTS ON FILE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n\nName the candidate you believe is responsible, and how strongly you\nhold that.\n\nReply with only a JSON object with keys \"candidate\" and \"confidence\".\n\"candidate\" must be exactly SIGMA or THETA.\n\"confidence\" must be exactly Slightly or Strongly.\n",
+      "response_format": {
+        "json_schema": {
+          "name": "silence_probe_ordinal",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate": {
+                "enum": [
+                  "SIGMA",
+                  "THETA"
+                ],
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "Slightly",
+                  "Strongly"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "target_is_first": true,
+      "wording": "A"
+    },
+    {
+      "edge_distance_alt": 0.1193,
+      "edge_distance_primary": 0.1693,
+      "expected_answer": "Strongly / THETA",
+      "expected_candidate": "THETA",
+      "expected_confidence": "Strongly",
+      "family": "BLIND",
+      "id": "BLIND-k6-m1-A",
+      "in_decision_rule": true,
+      "k": 6,
+      "level_alt": 0,
+      "level_primary": 0,
+      "level_target": 3,
+      "level_target_alt": 3,
+      "p_first": 0.080706,
+      "p_first_exact": "64/793",
+      "p_target": 0.919294,
+      "prompt": "One of the following is responsible for the contamination event. Exactly one is.\n\n    Candidate SIGMA\n    Candidate THETA\n\nBefore any testing, each candidate is considered equally likely.\n\nAnalysts were each assigned a different assay. Each assay returns POSITIVE or\nNEGATIVE, and the assays have the following known characteristics:\n\n    If SIGMA is responsible, an assay returns POSITIVE with probability 0.40.\n    If THETA is responsible, an assay returns POSITIVE with probability 0.60.\n\nAssay results are independent of one another given which candidate is responsible.\n\nREPORTS ON FILE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n\nName the candidate you believe is responsible, and how strongly you\nhold that.\n\nReply with only a JSON object with keys \"candidate\" and \"confidence\".\n\"candidate\" must be exactly SIGMA or THETA.\n\"confidence\" must be exactly Slightly or Strongly.\n",
+      "response_format": {
+        "json_schema": {
+          "name": "silence_probe_ordinal",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate": {
+                "enum": [
+                  "SIGMA",
+                  "THETA"
+                ],
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "Slightly",
+                  "Strongly"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "target_is_first": false,
+      "wording": "A"
+    },
+    {
+      "edge_distance_alt": 0.1,
+      "edge_distance_primary": 0.15,
+      "expected_answer": "Strongly / THETA",
+      "expected_candidate": "THETA",
+      "expected_confidence": "Strongly",
+      "family": "CAL",
+      "id": "CAL-p10-A",
+      "in_decision_rule": false,
+      "level_alt": 0,
+      "level_primary": 0,
+      "p_first": 0.1,
+      "prompt": "One of the following is responsible for the contamination event. Exactly one is.\n\n    Candidate SIGMA\n    Candidate THETA\n\nAn independent review has concluded that the chance SIGMA is responsible is 10 percent, and the chance THETA is responsible is 90 percent.\n\nName the candidate you believe is responsible, and how strongly you\nhold that.\n\nReply with only a JSON object with keys \"candidate\" and \"confidence\".\n\"candidate\" must be exactly SIGMA or THETA.\n\"confidence\" must be exactly Slightly or Strongly.\n",
+      "response_format": {
+        "json_schema": {
+          "name": "silence_probe_ordinal",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate": {
+                "enum": [
+                  "SIGMA",
+                  "THETA"
+                ],
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "Slightly",
+                  "Strongly"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "wording": "A"
+    },
+    {
+      "edge_distance_alt": 0.0,
+      "edge_distance_primary": 0.05,
+      "expected_answer": "Strongly / THETA",
+      "expected_candidate": "THETA",
+      "expected_confidence": "Strongly",
+      "family": "CAL",
+      "id": "CAL-p20-A",
+      "in_decision_rule": false,
+      "level_alt": 1,
+      "level_primary": 0,
+      "p_first": 0.2,
+      "prompt": "One of the following is responsible for the contamination event. Exactly one is.\n\n    Candidate SIGMA\n    Candidate THETA\n\nAn independent review has concluded that the chance SIGMA is responsible is 20 percent, and the chance THETA is responsible is 80 percent.\n\nName the candidate you believe is responsible, and how strongly you\nhold that.\n\nReply with only a JSON object with keys \"candidate\" and \"confidence\".\n\"candidate\" must be exactly SIGMA or THETA.\n\"confidence\" must be exactly Slightly or Strongly.\n",
+      "response_format": {
+        "json_schema": {
+          "name": "silence_probe_ordinal",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate": {
+                "enum": [
+                  "SIGMA",
+                  "THETA"
+                ],
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "Slightly",
+                  "Strongly"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "wording": "A"
+    },
+    {
+      "edge_distance_alt": 0.1,
+      "edge_distance_primary": 0.05,
+      "expected_answer": "Slightly / THETA",
+      "expected_candidate": "THETA",
+      "expected_confidence": "Slightly",
+      "family": "CAL",
+      "id": "CAL-p30-A",
+      "in_decision_rule": false,
+      "level_alt": 1,
+      "level_primary": 1,
+      "p_first": 0.3,
+      "prompt": "One of the following is responsible for the contamination event. Exactly one is.\n\n    Candidate SIGMA\n    Candidate THETA\n\nAn independent review has concluded that the chance SIGMA is responsible is 30 percent, and the chance THETA is responsible is 70 percent.\n\nName the candidate you believe is responsible, and how strongly you\nhold that.\n\nReply with only a JSON object with keys \"candidate\" and \"confidence\".\n\"candidate\" must be exactly SIGMA or THETA.\n\"confidence\" must be exactly Slightly or Strongly.\n",
+      "response_format": {
+        "json_schema": {
+          "name": "silence_probe_ordinal",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate": {
+                "enum": [
+                  "SIGMA",
+                  "THETA"
+                ],
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "Slightly",
+                  "Strongly"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "wording": "A"
+    },
+    {
+      "edge_distance_alt": 0.1,
+      "edge_distance_primary": 0.1,
+      "expected_answer": "Slightly / THETA",
+      "expected_candidate": "THETA",
+      "expected_confidence": "Slightly",
+      "family": "CAL",
+      "id": "CAL-p40-A",
+      "in_decision_rule": false,
+      "level_alt": 1,
+      "level_primary": 1,
+      "p_first": 0.4,
+      "prompt": "One of the following is responsible for the contamination event. Exactly one is.\n\n    Candidate SIGMA\n    Candidate THETA\n\nAn independent review has concluded that the chance SIGMA is responsible is 40 percent, and the chance THETA is responsible is 60 percent.\n\nName the candidate you believe is responsible, and how strongly you\nhold that.\n\nReply with only a JSON object with keys \"candidate\" and \"confidence\".\n\"candidate\" must be exactly SIGMA or THETA.\n\"confidence\" must be exactly Slightly or Strongly.\n",
+      "response_format": {
+        "json_schema": {
+          "name": "silence_probe_ordinal",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate": {
+                "enum": [
+                  "SIGMA",
+                  "THETA"
+                ],
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "Slightly",
+                  "Strongly"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "wording": "A"
+    },
+    {
+      "edge_distance_alt": 0.1,
+      "edge_distance_primary": 0.1,
+      "expected_answer": "Slightly / SIGMA",
+      "expected_candidate": "SIGMA",
+      "expected_confidence": "Slightly",
+      "family": "CAL",
+      "id": "CAL-p60-A",
+      "in_decision_rule": false,
+      "level_alt": 2,
+      "level_primary": 2,
+      "p_first": 0.6,
+      "prompt": "One of the following is responsible for the contamination event. Exactly one is.\n\n    Candidate SIGMA\n    Candidate THETA\n\nAn independent review has concluded that the chance SIGMA is responsible is 60 percent, and the chance THETA is responsible is 40 percent.\n\nName the candidate you believe is responsible, and how strongly you\nhold that.\n\nReply with only a JSON object with keys \"candidate\" and \"confidence\".\n\"candidate\" must be exactly SIGMA or THETA.\n\"confidence\" must be exactly Slightly or Strongly.\n",
+      "response_format": {
+        "json_schema": {
+          "name": "silence_probe_ordinal",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate": {
+                "enum": [
+                  "SIGMA",
+                  "THETA"
+                ],
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "Slightly",
+                  "Strongly"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "wording": "A"
+    },
+    {
+      "edge_distance_alt": 0.1,
+      "edge_distance_primary": 0.05,
+      "expected_answer": "Slightly / SIGMA",
+      "expected_candidate": "SIGMA",
+      "expected_confidence": "Slightly",
+      "family": "CAL",
+      "id": "CAL-p70-A",
+      "in_decision_rule": false,
+      "level_alt": 2,
+      "level_primary": 2,
+      "p_first": 0.7,
+      "prompt": "One of the following is responsible for the contamination event. Exactly one is.\n\n    Candidate SIGMA\n    Candidate THETA\n\nAn independent review has concluded that the chance SIGMA is responsible is 70 percent, and the chance THETA is responsible is 30 percent.\n\nName the candidate you believe is responsible, and how strongly you\nhold that.\n\nReply with only a JSON object with keys \"candidate\" and \"confidence\".\n\"candidate\" must be exactly SIGMA or THETA.\n\"confidence\" must be exactly Slightly or Strongly.\n",
+      "response_format": {
+        "json_schema": {
+          "name": "silence_probe_ordinal",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate": {
+                "enum": [
+                  "SIGMA",
+                  "THETA"
+                ],
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "Slightly",
+                  "Strongly"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "wording": "A"
+    },
+    {
+      "edge_distance_alt": 0.0,
+      "edge_distance_primary": 0.05,
+      "expected_answer": "Strongly / SIGMA",
+      "expected_candidate": "SIGMA",
+      "expected_confidence": "Strongly",
+      "family": "CAL",
+      "id": "CAL-p80-A",
+      "in_decision_rule": false,
+      "level_alt": 3,
+      "level_primary": 3,
+      "p_first": 0.8,
+      "prompt": "One of the following is responsible for the contamination event. Exactly one is.\n\n    Candidate SIGMA\n    Candidate THETA\n\nAn independent review has concluded that the chance SIGMA is responsible is 80 percent, and the chance THETA is responsible is 20 percent.\n\nName the candidate you believe is responsible, and how strongly you\nhold that.\n\nReply with only a JSON object with keys \"candidate\" and \"confidence\".\n\"candidate\" must be exactly SIGMA or THETA.\n\"confidence\" must be exactly Slightly or Strongly.\n",
+      "response_format": {
+        "json_schema": {
+          "name": "silence_probe_ordinal",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate": {
+                "enum": [
+                  "SIGMA",
+                  "THETA"
+                ],
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "Slightly",
+                  "Strongly"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "wording": "A"
+    },
+    {
+      "edge_distance_alt": 0.1,
+      "edge_distance_primary": 0.15,
+      "expected_answer": "Strongly / SIGMA",
+      "expected_candidate": "SIGMA",
+      "expected_confidence": "Strongly",
+      "family": "CAL",
+      "id": "CAL-p90-A",
+      "in_decision_rule": false,
+      "level_alt": 3,
+      "level_primary": 3,
+      "p_first": 0.9,
+      "prompt": "One of the following is responsible for the contamination event. Exactly one is.\n\n    Candidate SIGMA\n    Candidate THETA\n\nAn independent review has concluded that the chance SIGMA is responsible is 90 percent, and the chance THETA is responsible is 10 percent.\n\nName the candidate you believe is responsible, and how strongly you\nhold that.\n\nReply with only a JSON object with keys \"candidate\" and \"confidence\".\n\"candidate\" must be exactly SIGMA or THETA.\n\"confidence\" must be exactly Slightly or Strongly.\n",
+      "response_format": {
+        "json_schema": {
+          "name": "silence_probe_ordinal",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate": {
+                "enum": [
+                  "SIGMA",
+                  "THETA"
+                ],
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "Slightly",
+                  "Strongly"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "wording": "A"
+    },
+    {
+      "edge_distance_alt": 0.1,
+      "edge_distance_primary": 0.1,
+      "expected_answer": "Somewhat confident / SIGMA",
+      "expected_candidate": "SIGMA",
+      "expected_confidence": "Somewhat confident",
+      "family": "BLIND",
+      "id": "BLIND-k1-m0-B",
+      "in_decision_rule": true,
+      "k": 1,
+      "level_alt": 2,
+      "level_primary": 2,
+      "level_target": 2,
+      "level_target_alt": 2,
+      "p_first": 0.6,
+      "p_first_exact": "3/5",
+      "p_target": 0.6,
+      "prompt": "One of the following is responsible for the contamination event. Exactly one is.\n\n    Candidate SIGMA\n    Candidate THETA\n\nBefore any testing, each candidate is considered equally likely.\n\nAnalysts were each assigned a different assay. Each assay returns POSITIVE or\nNEGATIVE, and the assays have the following known characteristics:\n\n    If SIGMA is responsible, an assay returns POSITIVE with probability 0.60.\n    If THETA is responsible, an assay returns POSITIVE with probability 0.40.\n\nAssay results are independent of one another given which candidate is responsible.\n\nREPORTS ON FILE\n    Assay returned POSITIVE\n\nName the candidate you believe is responsible, and how strongly you\nhold that.\n\nReply with only a JSON object with keys \"candidate\" and \"confidence\".\n\"candidate\" must be exactly SIGMA or THETA.\n\"confidence\" must be exactly Somewhat confident or Very confident.\n",
+      "response_format": {
+        "json_schema": {
+          "name": "silence_probe_ordinal",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate": {
+                "enum": [
+                  "SIGMA",
+                  "THETA"
+                ],
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "Somewhat confident",
+                  "Very confident"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "target_is_first": true,
+      "wording": "B"
+    },
+    {
+      "edge_distance_alt": 0.1,
+      "edge_distance_primary": 0.1,
+      "expected_answer": "Somewhat confident / THETA",
+      "expected_candidate": "THETA",
+      "expected_confidence": "Somewhat confident",
+      "family": "BLIND",
+      "id": "BLIND-k1-m1-B",
+      "in_decision_rule": true,
+      "k": 1,
+      "level_alt": 1,
+      "level_primary": 1,
+      "level_target": 2,
+      "level_target_alt": 2,
+      "p_first": 0.4,
+      "p_first_exact": "2/5",
+      "p_target": 0.6,
+      "prompt": "One of the following is responsible for the contamination event. Exactly one is.\n\n    Candidate SIGMA\n    Candidate THETA\n\nBefore any testing, each candidate is considered equally likely.\n\nAnalysts were each assigned a different assay. Each assay returns POSITIVE or\nNEGATIVE, and the assays have the following known characteristics:\n\n    If SIGMA is responsible, an assay returns POSITIVE with probability 0.40.\n    If THETA is responsible, an assay returns POSITIVE with probability 0.60.\n\nAssay results are independent of one another given which candidate is responsible.\n\nREPORTS ON FILE\n    Assay returned POSITIVE\n\nName the candidate you believe is responsible, and how strongly you\nhold that.\n\nReply with only a JSON object with keys \"candidate\" and \"confidence\".\n\"candidate\" must be exactly SIGMA or THETA.\n\"confidence\" must be exactly Somewhat confident or Very confident.\n",
+      "response_format": {
+        "json_schema": {
+          "name": "silence_probe_ordinal",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate": {
+                "enum": [
+                  "SIGMA",
+                  "THETA"
+                ],
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "Somewhat confident",
+                  "Very confident"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "target_is_first": false,
+      "wording": "B"
+    },
+    {
+      "edge_distance_alt": 0.1077,
+      "edge_distance_primary": 0.0577,
+      "expected_answer": "Somewhat confident / SIGMA",
+      "expected_candidate": "SIGMA",
+      "expected_confidence": "Somewhat confident",
+      "family": "BLIND",
+      "id": "BLIND-k2-m0-B",
+      "in_decision_rule": false,
+      "k": 2,
+      "level_alt": 2,
+      "level_primary": 2,
+      "level_target": 2,
+      "level_target_alt": 2,
+      "p_first": 0.692308,
+      "p_first_exact": "9/13",
+      "p_target": 0.692308,
+      "prompt": "One of the following is responsible for the contamination event. Exactly one is.\n\n    Candidate SIGMA\n    Candidate THETA\n\nBefore any testing, each candidate is considered equally likely.\n\nAnalysts were each assigned a different assay. Each assay returns POSITIVE or\nNEGATIVE, and the assays have the following known characteristics:\n\n    If SIGMA is responsible, an assay returns POSITIVE with probability 0.60.\n    If THETA is responsible, an assay returns POSITIVE with probability 0.40.\n\nAssay results are independent of one another given which candidate is responsible.\n\nREPORTS ON FILE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n\nName the candidate you believe is responsible, and how strongly you\nhold that.\n\nReply with only a JSON object with keys \"candidate\" and \"confidence\".\n\"candidate\" must be exactly SIGMA or THETA.\n\"confidence\" must be exactly Somewhat confident or Very confident.\n",
+      "response_format": {
+        "json_schema": {
+          "name": "silence_probe_ordinal",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate": {
+                "enum": [
+                  "SIGMA",
+                  "THETA"
+                ],
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "Somewhat confident",
+                  "Very confident"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "target_is_first": true,
+      "wording": "B"
+    },
+    {
+      "edge_distance_alt": 0.1077,
+      "edge_distance_primary": 0.0577,
+      "expected_answer": "Somewhat confident / THETA",
+      "expected_candidate": "THETA",
+      "expected_confidence": "Somewhat confident",
+      "family": "BLIND",
+      "id": "BLIND-k2-m1-B",
+      "in_decision_rule": false,
+      "k": 2,
+      "level_alt": 1,
+      "level_primary": 1,
+      "level_target": 2,
+      "level_target_alt": 2,
+      "p_first": 0.307692,
+      "p_first_exact": "4/13",
+      "p_target": 0.692308,
+      "prompt": "One of the following is responsible for the contamination event. Exactly one is.\n\n    Candidate SIGMA\n    Candidate THETA\n\nBefore any testing, each candidate is considered equally likely.\n\nAnalysts were each assigned a different assay. Each assay returns POSITIVE or\nNEGATIVE, and the assays have the following known characteristics:\n\n    If SIGMA is responsible, an assay returns POSITIVE with probability 0.40.\n    If THETA is responsible, an assay returns POSITIVE with probability 0.60.\n\nAssay results are independent of one another given which candidate is responsible.\n\nREPORTS ON FILE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n\nName the candidate you believe is responsible, and how strongly you\nhold that.\n\nReply with only a JSON object with keys \"candidate\" and \"confidence\".\n\"candidate\" must be exactly SIGMA or THETA.\n\"confidence\" must be exactly Somewhat confident or Very confident.\n",
+      "response_format": {
+        "json_schema": {
+          "name": "silence_probe_ordinal",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate": {
+                "enum": [
+                  "SIGMA",
+                  "THETA"
+                ],
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "Somewhat confident",
+                  "Very confident"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "target_is_first": false,
+      "wording": "B"
+    },
+    {
+      "edge_distance_alt": 0.0351,
+      "edge_distance_primary": 0.0851,
+      "expected_answer": "Very confident / SIGMA",
+      "expected_candidate": "SIGMA",
+      "expected_confidence": "Very confident",
+      "family": "BLIND",
+      "id": "BLIND-k4-m0-B",
+      "in_decision_rule": false,
+      "k": 4,
+      "level_alt": 3,
+      "level_primary": 3,
+      "level_target": 3,
+      "level_target_alt": 3,
+      "p_first": 0.835052,
+      "p_first_exact": "81/97",
+      "p_target": 0.835052,
+      "prompt": "One of the following is responsible for the contamination event. Exactly one is.\n\n    Candidate SIGMA\n    Candidate THETA\n\nBefore any testing, each candidate is considered equally likely.\n\nAnalysts were each assigned a different assay. Each assay returns POSITIVE or\nNEGATIVE, and the assays have the following known characteristics:\n\n    If SIGMA is responsible, an assay returns POSITIVE with probability 0.60.\n    If THETA is responsible, an assay returns POSITIVE with probability 0.40.\n\nAssay results are independent of one another given which candidate is responsible.\n\nREPORTS ON FILE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n\nName the candidate you believe is responsible, and how strongly you\nhold that.\n\nReply with only a JSON object with keys \"candidate\" and \"confidence\".\n\"candidate\" must be exactly SIGMA or THETA.\n\"confidence\" must be exactly Somewhat confident or Very confident.\n",
+      "response_format": {
+        "json_schema": {
+          "name": "silence_probe_ordinal",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate": {
+                "enum": [
+                  "SIGMA",
+                  "THETA"
+                ],
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "Somewhat confident",
+                  "Very confident"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "target_is_first": true,
+      "wording": "B"
+    },
+    {
+      "edge_distance_alt": 0.0351,
+      "edge_distance_primary": 0.0851,
+      "expected_answer": "Very confident / THETA",
+      "expected_candidate": "THETA",
+      "expected_confidence": "Very confident",
+      "family": "BLIND",
+      "id": "BLIND-k4-m1-B",
+      "in_decision_rule": false,
+      "k": 4,
+      "level_alt": 0,
+      "level_primary": 0,
+      "level_target": 3,
+      "level_target_alt": 3,
+      "p_first": 0.164948,
+      "p_first_exact": "16/97",
+      "p_target": 0.835052,
+      "prompt": "One of the following is responsible for the contamination event. Exactly one is.\n\n    Candidate SIGMA\n    Candidate THETA\n\nBefore any testing, each candidate is considered equally likely.\n\nAnalysts were each assigned a different assay. Each assay returns POSITIVE or\nNEGATIVE, and the assays have the following known characteristics:\n\n    If SIGMA is responsible, an assay returns POSITIVE with probability 0.40.\n    If THETA is responsible, an assay returns POSITIVE with probability 0.60.\n\nAssay results are independent of one another given which candidate is responsible.\n\nREPORTS ON FILE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n\nName the candidate you believe is responsible, and how strongly you\nhold that.\n\nReply with only a JSON object with keys \"candidate\" and \"confidence\".\n\"candidate\" must be exactly SIGMA or THETA.\n\"confidence\" must be exactly Somewhat confident or Very confident.\n",
+      "response_format": {
+        "json_schema": {
+          "name": "silence_probe_ordinal",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate": {
+                "enum": [
+                  "SIGMA",
+                  "THETA"
+                ],
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "Somewhat confident",
+                  "Very confident"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "target_is_first": false,
+      "wording": "B"
+    },
+    {
+      "edge_distance_alt": 0.1193,
+      "edge_distance_primary": 0.1693,
+      "expected_answer": "Very confident / SIGMA",
+      "expected_candidate": "SIGMA",
+      "expected_confidence": "Very confident",
+      "family": "BLIND",
+      "id": "BLIND-k6-m0-B",
+      "in_decision_rule": true,
+      "k": 6,
+      "level_alt": 3,
+      "level_primary": 3,
+      "level_target": 3,
+      "level_target_alt": 3,
+      "p_first": 0.919294,
+      "p_first_exact": "729/793",
+      "p_target": 0.919294,
+      "prompt": "One of the following is responsible for the contamination event. Exactly one is.\n\n    Candidate SIGMA\n    Candidate THETA\n\nBefore any testing, each candidate is considered equally likely.\n\nAnalysts were each assigned a different assay. Each assay returns POSITIVE or\nNEGATIVE, and the assays have the following known characteristics:\n\n    If SIGMA is responsible, an assay returns POSITIVE with probability 0.60.\n    If THETA is responsible, an assay returns POSITIVE with probability 0.40.\n\nAssay results are independent of one another given which candidate is responsible.\n\nREPORTS ON FILE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n\nName the candidate you believe is responsible, and how strongly you\nhold that.\n\nReply with only a JSON object with keys \"candidate\" and \"confidence\".\n\"candidate\" must be exactly SIGMA or THETA.\n\"confidence\" must be exactly Somewhat confident or Very confident.\n",
+      "response_format": {
+        "json_schema": {
+          "name": "silence_probe_ordinal",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate": {
+                "enum": [
+                  "SIGMA",
+                  "THETA"
+                ],
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "Somewhat confident",
+                  "Very confident"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "target_is_first": true,
+      "wording": "B"
+    },
+    {
+      "edge_distance_alt": 0.1193,
+      "edge_distance_primary": 0.1693,
+      "expected_answer": "Very confident / THETA",
+      "expected_candidate": "THETA",
+      "expected_confidence": "Very confident",
+      "family": "BLIND",
+      "id": "BLIND-k6-m1-B",
+      "in_decision_rule": true,
+      "k": 6,
+      "level_alt": 0,
+      "level_primary": 0,
+      "level_target": 3,
+      "level_target_alt": 3,
+      "p_first": 0.080706,
+      "p_first_exact": "64/793",
+      "p_target": 0.919294,
+      "prompt": "One of the following is responsible for the contamination event. Exactly one is.\n\n    Candidate SIGMA\n    Candidate THETA\n\nBefore any testing, each candidate is considered equally likely.\n\nAnalysts were each assigned a different assay. Each assay returns POSITIVE or\nNEGATIVE, and the assays have the following known characteristics:\n\n    If SIGMA is responsible, an assay returns POSITIVE with probability 0.40.\n    If THETA is responsible, an assay returns POSITIVE with probability 0.60.\n\nAssay results are independent of one another given which candidate is responsible.\n\nREPORTS ON FILE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n\nName the candidate you believe is responsible, and how strongly you\nhold that.\n\nReply with only a JSON object with keys \"candidate\" and \"confidence\".\n\"candidate\" must be exactly SIGMA or THETA.\n\"confidence\" must be exactly Somewhat confident or Very confident.\n",
+      "response_format": {
+        "json_schema": {
+          "name": "silence_probe_ordinal",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate": {
+                "enum": [
+                  "SIGMA",
+                  "THETA"
+                ],
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "Somewhat confident",
+                  "Very confident"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "target_is_first": false,
+      "wording": "B"
+    },
+    {
+      "edge_distance_alt": 0.1,
+      "edge_distance_primary": 0.15,
+      "expected_answer": "Very confident / THETA",
+      "expected_candidate": "THETA",
+      "expected_confidence": "Very confident",
+      "family": "CAL",
+      "id": "CAL-p10-B",
+      "in_decision_rule": false,
+      "level_alt": 0,
+      "level_primary": 0,
+      "p_first": 0.1,
+      "prompt": "One of the following is responsible for the contamination event. Exactly one is.\n\n    Candidate SIGMA\n    Candidate THETA\n\nAn independent review has concluded that the chance SIGMA is responsible is 10 percent, and the chance THETA is responsible is 90 percent.\n\nName the candidate you believe is responsible, and how strongly you\nhold that.\n\nReply with only a JSON object with keys \"candidate\" and \"confidence\".\n\"candidate\" must be exactly SIGMA or THETA.\n\"confidence\" must be exactly Somewhat confident or Very confident.\n",
+      "response_format": {
+        "json_schema": {
+          "name": "silence_probe_ordinal",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate": {
+                "enum": [
+                  "SIGMA",
+                  "THETA"
+                ],
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "Somewhat confident",
+                  "Very confident"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "wording": "B"
+    },
+    {
+      "edge_distance_alt": 0.0,
+      "edge_distance_primary": 0.05,
+      "expected_answer": "Very confident / THETA",
+      "expected_candidate": "THETA",
+      "expected_confidence": "Very confident",
+      "family": "CAL",
+      "id": "CAL-p20-B",
+      "in_decision_rule": false,
+      "level_alt": 1,
+      "level_primary": 0,
+      "p_first": 0.2,
+      "prompt": "One of the following is responsible for the contamination event. Exactly one is.\n\n    Candidate SIGMA\n    Candidate THETA\n\nAn independent review has concluded that the chance SIGMA is responsible is 20 percent, and the chance THETA is responsible is 80 percent.\n\nName the candidate you believe is responsible, and how strongly you\nhold that.\n\nReply with only a JSON object with keys \"candidate\" and \"confidence\".\n\"candidate\" must be exactly SIGMA or THETA.\n\"confidence\" must be exactly Somewhat confident or Very confident.\n",
+      "response_format": {
+        "json_schema": {
+          "name": "silence_probe_ordinal",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate": {
+                "enum": [
+                  "SIGMA",
+                  "THETA"
+                ],
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "Somewhat confident",
+                  "Very confident"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "wording": "B"
+    },
+    {
+      "edge_distance_alt": 0.1,
+      "edge_distance_primary": 0.05,
+      "expected_answer": "Somewhat confident / THETA",
+      "expected_candidate": "THETA",
+      "expected_confidence": "Somewhat confident",
+      "family": "CAL",
+      "id": "CAL-p30-B",
+      "in_decision_rule": false,
+      "level_alt": 1,
+      "level_primary": 1,
+      "p_first": 0.3,
+      "prompt": "One of the following is responsible for the contamination event. Exactly one is.\n\n    Candidate SIGMA\n    Candidate THETA\n\nAn independent review has concluded that the chance SIGMA is responsible is 30 percent, and the chance THETA is responsible is 70 percent.\n\nName the candidate you believe is responsible, and how strongly you\nhold that.\n\nReply with only a JSON object with keys \"candidate\" and \"confidence\".\n\"candidate\" must be exactly SIGMA or THETA.\n\"confidence\" must be exactly Somewhat confident or Very confident.\n",
+      "response_format": {
+        "json_schema": {
+          "name": "silence_probe_ordinal",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate": {
+                "enum": [
+                  "SIGMA",
+                  "THETA"
+                ],
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "Somewhat confident",
+                  "Very confident"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "wording": "B"
+    },
+    {
+      "edge_distance_alt": 0.1,
+      "edge_distance_primary": 0.1,
+      "expected_answer": "Somewhat confident / THETA",
+      "expected_candidate": "THETA",
+      "expected_confidence": "Somewhat confident",
+      "family": "CAL",
+      "id": "CAL-p40-B",
+      "in_decision_rule": false,
+      "level_alt": 1,
+      "level_primary": 1,
+      "p_first": 0.4,
+      "prompt": "One of the following is responsible for the contamination event. Exactly one is.\n\n    Candidate SIGMA\n    Candidate THETA\n\nAn independent review has concluded that the chance SIGMA is responsible is 40 percent, and the chance THETA is responsible is 60 percent.\n\nName the candidate you believe is responsible, and how strongly you\nhold that.\n\nReply with only a JSON object with keys \"candidate\" and \"confidence\".\n\"candidate\" must be exactly SIGMA or THETA.\n\"confidence\" must be exactly Somewhat confident or Very confident.\n",
+      "response_format": {
+        "json_schema": {
+          "name": "silence_probe_ordinal",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate": {
+                "enum": [
+                  "SIGMA",
+                  "THETA"
+                ],
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "Somewhat confident",
+                  "Very confident"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "wording": "B"
+    },
+    {
+      "edge_distance_alt": 0.1,
+      "edge_distance_primary": 0.1,
+      "expected_answer": "Somewhat confident / SIGMA",
+      "expected_candidate": "SIGMA",
+      "expected_confidence": "Somewhat confident",
+      "family": "CAL",
+      "id": "CAL-p60-B",
+      "in_decision_rule": false,
+      "level_alt": 2,
+      "level_primary": 2,
+      "p_first": 0.6,
+      "prompt": "One of the following is responsible for the contamination event. Exactly one is.\n\n    Candidate SIGMA\n    Candidate THETA\n\nAn independent review has concluded that the chance SIGMA is responsible is 60 percent, and the chance THETA is responsible is 40 percent.\n\nName the candidate you believe is responsible, and how strongly you\nhold that.\n\nReply with only a JSON object with keys \"candidate\" and \"confidence\".\n\"candidate\" must be exactly SIGMA or THETA.\n\"confidence\" must be exactly Somewhat confident or Very confident.\n",
+      "response_format": {
+        "json_schema": {
+          "name": "silence_probe_ordinal",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate": {
+                "enum": [
+                  "SIGMA",
+                  "THETA"
+                ],
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "Somewhat confident",
+                  "Very confident"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "wording": "B"
+    },
+    {
+      "edge_distance_alt": 0.1,
+      "edge_distance_primary": 0.05,
+      "expected_answer": "Somewhat confident / SIGMA",
+      "expected_candidate": "SIGMA",
+      "expected_confidence": "Somewhat confident",
+      "family": "CAL",
+      "id": "CAL-p70-B",
+      "in_decision_rule": false,
+      "level_alt": 2,
+      "level_primary": 2,
+      "p_first": 0.7,
+      "prompt": "One of the following is responsible for the contamination event. Exactly one is.\n\n    Candidate SIGMA\n    Candidate THETA\n\nAn independent review has concluded that the chance SIGMA is responsible is 70 percent, and the chance THETA is responsible is 30 percent.\n\nName the candidate you believe is responsible, and how strongly you\nhold that.\n\nReply with only a JSON object with keys \"candidate\" and \"confidence\".\n\"candidate\" must be exactly SIGMA or THETA.\n\"confidence\" must be exactly Somewhat confident or Very confident.\n",
+      "response_format": {
+        "json_schema": {
+          "name": "silence_probe_ordinal",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate": {
+                "enum": [
+                  "SIGMA",
+                  "THETA"
+                ],
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "Somewhat confident",
+                  "Very confident"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "wording": "B"
+    },
+    {
+      "edge_distance_alt": 0.0,
+      "edge_distance_primary": 0.05,
+      "expected_answer": "Very confident / SIGMA",
+      "expected_candidate": "SIGMA",
+      "expected_confidence": "Very confident",
+      "family": "CAL",
+      "id": "CAL-p80-B",
+      "in_decision_rule": false,
+      "level_alt": 3,
+      "level_primary": 3,
+      "p_first": 0.8,
+      "prompt": "One of the following is responsible for the contamination event. Exactly one is.\n\n    Candidate SIGMA\n    Candidate THETA\n\nAn independent review has concluded that the chance SIGMA is responsible is 80 percent, and the chance THETA is responsible is 20 percent.\n\nName the candidate you believe is responsible, and how strongly you\nhold that.\n\nReply with only a JSON object with keys \"candidate\" and \"confidence\".\n\"candidate\" must be exactly SIGMA or THETA.\n\"confidence\" must be exactly Somewhat confident or Very confident.\n",
+      "response_format": {
+        "json_schema": {
+          "name": "silence_probe_ordinal",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate": {
+                "enum": [
+                  "SIGMA",
+                  "THETA"
+                ],
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "Somewhat confident",
+                  "Very confident"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "wording": "B"
+    },
+    {
+      "edge_distance_alt": 0.1,
+      "edge_distance_primary": 0.15,
+      "expected_answer": "Very confident / SIGMA",
+      "expected_candidate": "SIGMA",
+      "expected_confidence": "Very confident",
+      "family": "CAL",
+      "id": "CAL-p90-B",
+      "in_decision_rule": false,
+      "level_alt": 3,
+      "level_primary": 3,
+      "p_first": 0.9,
+      "prompt": "One of the following is responsible for the contamination event. Exactly one is.\n\n    Candidate SIGMA\n    Candidate THETA\n\nAn independent review has concluded that the chance SIGMA is responsible is 90 percent, and the chance THETA is responsible is 10 percent.\n\nName the candidate you believe is responsible, and how strongly you\nhold that.\n\nReply with only a JSON object with keys \"candidate\" and \"confidence\".\n\"candidate\" must be exactly SIGMA or THETA.\n\"confidence\" must be exactly Somewhat confident or Very confident.\n",
+      "response_format": {
+        "json_schema": {
+          "name": "silence_probe_ordinal",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate": {
+                "enum": [
+                  "SIGMA",
+                  "THETA"
+                ],
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "Somewhat confident",
+                  "Very confident"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "wording": "B"
+    }
+  ],
+  "task": "2.4 / silence probe v2 / W1 ceiling pre-test",
+  "wordings": {
+    "A": {
+      "high": "Strongly",
+      "low": "Slightly"
+    },
+    "B": {
+      "high": "Very confident",
+      "low": "Somewhat confident"
+    }
+  }
+}

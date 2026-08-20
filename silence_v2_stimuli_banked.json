@@ -1,0 +1,956 @@
+{
+  "conditions": [
+    "PARTIAL_RULED_D30"
+  ],
+  "labels": [
+    "SIGMA",
+    "THETA"
+  ],
+  "n_cells": 9,
+  "n_stimuli": 18,
+  "note": "BANKED delta=0.30 extension, designed not run (D26)",
+  "sha256": "23d2c4c62ee0599ea64dc85be8da75b5c6fe52f57c2af6bc41da62f21383cce9",
+  "stimuli": [
+    {
+      "N": 5,
+      "banked": true,
+      "belief_first": 0.693624,
+      "belief_target": 0.693624,
+      "cell": "A1",
+      "condition": "PARTIAL_RULED_D30",
+      "expected_candidate": "SIGMA",
+      "expected_confidence": "Somewhat confident",
+      "group": "A",
+      "id": "A1-PARTIAL_RULED_D30-m0",
+      "k": 2,
+      "l_pos_target": 3,
+      "l_q_target": 2,
+      "level_print": 2,
+      "level_target": 2,
+      "p": 0.81,
+      "prompt": "One of the following is responsible for the contamination event. Exactly one is.\n\n    Candidate SIGMA\n    Candidate THETA\n\nBefore any testing, each candidate is considered equally likely.\n\n5 analysts were each assigned a different assay. Each assay returns POSITIVE or\nNEGATIVE, and the assays have the following known characteristics:\n\n    If SIGMA is responsible, an assay returns POSITIVE with probability 0.81.\n    If THETA is responsible, an assay returns POSITIVE with probability 0.19.\n\nAssay results are independent of one another given which candidate is responsible.\n\nEach analyst files a report only when their assay returns POSITIVE.\nSeparately from the assay result, each analyst files nothing at all\nin 30 percent of cases.\n\nREPORTS ON FILE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n\nName the candidate you believe is responsible, and how strongly you hold that.\n\nReply with only a JSON object with keys \"candidate\" and \"confidence\".\n\"candidate\" must be exactly SIGMA or THETA.\n\"confidence\" must be exactly Somewhat confident or Very confident.\n",
+      "response_format": {
+        "json_schema": {
+          "name": "silence_probe_v2_ordinal",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate": {
+                "enum": [
+                  "SIGMA",
+                  "THETA"
+                ],
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "Somewhat confident",
+                  "Very confident"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "target_is_first": true,
+      "target_label": "SIGMA"
+    },
+    {
+      "N": 5,
+      "banked": true,
+      "belief_first": 0.306376,
+      "belief_target": 0.693624,
+      "cell": "A1",
+      "condition": "PARTIAL_RULED_D30",
+      "expected_candidate": "THETA",
+      "expected_confidence": "Somewhat confident",
+      "group": "A",
+      "id": "A1-PARTIAL_RULED_D30-m1",
+      "k": 2,
+      "l_pos_target": 3,
+      "l_q_target": 2,
+      "level_print": 1,
+      "level_target": 2,
+      "p": 0.81,
+      "prompt": "One of the following is responsible for the contamination event. Exactly one is.\n\n    Candidate SIGMA\n    Candidate THETA\n\nBefore any testing, each candidate is considered equally likely.\n\n5 analysts were each assigned a different assay. Each assay returns POSITIVE or\nNEGATIVE, and the assays have the following known characteristics:\n\n    If SIGMA is responsible, an assay returns POSITIVE with probability 0.19.\n    If THETA is responsible, an assay returns POSITIVE with probability 0.81.\n\nAssay results are independent of one another given which candidate is responsible.\n\nEach analyst files a report only when their assay returns POSITIVE.\nSeparately from the assay result, each analyst files nothing at all\nin 30 percent of cases.\n\nREPORTS ON FILE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n\nName the candidate you believe is responsible, and how strongly you hold that.\n\nReply with only a JSON object with keys \"candidate\" and \"confidence\".\n\"candidate\" must be exactly SIGMA or THETA.\n\"confidence\" must be exactly Somewhat confident or Very confident.\n",
+      "response_format": {
+        "json_schema": {
+          "name": "silence_probe_v2_ordinal",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate": {
+                "enum": [
+                  "SIGMA",
+                  "THETA"
+                ],
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "Somewhat confident",
+                  "Very confident"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "target_is_first": false,
+      "target_label": "THETA"
+    },
+    {
+      "N": 8,
+      "banked": true,
+      "belief_first": 0.567807,
+      "belief_target": 0.567807,
+      "cell": "A2",
+      "condition": "PARTIAL_RULED_D30",
+      "expected_candidate": "SIGMA",
+      "expected_confidence": "Somewhat confident",
+      "group": "A",
+      "id": "A2-PARTIAL_RULED_D30-m0",
+      "k": 3,
+      "l_pos_target": 3,
+      "l_q_target": 2,
+      "level_print": 2,
+      "level_target": 2,
+      "p": 0.67,
+      "prompt": "One of the following is responsible for the contamination event. Exactly one is.\n\n    Candidate SIGMA\n    Candidate THETA\n\nBefore any testing, each candidate is considered equally likely.\n\n8 analysts were each assigned a different assay. Each assay returns POSITIVE or\nNEGATIVE, and the assays have the following known characteristics:\n\n    If SIGMA is responsible, an assay returns POSITIVE with probability 0.67.\n    If THETA is responsible, an assay returns POSITIVE with probability 0.33.\n\nAssay results are independent of one another given which candidate is responsible.\n\nEach analyst files a report only when their assay returns POSITIVE.\nSeparately from the assay result, each analyst files nothing at all\nin 30 percent of cases.\n\nREPORTS ON FILE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n\nName the candidate you believe is responsible, and how strongly you hold that.\n\nReply with only a JSON object with keys \"candidate\" and \"confidence\".\n\"candidate\" must be exactly SIGMA or THETA.\n\"confidence\" must be exactly Somewhat confident or Very confident.\n",
+      "response_format": {
+        "json_schema": {
+          "name": "silence_probe_v2_ordinal",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate": {
+                "enum": [
+                  "SIGMA",
+                  "THETA"
+                ],
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "Somewhat confident",
+                  "Very confident"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "target_is_first": true,
+      "target_label": "SIGMA"
+    },
+    {
+      "N": 8,
+      "banked": true,
+      "belief_first": 0.432193,
+      "belief_target": 0.567807,
+      "cell": "A2",
+      "condition": "PARTIAL_RULED_D30",
+      "expected_candidate": "THETA",
+      "expected_confidence": "Somewhat confident",
+      "group": "A",
+      "id": "A2-PARTIAL_RULED_D30-m1",
+      "k": 3,
+      "l_pos_target": 3,
+      "l_q_target": 2,
+      "level_print": 1,
+      "level_target": 2,
+      "p": 0.67,
+      "prompt": "One of the following is responsible for the contamination event. Exactly one is.\n\n    Candidate SIGMA\n    Candidate THETA\n\nBefore any testing, each candidate is considered equally likely.\n\n8 analysts were each assigned a different assay. Each assay returns POSITIVE or\nNEGATIVE, and the assays have the following known characteristics:\n\n    If SIGMA is responsible, an assay returns POSITIVE with probability 0.33.\n    If THETA is responsible, an assay returns POSITIVE with probability 0.67.\n\nAssay results are independent of one another given which candidate is responsible.\n\nEach analyst files a report only when their assay returns POSITIVE.\nSeparately from the assay result, each analyst files nothing at all\nin 30 percent of cases.\n\nREPORTS ON FILE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n\nName the candidate you believe is responsible, and how strongly you hold that.\n\nReply with only a JSON object with keys \"candidate\" and \"confidence\".\n\"candidate\" must be exactly SIGMA or THETA.\n\"confidence\" must be exactly Somewhat confident or Very confident.\n",
+      "response_format": {
+        "json_schema": {
+          "name": "silence_probe_v2_ordinal",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate": {
+                "enum": [
+                  "SIGMA",
+                  "THETA"
+                ],
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "Somewhat confident",
+                  "Very confident"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "target_is_first": false,
+      "target_label": "THETA"
+    },
+    {
+      "N": 10,
+      "banked": true,
+      "belief_first": 0.648116,
+      "belief_target": 0.648116,
+      "cell": "A3",
+      "condition": "PARTIAL_RULED_D30",
+      "expected_candidate": "SIGMA",
+      "expected_confidence": "Somewhat confident",
+      "group": "A",
+      "id": "A3-PARTIAL_RULED_D30-m0",
+      "k": 4,
+      "l_pos_target": 3,
+      "l_q_target": 2,
+      "level_print": 2,
+      "level_target": 2,
+      "p": 0.67,
+      "prompt": "One of the following is responsible for the contamination event. Exactly one is.\n\n    Candidate SIGMA\n    Candidate THETA\n\nBefore any testing, each candidate is considered equally likely.\n\n10 analysts were each assigned a different assay. Each assay returns POSITIVE or\nNEGATIVE, and the assays have the following known characteristics:\n\n    If SIGMA is responsible, an assay returns POSITIVE with probability 0.67.\n    If THETA is responsible, an assay returns POSITIVE with probability 0.33.\n\nAssay results are independent of one another given which candidate is responsible.\n\nEach analyst files a report only when their assay returns POSITIVE.\nSeparately from the assay result, each analyst files nothing at all\nin 30 percent of cases.\n\nREPORTS ON FILE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n\nName the candidate you believe is responsible, and how strongly you hold that.\n\nReply with only a JSON object with keys \"candidate\" and \"confidence\".\n\"candidate\" must be exactly SIGMA or THETA.\n\"confidence\" must be exactly Somewhat confident or Very confident.\n",
+      "response_format": {
+        "json_schema": {
+          "name": "silence_probe_v2_ordinal",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate": {
+                "enum": [
+                  "SIGMA",
+                  "THETA"
+                ],
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "Somewhat confident",
+                  "Very confident"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "target_is_first": true,
+      "target_label": "SIGMA"
+    },
+    {
+      "N": 10,
+      "banked": true,
+      "belief_first": 0.351884,
+      "belief_target": 0.648116,
+      "cell": "A3",
+      "condition": "PARTIAL_RULED_D30",
+      "expected_candidate": "THETA",
+      "expected_confidence": "Somewhat confident",
+      "group": "A",
+      "id": "A3-PARTIAL_RULED_D30-m1",
+      "k": 4,
+      "l_pos_target": 3,
+      "l_q_target": 2,
+      "level_print": 1,
+      "level_target": 2,
+      "p": 0.67,
+      "prompt": "One of the following is responsible for the contamination event. Exactly one is.\n\n    Candidate SIGMA\n    Candidate THETA\n\nBefore any testing, each candidate is considered equally likely.\n\n10 analysts were each assigned a different assay. Each assay returns POSITIVE or\nNEGATIVE, and the assays have the following known characteristics:\n\n    If SIGMA is responsible, an assay returns POSITIVE with probability 0.33.\n    If THETA is responsible, an assay returns POSITIVE with probability 0.67.\n\nAssay results are independent of one another given which candidate is responsible.\n\nEach analyst files a report only when their assay returns POSITIVE.\nSeparately from the assay result, each analyst files nothing at all\nin 30 percent of cases.\n\nREPORTS ON FILE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n\nName the candidate you believe is responsible, and how strongly you hold that.\n\nReply with only a JSON object with keys \"candidate\" and \"confidence\".\n\"candidate\" must be exactly SIGMA or THETA.\n\"confidence\" must be exactly Somewhat confident or Very confident.\n",
+      "response_format": {
+        "json_schema": {
+          "name": "silence_probe_v2_ordinal",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate": {
+                "enum": [
+                  "SIGMA",
+                  "THETA"
+                ],
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "Somewhat confident",
+                  "Very confident"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "target_is_first": false,
+      "target_label": "THETA"
+    },
+    {
+      "N": 13,
+      "banked": true,
+      "belief_first": 0.591078,
+      "belief_target": 0.591078,
+      "cell": "A4",
+      "condition": "PARTIAL_RULED_D30",
+      "expected_candidate": "SIGMA",
+      "expected_confidence": "Somewhat confident",
+      "group": "A",
+      "id": "A4-PARTIAL_RULED_D30-m0",
+      "k": 5,
+      "l_pos_target": 3,
+      "l_q_target": 2,
+      "level_print": 2,
+      "level_target": 2,
+      "p": 0.62,
+      "prompt": "One of the following is responsible for the contamination event. Exactly one is.\n\n    Candidate SIGMA\n    Candidate THETA\n\nBefore any testing, each candidate is considered equally likely.\n\n13 analysts were each assigned a different assay. Each assay returns POSITIVE or\nNEGATIVE, and the assays have the following known characteristics:\n\n    If SIGMA is responsible, an assay returns POSITIVE with probability 0.62.\n    If THETA is responsible, an assay returns POSITIVE with probability 0.38.\n\nAssay results are independent of one another given which candidate is responsible.\n\nEach analyst files a report only when their assay returns POSITIVE.\nSeparately from the assay result, each analyst files nothing at all\nin 30 percent of cases.\n\nREPORTS ON FILE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n\nName the candidate you believe is responsible, and how strongly you hold that.\n\nReply with only a JSON object with keys \"candidate\" and \"confidence\".\n\"candidate\" must be exactly SIGMA or THETA.\n\"confidence\" must be exactly Somewhat confident or Very confident.\n",
+      "response_format": {
+        "json_schema": {
+          "name": "silence_probe_v2_ordinal",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate": {
+                "enum": [
+                  "SIGMA",
+                  "THETA"
+                ],
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "Somewhat confident",
+                  "Very confident"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "target_is_first": true,
+      "target_label": "SIGMA"
+    },
+    {
+      "N": 13,
+      "banked": true,
+      "belief_first": 0.408922,
+      "belief_target": 0.591078,
+      "cell": "A4",
+      "condition": "PARTIAL_RULED_D30",
+      "expected_candidate": "THETA",
+      "expected_confidence": "Somewhat confident",
+      "group": "A",
+      "id": "A4-PARTIAL_RULED_D30-m1",
+      "k": 5,
+      "l_pos_target": 3,
+      "l_q_target": 2,
+      "level_print": 1,
+      "level_target": 2,
+      "p": 0.62,
+      "prompt": "One of the following is responsible for the contamination event. Exactly one is.\n\n    Candidate SIGMA\n    Candidate THETA\n\nBefore any testing, each candidate is considered equally likely.\n\n13 analysts were each assigned a different assay. Each assay returns POSITIVE or\nNEGATIVE, and the assays have the following known characteristics:\n\n    If SIGMA is responsible, an assay returns POSITIVE with probability 0.38.\n    If THETA is responsible, an assay returns POSITIVE with probability 0.62.\n\nAssay results are independent of one another given which candidate is responsible.\n\nEach analyst files a report only when their assay returns POSITIVE.\nSeparately from the assay result, each analyst files nothing at all\nin 30 percent of cases.\n\nREPORTS ON FILE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n\nName the candidate you believe is responsible, and how strongly you hold that.\n\nReply with only a JSON object with keys \"candidate\" and \"confidence\".\n\"candidate\" must be exactly SIGMA or THETA.\n\"confidence\" must be exactly Somewhat confident or Very confident.\n",
+      "response_format": {
+        "json_schema": {
+          "name": "silence_probe_v2_ordinal",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate": {
+                "enum": [
+                  "SIGMA",
+                  "THETA"
+                ],
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "Somewhat confident",
+                  "Very confident"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "target_is_first": false,
+      "target_label": "THETA"
+    },
+    {
+      "N": 14,
+      "banked": true,
+      "belief_first": 0.551805,
+      "belief_target": 0.551805,
+      "cell": "A5",
+      "condition": "PARTIAL_RULED_D30",
+      "expected_candidate": "SIGMA",
+      "expected_confidence": "Somewhat confident",
+      "group": "A",
+      "id": "A5-PARTIAL_RULED_D30-m0",
+      "k": 5,
+      "l_pos_target": 3,
+      "l_q_target": 2,
+      "level_print": 2,
+      "level_target": 2,
+      "p": 0.67,
+      "prompt": "One of the following is responsible for the contamination event. Exactly one is.\n\n    Candidate SIGMA\n    Candidate THETA\n\nBefore any testing, each candidate is considered equally likely.\n\n14 analysts were each assigned a different assay. Each assay returns POSITIVE or\nNEGATIVE, and the assays have the following known characteristics:\n\n    If SIGMA is responsible, an assay returns POSITIVE with probability 0.67.\n    If THETA is responsible, an assay returns POSITIVE with probability 0.33.\n\nAssay results are independent of one another given which candidate is responsible.\n\nEach analyst files a report only when their assay returns POSITIVE.\nSeparately from the assay result, each analyst files nothing at all\nin 30 percent of cases.\n\nREPORTS ON FILE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n\nName the candidate you believe is responsible, and how strongly you hold that.\n\nReply with only a JSON object with keys \"candidate\" and \"confidence\".\n\"candidate\" must be exactly SIGMA or THETA.\n\"confidence\" must be exactly Somewhat confident or Very confident.\n",
+      "response_format": {
+        "json_schema": {
+          "name": "silence_probe_v2_ordinal",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate": {
+                "enum": [
+                  "SIGMA",
+                  "THETA"
+                ],
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "Somewhat confident",
+                  "Very confident"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "target_is_first": true,
+      "target_label": "SIGMA"
+    },
+    {
+      "N": 14,
+      "banked": true,
+      "belief_first": 0.448195,
+      "belief_target": 0.551805,
+      "cell": "A5",
+      "condition": "PARTIAL_RULED_D30",
+      "expected_candidate": "THETA",
+      "expected_confidence": "Somewhat confident",
+      "group": "A",
+      "id": "A5-PARTIAL_RULED_D30-m1",
+      "k": 5,
+      "l_pos_target": 3,
+      "l_q_target": 2,
+      "level_print": 1,
+      "level_target": 2,
+      "p": 0.67,
+      "prompt": "One of the following is responsible for the contamination event. Exactly one is.\n\n    Candidate SIGMA\n    Candidate THETA\n\nBefore any testing, each candidate is considered equally likely.\n\n14 analysts were each assigned a different assay. Each assay returns POSITIVE or\nNEGATIVE, and the assays have the following known characteristics:\n\n    If SIGMA is responsible, an assay returns POSITIVE with probability 0.33.\n    If THETA is responsible, an assay returns POSITIVE with probability 0.67.\n\nAssay results are independent of one another given which candidate is responsible.\n\nEach analyst files a report only when their assay returns POSITIVE.\nSeparately from the assay result, each analyst files nothing at all\nin 30 percent of cases.\n\nREPORTS ON FILE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n\nName the candidate you believe is responsible, and how strongly you hold that.\n\nReply with only a JSON object with keys \"candidate\" and \"confidence\".\n\"candidate\" must be exactly SIGMA or THETA.\n\"confidence\" must be exactly Somewhat confident or Very confident.\n",
+      "response_format": {
+        "json_schema": {
+          "name": "silence_probe_v2_ordinal",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate": {
+                "enum": [
+                  "SIGMA",
+                  "THETA"
+                ],
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "Somewhat confident",
+                  "Very confident"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "target_is_first": false,
+      "target_label": "THETA"
+    },
+    {
+      "N": 6,
+      "banked": true,
+      "belief_first": 0.624189,
+      "belief_target": 0.624189,
+      "cell": "C1",
+      "condition": "PARTIAL_RULED_D30",
+      "expected_candidate": "SIGMA",
+      "expected_confidence": "Somewhat confident",
+      "group": "C",
+      "id": "C1-PARTIAL_RULED_D30-m0",
+      "k": 2,
+      "l_pos_target": 3,
+      "l_q_target": 2,
+      "level_print": 2,
+      "level_target": 2,
+      "p": 0.88,
+      "prompt": "One of the following is responsible for the contamination event. Exactly one is.\n\n    Candidate SIGMA\n    Candidate THETA\n\nBefore any testing, each candidate is considered equally likely.\n\n6 analysts were each assigned a different assay. Each assay returns POSITIVE or\nNEGATIVE, and the assays have the following known characteristics:\n\n    If SIGMA is responsible, an assay returns POSITIVE with probability 0.88.\n    If THETA is responsible, an assay returns POSITIVE with probability 0.12.\n\nAssay results are independent of one another given which candidate is responsible.\n\nEach analyst files a report only when their assay returns POSITIVE.\nSeparately from the assay result, each analyst files nothing at all\nin 30 percent of cases.\n\nREPORTS ON FILE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n\nName the candidate you believe is responsible, and how strongly you hold that.\n\nReply with only a JSON object with keys \"candidate\" and \"confidence\".\n\"candidate\" must be exactly SIGMA or THETA.\n\"confidence\" must be exactly Somewhat confident or Very confident.\n",
+      "response_format": {
+        "json_schema": {
+          "name": "silence_probe_v2_ordinal",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate": {
+                "enum": [
+                  "SIGMA",
+                  "THETA"
+                ],
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "Somewhat confident",
+                  "Very confident"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "target_is_first": true,
+      "target_label": "SIGMA"
+    },
+    {
+      "N": 6,
+      "banked": true,
+      "belief_first": 0.375811,
+      "belief_target": 0.624189,
+      "cell": "C1",
+      "condition": "PARTIAL_RULED_D30",
+      "expected_candidate": "THETA",
+      "expected_confidence": "Somewhat confident",
+      "group": "C",
+      "id": "C1-PARTIAL_RULED_D30-m1",
+      "k": 2,
+      "l_pos_target": 3,
+      "l_q_target": 2,
+      "level_print": 1,
+      "level_target": 2,
+      "p": 0.88,
+      "prompt": "One of the following is responsible for the contamination event. Exactly one is.\n\n    Candidate SIGMA\n    Candidate THETA\n\nBefore any testing, each candidate is considered equally likely.\n\n6 analysts were each assigned a different assay. Each assay returns POSITIVE or\nNEGATIVE, and the assays have the following known characteristics:\n\n    If SIGMA is responsible, an assay returns POSITIVE with probability 0.12.\n    If THETA is responsible, an assay returns POSITIVE with probability 0.88.\n\nAssay results are independent of one another given which candidate is responsible.\n\nEach analyst files a report only when their assay returns POSITIVE.\nSeparately from the assay result, each analyst files nothing at all\nin 30 percent of cases.\n\nREPORTS ON FILE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n\nName the candidate you believe is responsible, and how strongly you hold that.\n\nReply with only a JSON object with keys \"candidate\" and \"confidence\".\n\"candidate\" must be exactly SIGMA or THETA.\n\"confidence\" must be exactly Somewhat confident or Very confident.\n",
+      "response_format": {
+        "json_schema": {
+          "name": "silence_probe_v2_ordinal",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate": {
+                "enum": [
+                  "SIGMA",
+                  "THETA"
+                ],
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "Somewhat confident",
+                  "Very confident"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "target_is_first": false,
+      "target_label": "THETA"
+    },
+    {
+      "N": 8,
+      "banked": true,
+      "belief_first": 0.67782,
+      "belief_target": 0.67782,
+      "cell": "C2",
+      "condition": "PARTIAL_RULED_D30",
+      "expected_candidate": "SIGMA",
+      "expected_confidence": "Somewhat confident",
+      "group": "C",
+      "id": "C2-PARTIAL_RULED_D30-m0",
+      "k": 3,
+      "l_pos_target": 3,
+      "l_q_target": 2,
+      "level_print": 2,
+      "level_target": 2,
+      "p": 0.79,
+      "prompt": "One of the following is responsible for the contamination event. Exactly one is.\n\n    Candidate SIGMA\n    Candidate THETA\n\nBefore any testing, each candidate is considered equally likely.\n\n8 analysts were each assigned a different assay. Each assay returns POSITIVE or\nNEGATIVE, and the assays have the following known characteristics:\n\n    If SIGMA is responsible, an assay returns POSITIVE with probability 0.79.\n    If THETA is responsible, an assay returns POSITIVE with probability 0.21.\n\nAssay results are independent of one another given which candidate is responsible.\n\nEach analyst files a report only when their assay returns POSITIVE.\nSeparately from the assay result, each analyst files nothing at all\nin 30 percent of cases.\n\nREPORTS ON FILE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n\nName the candidate you believe is responsible, and how strongly you hold that.\n\nReply with only a JSON object with keys \"candidate\" and \"confidence\".\n\"candidate\" must be exactly SIGMA or THETA.\n\"confidence\" must be exactly Somewhat confident or Very confident.\n",
+      "response_format": {
+        "json_schema": {
+          "name": "silence_probe_v2_ordinal",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate": {
+                "enum": [
+                  "SIGMA",
+                  "THETA"
+                ],
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "Somewhat confident",
+                  "Very confident"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "target_is_first": true,
+      "target_label": "SIGMA"
+    },
+    {
+      "N": 8,
+      "banked": true,
+      "belief_first": 0.32218,
+      "belief_target": 0.67782,
+      "cell": "C2",
+      "condition": "PARTIAL_RULED_D30",
+      "expected_candidate": "THETA",
+      "expected_confidence": "Somewhat confident",
+      "group": "C",
+      "id": "C2-PARTIAL_RULED_D30-m1",
+      "k": 3,
+      "l_pos_target": 3,
+      "l_q_target": 2,
+      "level_print": 1,
+      "level_target": 2,
+      "p": 0.79,
+      "prompt": "One of the following is responsible for the contamination event. Exactly one is.\n\n    Candidate SIGMA\n    Candidate THETA\n\nBefore any testing, each candidate is considered equally likely.\n\n8 analysts were each assigned a different assay. Each assay returns POSITIVE or\nNEGATIVE, and the assays have the following known characteristics:\n\n    If SIGMA is responsible, an assay returns POSITIVE with probability 0.21.\n    If THETA is responsible, an assay returns POSITIVE with probability 0.79.\n\nAssay results are independent of one another given which candidate is responsible.\n\nEach analyst files a report only when their assay returns POSITIVE.\nSeparately from the assay result, each analyst files nothing at all\nin 30 percent of cases.\n\nREPORTS ON FILE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n\nName the candidate you believe is responsible, and how strongly you hold that.\n\nReply with only a JSON object with keys \"candidate\" and \"confidence\".\n\"candidate\" must be exactly SIGMA or THETA.\n\"confidence\" must be exactly Somewhat confident or Very confident.\n",
+      "response_format": {
+        "json_schema": {
+          "name": "silence_probe_v2_ordinal",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate": {
+                "enum": [
+                  "SIGMA",
+                  "THETA"
+                ],
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "Somewhat confident",
+                  "Very confident"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "target_is_first": false,
+      "target_label": "THETA"
+    },
+    {
+      "N": 11,
+      "banked": true,
+      "belief_first": 0.60758,
+      "belief_target": 0.60758,
+      "cell": "C3",
+      "condition": "PARTIAL_RULED_D30",
+      "expected_candidate": "SIGMA",
+      "expected_confidence": "Somewhat confident",
+      "group": "C",
+      "id": "C3-PARTIAL_RULED_D30-m0",
+      "k": 4,
+      "l_pos_target": 3,
+      "l_q_target": 2,
+      "level_print": 2,
+      "level_target": 2,
+      "p": 0.73,
+      "prompt": "One of the following is responsible for the contamination event. Exactly one is.\n\n    Candidate SIGMA\n    Candidate THETA\n\nBefore any testing, each candidate is considered equally likely.\n\n11 analysts were each assigned a different assay. Each assay returns POSITIVE or\nNEGATIVE, and the assays have the following known characteristics:\n\n    If SIGMA is responsible, an assay returns POSITIVE with probability 0.73.\n    If THETA is responsible, an assay returns POSITIVE with probability 0.27.\n\nAssay results are independent of one another given which candidate is responsible.\n\nEach analyst files a report only when their assay returns POSITIVE.\nSeparately from the assay result, each analyst files nothing at all\nin 30 percent of cases.\n\nREPORTS ON FILE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n\nName the candidate you believe is responsible, and how strongly you hold that.\n\nReply with only a JSON object with keys \"candidate\" and \"confidence\".\n\"candidate\" must be exactly SIGMA or THETA.\n\"confidence\" must be exactly Somewhat confident or Very confident.\n",
+      "response_format": {
+        "json_schema": {
+          "name": "silence_probe_v2_ordinal",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate": {
+                "enum": [
+                  "SIGMA",
+                  "THETA"
+                ],
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "Somewhat confident",
+                  "Very confident"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "target_is_first": true,
+      "target_label": "SIGMA"
+    },
+    {
+      "N": 11,
+      "banked": true,
+      "belief_first": 0.39242,
+      "belief_target": 0.60758,
+      "cell": "C3",
+      "condition": "PARTIAL_RULED_D30",
+      "expected_candidate": "THETA",
+      "expected_confidence": "Somewhat confident",
+      "group": "C",
+      "id": "C3-PARTIAL_RULED_D30-m1",
+      "k": 4,
+      "l_pos_target": 3,
+      "l_q_target": 2,
+      "level_print": 1,
+      "level_target": 2,
+      "p": 0.73,
+      "prompt": "One of the following is responsible for the contamination event. Exactly one is.\n\n    Candidate SIGMA\n    Candidate THETA\n\nBefore any testing, each candidate is considered equally likely.\n\n11 analysts were each assigned a different assay. Each assay returns POSITIVE or\nNEGATIVE, and the assays have the following known characteristics:\n\n    If SIGMA is responsible, an assay returns POSITIVE with probability 0.27.\n    If THETA is responsible, an assay returns POSITIVE with probability 0.73.\n\nAssay results are independent of one another given which candidate is responsible.\n\nEach analyst files a report only when their assay returns POSITIVE.\nSeparately from the assay result, each analyst files nothing at all\nin 30 percent of cases.\n\nREPORTS ON FILE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n\nName the candidate you believe is responsible, and how strongly you hold that.\n\nReply with only a JSON object with keys \"candidate\" and \"confidence\".\n\"candidate\" must be exactly SIGMA or THETA.\n\"confidence\" must be exactly Somewhat confident or Very confident.\n",
+      "response_format": {
+        "json_schema": {
+          "name": "silence_probe_v2_ordinal",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate": {
+                "enum": [
+                  "SIGMA",
+                  "THETA"
+                ],
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "Somewhat confident",
+                  "Very confident"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "target_is_first": false,
+      "target_label": "THETA"
+    },
+    {
+      "N": 11,
+      "banked": true,
+      "belief_first": 0.410259,
+      "belief_target": 0.410259,
+      "cell": "B1",
+      "condition": "PARTIAL_RULED_D30",
+      "expected_candidate": "THETA",
+      "expected_confidence": "Somewhat confident",
+      "group": "B",
+      "id": "B1-PARTIAL_RULED_D30-m0",
+      "k": 3,
+      "l_pos_target": 2,
+      "l_q_target": 1,
+      "level_print": 1,
+      "level_target": 1,
+      "p": 0.57,
+      "prompt": "One of the following is responsible for the contamination event. Exactly one is.\n\n    Candidate SIGMA\n    Candidate THETA\n\nBefore any testing, each candidate is considered equally likely.\n\n11 analysts were each assigned a different assay. Each assay returns POSITIVE or\nNEGATIVE, and the assays have the following known characteristics:\n\n    If SIGMA is responsible, an assay returns POSITIVE with probability 0.57.\n    If THETA is responsible, an assay returns POSITIVE with probability 0.43.\n\nAssay results are independent of one another given which candidate is responsible.\n\nEach analyst files a report only when their assay returns POSITIVE.\nSeparately from the assay result, each analyst files nothing at all\nin 30 percent of cases.\n\nREPORTS ON FILE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n\nName the candidate you believe is responsible, and how strongly you hold that.\n\nReply with only a JSON object with keys \"candidate\" and \"confidence\".\n\"candidate\" must be exactly SIGMA or THETA.\n\"confidence\" must be exactly Somewhat confident or Very confident.\n",
+      "response_format": {
+        "json_schema": {
+          "name": "silence_probe_v2_ordinal",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate": {
+                "enum": [
+                  "SIGMA",
+                  "THETA"
+                ],
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "Somewhat confident",
+                  "Very confident"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "target_is_first": true,
+      "target_label": "SIGMA"
+    },
+    {
+      "N": 11,
+      "banked": true,
+      "belief_first": 0.589741,
+      "belief_target": 0.410259,
+      "cell": "B1",
+      "condition": "PARTIAL_RULED_D30",
+      "expected_candidate": "SIGMA",
+      "expected_confidence": "Somewhat confident",
+      "group": "B",
+      "id": "B1-PARTIAL_RULED_D30-m1",
+      "k": 3,
+      "l_pos_target": 2,
+      "l_q_target": 1,
+      "level_print": 2,
+      "level_target": 1,
+      "p": 0.57,
+      "prompt": "One of the following is responsible for the contamination event. Exactly one is.\n\n    Candidate SIGMA\n    Candidate THETA\n\nBefore any testing, each candidate is considered equally likely.\n\n11 analysts were each assigned a different assay. Each assay returns POSITIVE or\nNEGATIVE, and the assays have the following known characteristics:\n\n    If SIGMA is responsible, an assay returns POSITIVE with probability 0.43.\n    If THETA is responsible, an assay returns POSITIVE with probability 0.57.\n\nAssay results are independent of one another given which candidate is responsible.\n\nEach analyst files a report only when their assay returns POSITIVE.\nSeparately from the assay result, each analyst files nothing at all\nin 30 percent of cases.\n\nREPORTS ON FILE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n    Assay returned POSITIVE\n\nName the candidate you believe is responsible, and how strongly you hold that.\n\nReply with only a JSON object with keys \"candidate\" and \"confidence\".\n\"candidate\" must be exactly SIGMA or THETA.\n\"confidence\" must be exactly Somewhat confident or Very confident.\n",
+      "response_format": {
+        "json_schema": {
+          "name": "silence_probe_v2_ordinal",
+          "schema": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate": {
+                "enum": [
+                  "SIGMA",
+                  "THETA"
+                ],
+                "type": "string"
+              },
+              "confidence": {
+                "enum": [
+                  "Somewhat confident",
+                  "Very confident"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidate",
+              "confidence"
+            ],
+            "type": "object"
+          },
+          "strict": true
+        },
+        "type": "json_schema"
+      },
+      "target_is_first": false,
+      "target_label": "THETA"
+    }
+  ],
+  "task": "2.4b silence probe v2",
+  "wording": {
+    "high": "Very confident",
+    "low": "Somewhat confident"
+  }
+}
