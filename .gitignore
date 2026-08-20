@@ -7,3 +7,7 @@ results_70b_smoke/
 results_70b_smoke2/
 *.log
 results_*_smoke/
+
+# Internal working documents, not for publication
+paper_framing_v3.md
+scratch_fable/findings.md
