@@ -1,0 +1,57 @@
+delta=0.30 arm: 620/630 usable draws
+EXPLORATORY. Not pre-registered; delta was cut at freeze (D26).
+
+predicted levels per cell   b_pos -> q(0) -> q(0.3)
+  A1    VC/target ->   VC/other ->  SC/target
+  A2    VC/target ->   VC/other ->  SC/target
+  A3    VC/target ->   VC/other ->  SC/target
+  A4    VC/target ->   VC/other ->  SC/target
+  A5    VC/target ->   VC/other ->  SC/target
+  C1    VC/target ->   VC/other ->  SC/target
+  C2    VC/target ->   VC/other ->  SC/target
+  C3    VC/target ->   VC/other ->  SC/target
+  B1    SC/target ->   VC/other ->   SC/other
+
+observed answer at delta=0 / delta=0.30, per configuration
+  cell               sol-none              sol-high              deepseek           deepseek-hi                   glm              glm-high                anchor
+  A1    SC/other -> VC/target VC/other -> SC/targetVC/target -> VC/targetVC/target -> SC/targetVC/target -> SC/target SC/other -> SC/targetVC/target -> VC/target
+  A2    SC/other -> SC/target VC/other -> SC/targetSC/target -> VC/target        SC/other -> --VC/target -> SC/target SC/other -> SC/targetVC/target -> VC/target
+  A3    SC/other -> SC/target SC/other -> SC/targetSC/target -> VC/target SC/other -> SC/targetVC/target -> VC/target SC/other -> SC/targetVC/target -> VC/target
+  A4     SC/other -> SC/other VC/other -> SC/target       -- -> SC/target SC/other -> SC/target       -- -> VC/target       -- -> SC/targetVC/target -> VC/target
+  A5    SC/other -> SC/target VC/other -> SC/targetVC/target -> VC/target VC/other -> SC/targetVC/target -> VC/target        VC/other -> --VC/target -> VC/target
+  C1     VC/other -> SC/other VC/other -> SC/targetVC/target -> VC/target VC/other -> SC/target       VC/target -> -- VC/other -> SC/targetVC/target -> VC/target
+  C2    SC/other -> VC/target VC/other -> SC/targetVC/target -> VC/target VC/other -> VC/target       -- -> VC/target VC/other -> SC/targetVC/target -> VC/target
+  C3    SC/other -> SC/target VC/other -> SC/target       -- -> SC/target VC/other -> SC/targetVC/target -> VC/target VC/other -> SC/targetVC/target -> VC/target
+  B1     SC/other -> SC/other  VC/other -> SC/otherSC/target -> SC/target  SC/other -> SC/otherSC/target -> SC/target  VC/other -> SC/otherVC/target -> VC/target
+
+movement summary
+  config           moved  stuck  correct  anchor point when stuck
+  sol-none             7      2        5  {'other': 1, 'q(.3)': 1}
+  sol-high             9      0        9  
+  deepseek             2      5        0  {'b_pos': 5}
+  deepseek-high        7      1        7  {'q(.3)': 1}
+  glm                  2      4        2  {'b_pos': 4}
+  glm-high             7      0        7  
+  anchor               0      9        0  {'b_pos': 8, 'other': 1}  [reported only]
+
+ordinal-s in the delta=0.30 arm (endpoints b_pos -> q(0.3))
+  config            mean s  n cells
+  sol-none           1.000        9
+  sol-high           1.000        9
+  deepseek           0.222        9
+  deepseek-high      0.875        8
+  glm                0.250        8
+  glm-high           1.000        8
+  anchor            -0.111        9
+
+side by side: mean s at delta=0 vs delta=0.30 (same nine cells)
+  config            s(d=0)   s(d=.3)   change
+  sol-none           0.685     1.000    0.315
+  sol-high           0.963     1.000    0.037
+  deepseek           0.095     0.222    0.127
+  deepseek-high      0.722     0.875    0.153
+  glm                0.000     0.250    0.250
+  glm-high           0.875     1.000    0.125
+  anchor            -0.056    -0.111   -0.056
+
+written to results_v2/v2_banked_gates.json

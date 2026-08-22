@@ -1,0 +1,35 @@
+A1  symmetric hedging: inward drift must appear at BOTH extremes if real
+  config            FULL up (l_cor=0)    BLIND in (l_cor=3)   ratio   verdict on hedging
+  sol-none              56/100  56.0%          0/80    0.0%   0.000   hedging dies
+  sol-high              28/110  25.5%          0/80    0.0%   0.000   hedging dies
+  deepseek-high         68/107  63.6%          2/79    2.5%   0.040   hedging dies
+  glm                   77/110  70.0%          2/80    2.5%   0.036   hedging dies
+  glm-high              61/110  55.5%          0/80    0.0%   0.000   hedging dies
+  deepseek              92/107  86.0%         11/69   15.9%   0.185   hedging dies  [excluded]
+  anchor                73/90   81.1%          0/80    0.0%   0.000   hedging dies  [excluded]
+
+A2  directional lean toward the positives' candidate (B u D matched cells)
+  config              FULL up (BuD)    BLIND up (BuD)   ratio  D-only FULL up  D-only BLIND up   verdict on lean
+  sol-none             1/50    2.0%      0/50    0.0%   0.000    0/30    0.0%     0/30    0.0%   lean dies
+  sol-high             6/60   10.0%      0/60    0.0%   0.000    0/30    0.0%     0/30    0.0%   lean dies
+  deepseek-high       30/57   52.6%      1/58    1.7%   0.033    7/30   23.3%     1/28    3.6%   lean dies
+  glm                 22/60   36.7%     10/60   16.7%   0.455    1/30    3.3%     5/30   16.7%   lean dies
+  glm-high            25/60   41.7%      3/60    5.0%   0.120    1/30    3.3%     3/30   10.0%   lean dies
+  deepseek            51/56   91.1%      0/56    0.0%   0.000   22/26   84.6%     0/29    0.0%   lean dies  [excluded]
+  anchor               0/10    0.0%      0/10    0.0%     inf              --               --   lean STANDS  [excluded]
+
+A4  negatives register: FULL C cells, modal != 3 in >= 2/3 (tie never counts)
+  config            C1   C2   C3   pass   draw P(l_obs=3) on C-FULL
+  sol-none           0    1    0   PASS                0/30    0.0%
+  sol-high           0    0    0   PASS                0/30    0.0%
+  deepseek-high      0    0    0   PASS                2/30    6.7%
+  glm                0    1  tie   PASS                3/30   10.0%
+  glm-high           0    0    0   PASS                0/30    0.0%
+  deepseek         tie  tie  tie   FAIL               12/29   41.4%  [excluded]
+  anchor             2    3    3   FAIL               18/30   60.0%  [excluded]
+
+failures in arms used here (excluded from rates, reported per gate rule):
+  deepseek       FULL           7
+  deepseek       PARTIAL_BLIND  15
+  deepseek-high  FULL           3
+  deepseek-high  PARTIAL_BLIND  3

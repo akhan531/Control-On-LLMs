@@ -1,0 +1,48 @@
+arm                                           records  usable  fail  cfgs  stim  draws/cell
+-------------------------------------------------------------------------------------------
+main campaign (FULL/BLIND/RULED, delta=0)        2940    2894    46     7    84       5x588
+RULED_D30 banked (delta=0.3)                      630     620    10     7    18       5x126
+ARITH_D30                                         630     623     7     7    18       5x126
+ARITH_D0                                          980     959    21     7    28       5x196
+RULEDCTRL sweep                                  2030    1955    75     7    58       5x406
+W1 pre-test                                       672     659    13     7    32       3x224
+-------------------------------------------------------------------------------------------
+TOTAL                                            7882    7710
+
+per-arm detail
+
+  main campaign (FULL/BLIND/RULED, delta=0)
+    7 configs x 84 stimuli x 5 draws = 2940
+    failures by config: {'deepseek': 34, 'deepseek-high': 12}
+    failure labels: {'unlabelled': 46}
+    configs: ['anchor', 'deepseek', 'deepseek-high', 'glm', 'glm-high', 'sol-high', 'sol-none']
+
+  RULED_D30 banked (delta=0.3)
+    7 configs x 18 stimuli x 5 draws = 630
+    failures by config: {'deepseek': 4, 'deepseek-high': 1, 'glm-high': 5}
+    failure labels: {'unlabelled': 10}
+    configs: ['anchor', 'deepseek', 'deepseek-high', 'glm', 'glm-high', 'sol-high', 'sol-none']
+
+  ARITH_D30
+    7 configs x 18 stimuli x 5 draws = 630
+    failures by config: {'deepseek': 6, 'deepseek-high': 1}
+    failure labels: {'unlabelled': 7}
+    configs: ['anchor', 'deepseek', 'deepseek-high', 'glm', 'glm-high', 'sol-high', 'sol-none']
+
+  ARITH_D0
+    7 configs x 28 stimuli x 5 draws = 980
+    failures by config: {'deepseek': 20, 'deepseek-high': 1}
+    failure labels: {'unlabelled': 21}
+    configs: ['anchor', 'deepseek', 'deepseek-high', 'glm', 'glm-high', 'sol-high', 'sol-none']
+
+  RULEDCTRL sweep
+    7 configs x 58 stimuli x 5 draws = 2030
+    failures by config: {'deepseek': 25, 'deepseek-high': 43, 'glm-high': 7}
+    failure labels: {'unlabelled': 75}
+    configs: ['anchor', 'deepseek', 'deepseek-high', 'glm', 'glm-high', 'sol-high', 'sol-none']
+
+  W1 pre-test
+    7 configs x 32 stimuli x 3 draws = 672
+    failures by config: {'deepseek': 11, 'deepseek-high': 2}
+    failure labels: {'unlabelled': 13}
+    configs: ['anchor', 'deepseek', 'deepseek-high', 'glm', 'glm-high', 'sol-high', 'sol-none']

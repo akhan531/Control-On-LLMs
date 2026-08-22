@@ -1,0 +1,33 @@
+DIAL GEOMETRY (k = 3 fixed; p compensates to pin b*; both curves closed-form)
+  cell    N  N-k     p   b_pos L_pos  band     b* L_cor  span eps(nats)
+  R07     7    4  0.90   0.999     3    ok  0.100     0     3      5.61
+  R09     9    6  0.68   0.906     3    ok  0.094     0     3      1.83
+  R11    11    8  0.61   0.793     3  DEAD  0.097     0     3      1.13
+  R13    13   10  0.58   0.725     2  DEAD  0.095     0     2      0.89
+  R15    15   12  0.56   0.673     2    ok  0.102     0     2      0.71
+
+DRAW-LEVEL DISTRIBUTIONS  (per cell: counts at L0/L1/L2/L3 | mean | fails)
+  config                         R07                R09                R11                R13                R15
+  sol-none            8/1/0/1  0.4f0    0/10/0/0  1.0f0     2/8/0/0  0.8f0     6/2/1/1  0.7f0     5/5/0/0  0.5f0
+  sol-high           10/0/0/0  0.0f0    10/0/0/0  0.0f0    10/0/0/0  0.0f0    10/0/0/0  0.0f0    10/0/0/0  0.0f0
+  deepseek-high       3/0/0/3  1.5f4     7/0/0/1  0.4f2     0/0/7/2  2.2f1     4/0/3/0  0.9f3     1/0/4/0  1.6f5
+  glm                 0/0/1/9  2.9f0     0/0/6/4  2.4f0     0/0/9/1  2.1f0    0/0/10/0  2.0f0    0/0/10/0  2.0f0
+  glm-high           10/0/0/0  0.0f0    10/0/0/0  0.0f0    10/0/0/0  0.0f0    10/0/0/0  0.0f0     4/0/4/1  1.2f1
+  deepseek            1/0/0/8  2.7f1     1/0/6/3  2.1f0     0/2/6/1  1.9f1     0/0/7/1  2.1f2     0/2/7/1  1.9f0  [excluded]
+  anchor             0/0/0/10  3.0f0    0/0/0/10  3.0f0     0/0/1/9  2.9f0    0/0/0/10  3.0f0     0/0/6/4  2.4f0  [excluded]
+
+CREDIT: bins below the staircase, mean per cell (span printed; spans differ, so rows are not pooled)
+  config                R07       R09       R11       R13       R15     span: 3/3/3/2/2
+  sol-none             2.60      2.00      2.20      1.30      1.50
+  sol-high             3.00      3.00      3.00      2.00      2.00
+  deepseek-high        1.50      2.62      0.78      1.14      0.40
+  glm                  0.10      0.60      0.90      0.00      0.00
+  glm-high             3.00      3.00      3.00      2.00      0.78
+  deepseek             0.33      0.90      1.11     -0.12      0.10  [excluded]
+  anchor               0.00      0.00      0.10     -1.00     -0.40  [excluded]
+
+CEILING CHECK: draws ABOVE the staircase (l_obs > l_pos)
+  gated     2/234 draws above   {('sol-none', 'R13'): 1, ('glm-high', 'R15'): 1}
+  excluded  16/96 draws above   {('deepseek', 'R13'): 1, ('deepseek', 'R15'): 1, ('anchor', 'R13'): 10, ('anchor', 'R15'): 4}
+
+failures per config (RULEDCTRL, of 50 slots): {'sol-none': 0, 'sol-high': 0, 'deepseek-high': 15, 'glm': 0, 'glm-high': 1, 'deepseek': 4, 'anchor': 0}

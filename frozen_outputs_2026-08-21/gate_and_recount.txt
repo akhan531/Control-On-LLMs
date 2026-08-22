@@ -1,0 +1,30 @@
+
+GATE for PARTIAL_RULED(d=0) claims: FULL, draw level, all 14 cells
+  config             n  fail  s1 mean   verdict
+  sol-none         140     0    0.421   ADMIT
+  sol-high         140     0    0.200   ADMIT
+  deepseek         133     7    1.609   EXCLUDE
+  deepseek-high    137     3    0.752   ADMIT
+  glm              140     0    0.764   ADMIT
+  glm-high         140     0    0.457   ADMIT
+  anchor           140     0    1.800   EXCLUDE
+  gap around bar: highest admitted 0.764 -> lowest excluded 1.609
+
+GATE for RULED_D30/ARITH_D30 claims: ARITH_D30, draw level, 9 cells
+  config             n  fail  s1 mean   verdict
+  sol-none          90     0    0.522   ADMIT
+  sol-high          90     0    0.000   ADMIT
+  deepseek          84     6    0.988   ADMIT
+  deepseek-high     89     1    0.461   ADMIT
+  glm               90     0    0.744   ADMIT
+  glm-high          90     0    0.022   ADMIT
+  anchor            90     0    0.889   ADMIT
+  no configuration excluded
+
+RECOUNT: cells D1-D3, the only cells where l_obs < l_cor is expressible
+  PARTIAL_RULED   usable  206  failures  4  s2<0 draws 0
+  FULL            usable  206  failures  4  s2<0 draws 5  {'deepseek': 1, 'anchor': 4}
+
+RECOUNT: delta=0.3 arms, draws with l_obs < level(q(0.3))
+  RULED_D30  usable  620  failures 10  below-l_cor draws 39 (6.3%)  {'sol-none': [-2, -2, -2, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1], 'deepseek': [-2, -2, -1, -1, -1, -1], 'deepseek-high': [-2, -2, -1, -1, -1]}
+  ARITH_D30  usable  623  failures  7  below-l_cor draws 91 (14.6%)  {'sol-none': [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1], 'deepseek': [-2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -1, -1, -1, -1, -1, -1, -1], 'deepseek-high': [-2, -2, -2, -2, -2, -1, -1, -1], 'glm': [-1, -1, -1, -1, -1], 'anchor': [-2, -2, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]}
