@@ -1,13 +1,17 @@
 # Example 1 — Disconfirming evidence is under-weighted when written, increasingly ignored when silent
 
-**Task 2.4c · locked 2026-08-17 · anchor rebuilt 2026-08-17 (same session) · paper section: §4**
+**Task 2.4c · locked 2026-08-17 · anchor rebuilt 2026-08-17 (same session) · headline scoped 2026-08-20 · direction claim reframed and denominators unified 2026-08-20 · paper section: §4**
 All results reproduce from frozen data already on disk; this example spent **zero new API calls**.
 
-**Headline claim.** LLMs update toward disconfirming evidence too little and never too
-much — across ~2,900 draws, zero overshoots where overshooting was expressible — the
-shortfall deepens when the evidence is only implied by silence, and, wherever the
-instrument can tell the two apart, the under-use tracks the *ignore-point* `b_pos`
-rather than a global shrinkage toward the prior.
+**Headline claim** *(scoped 2026-08-20 — the earlier roster-wide "across ~2,900
+draws, zero overshoots" was contradicted by a single FULL draw from gate-excluded
+deepseek, which §6 attributes).* LLMs update toward disconfirming evidence too
+little and never too much — in the gated population, **zero overshoots in 300
+expressible draws (150 FULL + 150 RULED)**, the roster's lone exception being one
+FULL draw from gate-excluded deepseek — the shortfall deepens when the evidence is
+only implied by silence, and, wherever the instrument can tell the two apart, the
+under-use tracks the *ignore-point* `b_pos` rather than a global shrinkage toward
+the prior.
 
 ---
 
@@ -30,14 +34,20 @@ changed after its measurements were complete and that history is part of the rec
    word and nothing else — and our own A4 result falsifies the literal operator claim
    for the gated five (the NEGATIVE lines demonstrably register). Equating them was
    equivocation, caught before writing.
-4. **The current anchor — the belief-updating literature, under an arbitration
-   framing — was adopted post-results.** Both anchors are post-data. The
+4. **A second framing — the belief-updating literature as a two-sided "arbitration"
+   — was adopted post-results on 2026-08-17.** Both anchors are post-data. The
    pre-registered object was always the campaign, never the anchor. What this example
    claims is therefore **construct validity of the instrument** — the coordinate
    system independently measures what the updating literature reports by other
    means — and never a predicted discovery.
+5. **The two-sided arbitration was retired 2026-08-20 (Ali's ruling).** The
+   over-updating side's gated evidence is glm at 0→5.6% below-correct under
+   enumeration, while the 0→32.5% figure the claim had leaned on is anchor —
+   gate-excluded at δ=0, admitted at δ=0.3 only under a gate with no gap. Too little
+   for a headline to carry. The framing is now **one direction located, the other
+   expressible but unsettled** (§2, §8 claim 1).
 
-## 2. Literature anchor: a disagreement to arbitrate, not a finding to recover
+## 2. Literature anchor: a directional disagreement this campaign speaks to from one side
 
 | source | method | claim |
 |---|---|---|
@@ -55,26 +65,38 @@ measurements. No model count beyond "five families, ≤14B" is asserted. Footnot
 (which tests models propose), not evidence-*weighting* — adjacent construct, not an
 anchor.
 
-**The arbitration.** The literature disagrees about the direction of the error:
-under-updating on pre-trained models read through token probabilities (Imran et al.),
-over-confidence on instruction-tuned models in multi-turn accumulation (BayesBench) —
-and neither instrument can express both directions on the same records. Ours can:
-both directions are expressible on one closed-form ruler, the evidence channel is
-decomposed (positives fix `b_pos`; the disconfirming results move `b_pos` to `b*`),
-and the roster is instruction-tuned frontier models — the population both papers name
-as open. What we find: **strictly one-sided under-use at δ=0** (0 overshoots in 176
-expressible RULED draws; 1 in FULL, from a gate-excluded config), with the
-over-updating regime located elsewhere — it appears specifically under enumeration
-plus a stated noisy channel (Example 2's wrong-channel overshoot, 0→32.5%
-below-correct). **Direction is regime-dependent, and we map the regimes.**
+**The directional question** *(reframed 2026-08-20 — this passage previously claimed
+a two-sided arbitration, "we map the regimes"; retired per §1 item 5).* The
+literature disagrees about the direction of the error: under-updating on pre-trained
+models read through token probabilities (Imran et al.), over-confidence on
+instruction-tuned models in multi-turn accumulation (BayesBench). Our instrument can
+express both directions on one closed-form ruler, with the evidence channel
+decomposed (positives fix `b_pos`; the disconfirming results move `b_pos` to `b*`) —
+which lets it *ask* the direction question; this campaign answers one side. The
+roster is **seven open-weight instruction-tuned configurations — three families at
+two reasoning-effort settings plus one older anchor, no frontier model** *(roster
+description corrected 2026-08-20)* — squarely the instruction-tuned population Imran
+et al. name as open. What we find: **strictly one-sided under-use at δ=0** — in the
+gated population, 0 overshoots in 300 expressible draws (150 FULL + 150 RULED;
+roster context: the P4-applied all-seven counts are 1/176 FULL — the one draw from
+gate-excluded deepseek — and 0/176 RULED) *(gated denominators unified 2026-08-20)*.
+The over-updating direction is **expressible by the instrument but not exhibited in
+this regime**. Whether it emerges under probabilistic disclosure (δ>0) is a question
+the instrument can ask and this data does not settle: the gated traces there are glm
+0→5.6% below-correct under enumeration and sol-none at 35% below the stated-channel
+answer already in plain RULED_D30 — one-config-dominant, inside the δ=0.3 regime's
+recorded caveats (mechanically forgiving geometry; gapless all-seven gate) — while
+the roster's larger movements sit in gate-excluded configurations (deepseek
+7.0→23.8%, anchor 0→32.5%, as context). **BayesBench's direction is not recovered in
+this regime — itself a reportable outcome; Imran et al.'s direction is.**
 
 **Why cross-method.** Their channels: token-probability credences on pre-trained
 models; multi-turn numeric trajectories on open instruct models. Ours: a single-shot
-ordinal answer from frontier instruction-tuned models, elicited with no probability
-vocabulary anywhere in the prompt, scored by position between two closed-form
-posteriors. Imran et al. name instruction tuning/RLHF and non-token-probability
-elicitation as open questions; this example supplies evidence toward both. We do not
-measure BCC.
+ordinal answer from open-weight instruction-tuned models, elicited with no
+probability vocabulary anywhere in the prompt, scored by position between two
+closed-form posteriors. Imran et al. name instruction tuning/RLHF and
+non-token-probability elicitation as open questions; this example supplies evidence
+toward both. We do not measure BCC.
 
 ## 3. The instrument that generated the data
 
@@ -222,8 +244,11 @@ and `l_pos` = `level(b_pos)`:
 | deepseek-high | +0.752 | 45 / 42 / 12.4 | +1.007 | 40 / 28 / 30.6 |
 | glm | +0.764 | 44 / 49 / 6.4 | +2.243 | 0 / 17 / 77.1 |
 
-- Every gated FULL draw lies on the `b*`→`b_pos` segment: `OVER` occurred 1/176
-  expressible draws (in gate-excluded deepseek), `BEY` 0/353.
+- Every gated FULL draw lies on the `b*`→`b_pos` segment *(gated denominators,
+  2026-08-20 — previously quoted the P4-applied all-seven counts)*: `OVER` 0/150
+  gated expressible draws in FULL and 0/150 in RULED; `BEY` 0/287 in FULL. Roster
+  context: all-seven P4-applied, `OVER` 1/176 FULL — the one draw from gate-excluded
+  deepseek — 0/176 RULED, `BEY` 0/353 FULL.
 - **D-cell two-sided tally** (the fair symmetry test; both directions one bin away):
   FULL **9–0** toward under-weighting (sign test p ≈ 0.004); RULED **47–0**. Same
   cells, same models, same opportunity — the direction never reverses.
@@ -278,16 +303,26 @@ checkpoint **before** each test ran.
 
 ## 8. Final claims
 
-1. **The arbitration claim.** The updating literature disagrees about the direction
-   of LLM miscalibration — under-updating on pre-trained models (Imran et al. 2025),
+1. **The one-sided direction claim** *(reframed 2026-08-20 from a two-sided
+   "arbitration" per §1 item 5; denominators unified to the gated population same
+   day).* The updating literature disagrees about the direction of LLM
+   miscalibration — under-updating on pre-trained models (Imran et al. 2025),
    over-confidence on instruction-tuned models (BayesBench) — and neither instrument
    expresses both directions on one record. On an instrument that does, with the
-   evidence channel decomposed, instruction-tuned frontier models show **strictly
-   one-sided under-use of disconfirming evidence at δ=0** (RULED: 0 overshoots in 176
-   expressible draws; D cells 9–0 and 47–0; mean `s2` +0.20 to +0.76 in FULL), while
-   the over-updating regime appears specifically under enumeration plus a stated
-   noisy channel (Example 2). **Direction is regime-dependent, and the instrument
-   maps the regimes.** Killed alternatives: hedging (A1), lean (A2), geometry (A3).
+   evidence channel decomposed, the gated five of seven open-weight
+   instruction-tuned configurations show **strictly one-sided under-use of
+   disconfirming evidence at δ=0**: 0 overshoots in 300 expressible draws (150 FULL
+   + 150 RULED), D cells 9–0 and 47–0, mean `s2` +0.20 to +0.76 in FULL. The
+   over-updating direction is **expressible but not exhibited in this regime**; its
+   gated δ>0 traces (glm 0→5.6% below-correct under enumeration; sol-none 35% below
+   the stated channel in plain RULED_D30) are one-config-dominant and sit inside
+   that regime's recorded caveats, with the roster's larger movements confined to
+   gate-excluded configurations (deepseek 7.0→23.8%, anchor 0→32.5%, as context).
+   **This campaign locates one direction; whether the other emerges under
+   probabilistic disclosure is a question the instrument can ask and this data does
+   not settle. BayesBench's direction is not recovered in this regime — itself a
+   reportable outcome.** Killed alternatives for the under-use: hedging (A1), lean
+   (A2), geometry (A3).
 2. **The under-use is graded and count-sensitive, not binary.** No gated config
    ignores the printed disconfirming results: 0 of 62 modal FULL cells at `b_pos`,
    C-sweep tracked 5/5 (A4), blind-point draw share ≤ 12.4% in FULL.
@@ -314,12 +349,16 @@ used as the baseline that explained away the BEY escapes.
 
 ## 9. Relation to the updating literature
 
-**What we take from each side:** from Imran et al., the under-update direction on
-pre-trained models — recovered here, by an unrelated channel, on the instruction-tuned
-frontier population their limitations section names as open; from BayesBench, the
-over-confidence direction on instruction-tuned models — not contradicted but
-*located*: on our records it appears only when absences are enumerated under a stated
-noisy channel (Example 2), never at δ=0.
+**What we take from each side** *(reframed 2026-08-20)*: from Imran et al., the
+under-update direction on pre-trained models — recovered here, by an unrelated
+channel, on instruction-tuned open-weight models, the population their limitations
+section names as open. From BayesBench, the over-confidence direction on
+instruction-tuned models — **not recovered in this regime**: at δ=0 the gated
+population shows zero overshoots in 300 expressible draws, and the δ>0 gated traces
+are thin and one-config-dominant (glm 0→5.6% under enumeration; sol-none 35% in
+plain RULED_D30), with the roster's larger movements confined to gate-excluded
+configurations. Whether their direction emerges under probabilistic disclosure is
+askable with this instrument and unsettled by this data.
 
 **What we add:** an instrument on which both directions are expressible on the same
 record; the channel decomposition (positives vs disconfirming results) that neither
@@ -327,15 +366,17 @@ aggregate gradient nor multi-turn trajectory can express; and the prior-crossing
 separation showing the under-use anchors on the partial-evidence posterior rather
 than on the prior, where the two are distinguishable. We supply evidence toward
 Imran et al.'s two open questions (instruction-tuned models; non-token-probability
-elicitation); we do not measure BCC, and the population/task differences mean the
-arbitration is regime-location, not refutation of either paper.
+elicitation); we do not measure BCC, and the population/task differences mean we
+locate one direction and leave the other open — no refutation of either paper on its
+own terms.
 
 ## 10. Why this validates the framework
 
 - **Both error directions exist as locations before any data arrives** — `b*` and
-  `b_pos` bracket the answer space in closed form — which is exactly what makes the
-  arbitration possible: an instrument that can only express one direction cannot
-  adjudicate a directional disagreement.
+  `b_pos` bracket the answer space in closed form — which is what lets the instrument
+  *ask* the direction question at all: an instrument that can express only one
+  direction cannot even pose it *(reworded 2026-08-20 with the arbitration
+  retirement)*.
 - **The reference beliefs are load-bearing.** Blind-point occupancy, the D-cell
   symmetric test, the lean baseline, the B2 discriminator, and the prior-crossing
   classification (prior, `b_pos`, and `b*` all pinned exactly) are definable only
@@ -357,13 +398,16 @@ arbitration is regime-location, not refutation of either paper.
   single global gradient of roughly 0.6–0.75 keeps BLIND answers inside the top band
   while dropping FULL answers to level-1 territory. The decomposition claim therefore
   rests on the RULED arms and on the two configs with above-prior FULL mass.
-- **Arbitration caveat:** we do not measure BCC; pre-trained vs instruction-tuned and
-  single-shot vs multi-turn differences mean we locate regimes, we do not refute
-  either paper on its own terms.
+- **Direction-claim caveat** *(reworded 2026-08-20, replacing the arbitration
+  caveat)*: we do not measure BCC; pre-trained vs instruction-tuned and single-shot
+  vs multi-turn differences mean this campaign locates one direction (under-use at
+  δ=0) and does not settle whether the other emerges under probabilistic disclosure;
+  neither paper is refuted on its own terms.
 - Claims are behavioural (**under-use**), never mechanistic ("didn't read") — the
   instrument cannot separate partial weighting from imperfect aggregation.
 - Claim 1's one-sidedness is scoped to δ=0; at stated dropout, over-reading exists
-  and is Example 2's subject (39/620 and 91/623 below-correct draws).
+  and is Example 2's subject (roster counts under the all-seven δ=0.3 gate: 39/620
+  RULED_D30 and 91/623 ARITH_D30 below-correct draws).
 - Any one-sidedness statement ships with the expressibility ledger (§5).
 - Draw-level sign counts carry within-cell correlation (5 seeds × 2 mirrors share a
   cell). The FULL 9–0 lives in dispersion around correct modal answers; the RULED
