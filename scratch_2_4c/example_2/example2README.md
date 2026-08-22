@@ -1,27 +1,40 @@
 # Example 2 — Silence's meaning, not its detection, is the bottleneck
 
-**Task 2.4c · locked 2026-08-17 · claim prose corrected 2026-08-20 · paper section: §5 (worked example 2)**
+**Task 2.4c · locked 2026-08-17 · amended 2026-08-21 · paper section: §5 (worked example 2)**
 Three of the four data quadrants were frozen before this session; the fourth
 (ARITH_D0, 980 calls) was **pre-registered and then collected this session** with
 Ali's explicit approval at each step.
 
-**Headline claim** *(rewritten 2026-08-20 — the original asserted that blind-point
-occupancy "collapses for every configuration that had any," a universal that counted
-the gate-excluded pair inside the number and omitted glm-high, which moves the other
-way; all counts below are scored on the gated five).* Models can be told exactly
-where the silences are, and it helps only as far as *identification* was the problem —
-and how much of a configuration's deficit is identification rather than
-interpretation is a **per-model quantity the instrument measures, not a constant**.
-At δ=0, enumeration reduces error for every gated configuration with a silence
-deficit to close (three of three under the registered 0.15-bin ceiling guard: paired
-Δs1 sol-none −0.092, deepseek-high −0.299, glm −0.493), and the share of the
-implicit-to-printed gap it closes varies by model: sol-none 28%, glm 33%,
-deepseek-high ≈100% — the one gated configuration it carries all the way to its
-fully-printed profile. It is not a cure: glm still sits at the blind point in 50% of
-its draws (9 of its 12 decided modal cells) with every absence printed. And when
-silence means "negative **or** dropout" (δ=0.3), enumeration repairs no one — it
-pushes the formerly-stuck models past the answer onto the wrong effective channel
-instead.
+**Amendment 1, 2026-08-21 (verdict V-24-1, λ).** λ is **retired as a registered prediction
+target** and **retained as a descriptive measured quantity**. The ARITH_D0 registration
+carried a *directional* prediction with **no numeric bounds**, so no λ value could ever have
+been scored against it; presenting λ values as registered outcomes would claim a
+pre-commitment that does not exist. What survives is λ's *meaning* — the interpretation share
+of a configuration's deficit — reported as a measurement. Amended in §5 and §11 below.
+
+**Amendment 2, 2026-08-21 (occupancy population).** The published "5/5" blind-point collapse
+**counted two gate-excluded configurations** (deepseek and anchor). Corrected throughout to
+the gated population. Also corrected: **"2 of 210 expressible gated draws"** is an all-seven
+nominal pool; the gated figure is **2 of 150**.
+
+**Number collision, disambiguate at first use.** This file contains **two different "5/5"s**.
+One is the occupancy collapse corrected here. The other is the **pre-registered cross-regime
+universal** (V-E2-4c), which **died at 4 of 5** and was retired. They mean different things,
+they failed for different reasons, and neither may appear unqualified. Same species as the
+`16` collision logged in `claims_to_evidence.md` §7.
+
+**Amendment 3, 2026-08-21 (Example 1 cross-reference).** §9's cross-reference named Example
+1's "arbitration claim." That framing was retired at checklist item 34 — BayesBench cites
+Imran et al. as complementary, not contradictory, so the two anchors were never opposed. The
+claim is now a **localization** claim.
+
+**Headline claim.** Models can be told exactly where the silences are, and it helps
+only when a silence has a deterministic meaning. Enumerating the absences dissolves
+the *identification* failure (time spent at the silence-blind point collapses for
+every configuration that had any) but leaves the *interpretation* failure untouched:
+freed answers land short of correct, and when silence means "negative **or** dropout,"
+enumeration repairs no one — it pushes the formerly-stuck models past the answer onto
+the wrong effective channel instead.
 
 ---
 
@@ -117,10 +130,13 @@ instrument — scenario, roster, response scale, measured bands, mirrors, prompt
   Expressibility ledger: in 8 of 9 banked cells correct and blind are adjacent (no
   interior rung) and the over-reading side has two rungs; BEY exists only in B1.
 - **λ localization index** = (s1_ARITH − s1_FULL)/(s1_RULED − s1_FULL) at δ=0, with a
-  0.15-bin ceiling guard. Registered before collection. **Descriptive only**: it came
-  back heterogeneous (deepseek-high −0.14, glm 0.67, sol-none 0.72) and λ-value
-  claims were retired by Ali's ruling; λ's meaning survives as "the interpretation
-  share of each config's deficit."
+  0.15-bin ceiling guard. **Amended 2026-08-21 per V-24-1.** The index was registered before
+  collection, but **the registration was directional and carried no numeric bounds**, so no λ
+  value is a scored prediction and none may be reported as one. λ is **descriptive**: it came
+  back heterogeneous (deepseek-high −0.14, glm 0.67, sol-none 0.72), and its surviving meaning
+  is *the interpretation share of a configuration's deficit*. The **ceiling guard is
+  different** — a sharp 0.15-bin threshold, registered with a number, and scored cleanly. Do
+  not let the guard's status carry over to the index.
 - **Implied channel δ̂** (defined at the verification stage, approved before
   computing): `q(δ)` rises monotonically from `b*` (δ=0) to `b_pos` (δ→1), so each
   observed level inverts, per cell, to the interval of δ that would make it correct —
@@ -130,32 +146,28 @@ instrument — scenario, roster, response scale, measured bands, mirrors, prompt
 
 ## 6. Results
 
-**Panel 1 — δ=0 (interpretation is deterministic substitution).** *(corrected
-2026-08-20 — claim counts rescored to the gated five; gate-excluded configurations
-moved to context clauses; the earlier "collapse … 5/5 among configs that had any"
-universal was wrong: it counted the excluded pair inside the five and omitted
-glm-high, which moves the other way.)* Enumeration reduces error for all three gated
-configurations with a silence deficit — paired Δs1 (ARITH−RULED): sol-none −0.092,
-deepseek-high −0.299, glm −0.493 (context, gate-excluded: deepseek −0.428, anchor
-−0.589). Blind-point occupancy falls for **three of the four gated configurations
-that had any** — sol-none 4.6→0.0%, deepseek-high 30.6→12.9%, glm 77.1→50.0% — and
-**rises for glm-high, 6.4→10.7% (9→15 of 140 draws)**, consistent with its mild
-ARITH degradation recorded in §11. Context: the gate-excluded pair also falls
-(deepseek 64.1→48.3, anchor 100→70.0 — anchor's RULED_D30 baseline being **80 of 80
-draws at the blind point**, the purest `b_pos` lock measured anywhere in the
-project). The repair is per-model, not uniform: deepseek-high closes ≈100% of its
-implicit-to-printed gap (λ = −0.14, at its FULL floor), sol-none 28% and glm 33%
-(λ 0.72, 0.67) — and **glm remains at the blind point in 50% of draws and 9 of its
-12 decided modal cells with every absence printed: identification is not repaired
-for it**. Interior (under-weighting) mass rises in all five gated configurations —
-the freed answers land short of correct as often as on it. sol-none's deficit was
-always mostly interior (65% INT vs 4.6% POS), and its gain is cell-concentrated to
-match: 28% of its gap on the full grid, 0% on the 9 matched cells of V-E2-4c (its
-gain-carrying cells sit outside that set). No overshoot unlock: **2 of 150
-expressible gated draws** — both in ARITH_D0, one deepseek-high and one glm; RULED
-and FULL show zero *(denominator corrected 2026-08-20: previously stated as 210,
-which is the all-seven slot count — an error dating to the 2026-08-17 original that
-also survived the 2026-08-20 audit)*.
+**Panel 1 — δ=0 (interpretation is deterministic substitution).** Enumeration
+produces large repairs for every blind-point-stuck config — paired Δs1 (ARITH−RULED):
+deepseek-high **−0.30**, glm **−0.49**, deepseek −0.43, anchor −0.59 — and the repair
+is specifically a collapse of blind-point occupancy. **Restated 2026-08-21 to the gated
+population (R2, the universal behind the fraction):** occupancy falls in **all three gated
+configurations with any blind-point mass to lose** — sol-none 4.6→0.0, deepseek-high
+30.6→12.9, glm 77.1→50.0 — which is exactly the three **non-ceiling** members of the gated
+five; sol-high and glm-high have no such mass, so they are **undefined rather than
+counterexamples**. The old "5/5" reached its denominator by counting **deepseek 64.1→48.3 and
+anchor 100→70.0, both gate-excluded**. Those two remain reportable as context and never as
+claim numerators. anchor's RULED_D30
+baseline deserves its own sentence: **80 of 80 draws at the blind point** — the
+purest `b_pos` lock measured anywhere in the project. Interior (under-weighting) mass
+*rises* in all five — the freed answers land short of correct as often as on it —
+and sol-none, whose deficit was always interior (65% INT, 4.6% POS), gains ~nothing:
+exactly what "enumeration fixes identification only" predicts. **No overshoot unlock: 2 of
+150 expressible gated draws** (corrected 2026-08-21 — the previous "2 of 210" was a nominal
+all-seven pool, the same defect as Example 1's banned 176 and 206). The two over-reads are
+one each in **deepseek-high and glm**, both gated and both non-ceiling, independently visible
+in the D-cell OVER probe of `s3_ladder_summary.py`. **They are load-bearing for Example 1**:
+they are what shows the δ=0 null there is not a scale artifact. Three configs reach their
+FULL floor (λ ≈ 0); sol-none and glm do not (λ ≈ 0.7).
 
 **Panel 2 — δ=0.3 (interpretation is probabilistic).** The same handout repairs no
 one: no configuration recovers more than 12.5% of its deficit (worst-case missingness
@@ -170,18 +182,11 @@ deepseek, anchor sit at **0.70–0.74**, discounting silence at more than twice 
 stated rate. Enumeration moves the movers to *different wrong channels*: the deepseek
 family toward certainty (δ̂ ≈ 0), sol-none/anchor to partial discounts.
 
-**Cross-regime.** As registered and run (V-E2-4c, §7): on the 9 shared cells,
-fraction-of-own-deficit recovered, 4 of the 5 pre-fixed non-ceiling configurations
-gain strictly more at δ=0 than at δ=0.3, with sol-none reversed (0.0% vs 8.0%) — the
-pre-registered 5/5 universal died at its kill bar. *(Added 2026-08-20.)* The
-**claim-grade sentence is scored on the gated population only**, because two of the
-four as-registered passers are gate-excluded and this record does not let excluded
-configurations carry claims: **two of three gated non-ceiling configurations gain
-strictly more at δ=0 than at δ=0.3 (deepseek-high +29.2% vs −7.9%; glm +15.7% vs
-−15.5%), with sol-none reversed (0.0% vs 8.0%) and explained by having no
-identification deficit on the matched cells**; the gate-excluded pair agrees in
-direction as context (deepseek +21.0% vs −30.7%; anchor +15.0% vs +12.5%), and the
-ceiling pair is uninformative.
+**Cross-regime.** On the 9 shared cells, fraction-of-own-deficit recovered: 4 of 5
+non-ceiling configs gain strictly more at δ=0 than at δ=0.3 (e.g. glm +15.7% vs
+−15.5%; deepseek-high +29.2% vs −7.9%). **The pre-registered 5/5 universal is dead**
+(see §7); sol-none reverses (0.0% vs 8.0%) because it had no identification deficit
+to repair — the exception that carries the decomposition rather than breaking it.
 
 ## 7. Verification — pre-fixed kill conditions and outcomes
 
@@ -192,7 +197,7 @@ ceiling pair is uninformative.
 | V-E2-3 per-line effect | δ=0 gains scale with the number of printed lines | collinearity audit first (unidentifiable if \|r(N−k, deficit)\| > 0.6 — it passed, max 0.34); stands if partial r(gain, N−k \| deficit) ≥ +0.5 | **dies everywhere** (−0.89 to +0.17) |
 | V-E2-4a worst-case missingness | results are artifacts of the failed draws | any flipped sign kills the affected claim | **holds**: deepseek-high δ=0 gain stays in [−0.379, −0.229]; even deepseek's 20-PARSE worst case stays negative |
 | V-E2-4b mirror split | mirror artifact | load-bearing directions must hold per mirror | **holds** for all five non-ceiling δ=0 gains; caveat: glm's gain is mirror-asymmetric (−0.04 / −0.94), sign-consistent |
-| V-E2-4c cross-regime universal | — (robustness of the registered 5/5 contrast under shared-cells + headroom normalization) | dies if not 5/5 strict | **DIED: 4/5, sol-none reversed.** The universal is retired; the 4-of-5 with sol-none's explanation replaces it, per Ali's verdict (i). (Claim-grade gated formulation added 2026-08-20 — see §6 and §11) |
+| V-E2-4c cross-regime universal | — (robustness of the registered 5/5 contrast under shared-cells + headroom normalization) | dies if not 5/5 strict | **DIED: 4/5, sol-none reversed.** The universal is retired; the 4-of-5 with sol-none's explanation replaces it, per Ali's verdict (i) |
 | V-E2-4d count-control concordance | answers respond to record length within ARITH_D0 | modal constant across k in C and D groups | FAIL for sol-none, glm, deepseek — their ARITH_D0 cell-level numbers carry a count-sensitivity caveat |
 
 Analysis-order record: the δ=0.3 redistribution pattern was observed before the
@@ -204,42 +209,23 @@ and V-E2-3 killed; accepted as verification-covered by Ali's verdict (i).
 
 ## 8. Final claims
 
-1. **Enumeration repairs identification only as far as identification was the
-   problem — a per-model quantity** *(reworded 2026-08-20; the original said
-   enumeration "dissolves identification failure … for every config that had any
-   (5/5)," which counted the gate-excluded pair inside the count and omitted
-   glm-high's rise).* Error falls for all three gated configurations with a silence
-   deficit (−0.092, −0.299, −0.493 bins); blind-point occupancy falls for three of
-   the four gated configurations that had any (4.6→0.0, 30.6→12.9, 77.1→50.0%) and
-   rises for glm-high (6.4→10.7%); the gap closed is 28% (sol-none), 33% (glm), and
-   ≈100% (deepseek-high, reaching its FULL floor). The repair is genuine reading, not
-   shape or per-line artifacts (V-E2-1, V-E2-3). Context: both gate-excluded
-   configurations also fall (64.1→48.3, 100→70.0).
-2. **Enumeration does not repair interpretation** *(reworded 2026-08-20 — the
-   earlier version counted the ceiling pair's degradation as evidence for this claim
-   and left sol-none's figure unscoped).* Where enumeration frees blind-point mass,
-   most of it lands short of correct rather than on it: deepseek-high frees 17.7
-   points of occupancy, of which interior mass gains +14.0 against +2.9 correct;
-   glm frees 27.1, with +10.8 interior against +15.7 correct — finding the absences
-   does not price them. sol-none, whose deficit was mostly interior to begin with
-   (65% INT vs 4.6% POS), gains 0% of its gap on the matched nine cells and 28% on
-   the full grid — its gains sit in cells outside the matched set. The ceiling
-   pair's small interior rises are the length-cost degradation §11 records, not
-   interpretation evidence: sol-high +4.3 from correct (88.6→84.3); glm-high +0.7,
-   its degradation appearing instead as the blind-point rise (6.4→10.7%). At δ=0.3
-   no gated configuration recovers more than 8.0% of its deficit (context: the
-   all-seven maximum is 12.5%, in gate-excluded anchor, under the gapless δ=0.3
-   gate).
-3. **Under uncertainty, enumeration lands models on wrong channels** *(reworded
-   2026-08-20 — the earlier version led with a thresholdless word and a peak from a
-   gate-excluded configuration).* Below-correct mass rises for the gated movers —
-   glm 0→5.6% with its correct-rate falling 36.7→30.0%, deepseek-high 5.6→9.0%,
-   sol-none 35.0→38.8% — and lands heterogeneously off the stated rate:
-   deepseek-high's moved mass is certainty-consistent (0.62 at δ̂ ≈ 0), sol-none's
-   sits at partial discounts (0.00 certainty-consistent). Context, gate-excluded:
-   deepseek 7.0→23.8% and anchor 0→32.5%, the largest movements in the roster. The
-   δ=0.3 admission gate admits all seven and has no gap (deepseek enters at 0.988
-   against the 1.0 bar).
+1. **Enumeration dissolves identification failure** (δ=0): blind-point occupancy falls in
+   **all three gated configurations with any to lose** — the three non-ceiling members of the
+   gated five — with 0.30–0.59-bin repairs for the stuck configs, genuine reading rather than
+   shape or per-line artifacts (V-E2-1, V-E2-3). **Never "5/5"**: that denominator counted
+   deepseek and anchor, both gate-excluded.
+   **Scope caution, flagged 2026-08-21.** "Dissolves" is too strong for glm, which does not
+   reach its FULL floor (λ ≈ 0.7). The defensible form of this example's headline is that
+   **how much of a configuration's failure is finding versus reading is a per-model quantity
+   the instrument measures**, not that identification is uniformly repaired. Decide the
+   headline wording before §5 is drafted; it is a claim-level call.
+2. **Enumeration does not repair interpretation**: interior under-weighting mass
+   never falls (rises in all five); the config with a purely interior deficit gains
+   nothing; and at δ=0.3 no config recovers more than 12.5% of its deficit.
+3. **Under uncertainty, enumeration lands models on wrong channels**: below-correct
+   mass balloons for the formerly-stuck (up to 0→32.5%), heterogeneously — deepseek
+   family toward certainty (δ̂≈0), others to partial discounts — never onto the
+   stated rate.
 4. **The stated channel is visible in behaviour**: four configurations' implied
    dropout (0.29–0.34) matches the stated 0.30; the three failing configurations
    behave as if it were 0.70–0.74.
@@ -257,15 +243,24 @@ interpretation failure, not inattention); and quantification on interpretable sc
 — bins of repair, occupancy of the blind point, and δ̂, the effective channel a model
 behaves under, directly comparable to the number printed in the prompt.
 
-**Load-bearing cross-reference:** this example's wrong-channel overshoot is what
-Example 1's arbitration claim (`../example_1/example1README.md` §8, claim 1) uses to
-locate the over-updating direction reported by BayesBench — absent at δ=0, appearing
-only under enumeration plus a stated noisy channel — so the paper's §4 regime map
-depends on this panel. *(Added 2026-08-20.)* Anyone revisiting the arbitration
-framing should reach this panel through §8 claim 3 and §11 rather than the headline
-magnitudes: the roster's overshoot peaks (up to 0→32.5%) sit in gate-excluded
-configurations under the gapless all-seven δ=0.3 gate; the gated peak is glm
-0→5.6%.
+**Load-bearing cross-reference, corrected 2026-08-21.** This example's wrong-channel
+overshoot is what Example 1's **localization claim** (`../example_1/example1README.md` §8,
+claim 1) uses to locate the over-updating direction BayesBench reports. The previous wording
+said "arbitration claim"; that framing was retired at checklist item 34, because BayesBench
+cites Imran et al. as **complementary rather than contradictory** — the two anchors were never
+opposed, and a paper adjudicating between them would have been arguing with a disagreement
+that does not exist.
+
+Two things carry across the boundary, and both must survive editing: **the wrong-channel
+overshoot at δ=0.3**, and **the two ARITH_D0 over-reads at δ=0** (§6, panel 1). Together they
+are Example 1's answer to "your null is a scale artifact" — BayesBench makes extreme-pushing
+a **large-model** behaviour, so Example 1 must show the over-direction is producible by *these*
+models on *this* instrument once the channel set changes. It is. The paper's §4 regime map
+depends on both, not just the panel.
+
+**CROWN-QA is cross-method recovery, not merely adjacent support.** Its over-closure
+corresponds to the credulous point in these coordinates, which is why the δ>0 result here is a
+recovery of their finding on a different instrument rather than a neighbouring observation.
 
 ## 10. Why this validates the framework
 
@@ -279,27 +274,28 @@ configurations under the gapless all-seven δ=0.3 gate; the gated peak is glm
   "does the model understand the dropout clause?" into a number on the same axis as
   the clause itself.
 - §5 compliance: RULED-anchored with matched controls under frozen gates (§5.1);
-  population shapes are gated counts with explicit context clauses and an all-seven
-  δ̂ table under the δ=0.3 gate — the one universal that failed its bar was retired
-  (§5.2); statistics are framework-built (§5.3); verification attacked explanations
-  with pre-fixed kill conditions, and one fired (§5.4); the new cells inherit the
-  §5.5 assertion from the frozen grid, re-asserted at build; the claim is one
-  sentence (§5.6).
+  population shapes are universal-with-ceiling directions and an all-seven δ̂ table —
+  the one universal that failed its bar was retired (§5.2); statistics are
+  framework-built (§5.3); verification attacked explanations with pre-fixed kill
+  conditions, and one fired (§5.4); the new cells inherit the §5.5 assertion from the
+  frozen grid, re-asserted at build; the claim is one sentence (§5.6).
 
 ## 11. Caveats and wording obligations (binding for the writeup)
 
-- λ-value claims retired; λ is descriptive ("interpretation share of the deficit").
-- **The cross-regime claim is scored gated-only** *(corrected 2026-08-20)*: 2 of 3
-  gated non-ceiling (deepseek-high, glm), sol-none reversed-and-explained. The
-  as-registered V-E2-4c result — 4 of the 5 pre-fixed non-ceiling configurations,
-  a set that includes the gate-excluded pair — stays recorded in §6 and §7 exactly
-  as run; the claim-grade sentence and the as-registered result are stated
-  separately, never compressed into one count.
+- **λ (amended 2026-08-21, V-24-1).** λ is retired **as a registered prediction target** —
+  the registration was directional and carried no numeric bounds — and retained as a
+  **descriptive measured quantity**, meaning the interpretation share of a configuration's
+  deficit. Never present a λ value as a scored prediction. The 0.15-bin ceiling guard is
+  separate: it was registered with a number and scored cleanly.
+- **Occupancy is stated on the gated population (amended 2026-08-21).** "Falls in all three
+  gated configurations with any to lose," never "5/5" — that count included deepseek and
+  anchor, both gate-excluded. sol-high and glm-high are undefined, not counterexamples.
+- **Expressible-draw denominators are 150, not 210.** 210 is a nominal all-seven pool, the
+  same defect as Example 1's banned 176 and 206.
+- The cross-regime sentence is "4 of 5, with the fifth explained by having no
+  identification deficit" — never a universal.
 - sol-high and glm-high are at ceiling everywhere (their +0.04/+0.11 mild ARITH_D0
   degradations noted; direction consistent with the length cost, magnitude tiny).
-  **glm-high's degradation includes its blind-point occupancy rise, 6.4→10.7%
-  (9→15 of 140 draws) — this is why the occupancy claim reads 3-of-4, not a
-  universal** *(2026-08-20)*.
 - glm's δ=0 gain is mirror-asymmetric (−0.04/−0.94); glm, sol-none, deepseek carry
   ARITH_D0 count-sensitivity caveats (V-E2-4d).
 - deepseek: gate-excluded at δ=0; 0.988 against a gapless 1.0 bar at δ=0.3; 14%
@@ -307,8 +303,16 @@ configurations under the gapless all-seven δ=0.3 gate; the gated peak is glm
   (V-E2-1) — every deepseek number ships with this cluster of caveats.
 - δ=0.3 regime is mechanically more forgiving (spec §8 / D26); ARITH arms violate R1
   by design, recorded.
-- Draws within a cell share seeds and mirrors; sign claims lean on cell-paired
-  statistics, not independent-draw counts.
+- **Draws within a cell share seeds and mirrors**, so sign claims lean on cell-paired
+  statistics rather than independent-draw counts. This is the same discipline Example 1 now
+  applies to its sign tests: the **cell is the unit of analysis**, per the frozen spec, and
+  draw tallies are descriptive counts carrying no p-value. Stated identically in both examples
+  so the paper can assert once that no independence across draws is assumed.
+- **Failures in this example's arms (added 2026-08-21).** RULED_D30 lost 10 draws of 630 and
+  ARITH_D30 7 of 630; ARITH_D0 lost 21 of 980. **Two failure modes, not one:** 8 of the 10
+  banked failures are `TRUNCATED`, a `max_tokens` exhaustion signature, not PARSE — and **5 of
+  them are glm-high**, a gated configuration. Do not carry over Example 1's "all failures are
+  deepseek-family PARSE" sentence; it is true of the main campaign only.
 
 ## 12. Reproduction
 
