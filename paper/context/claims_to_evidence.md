@@ -27,8 +27,8 @@ reach its claim is marked and carried to the gap register in §6.
 
 - **R1 — spans and universals, never singletons.** "The closures span 28% to 114%" passes
   §5-filter part 2; "deepseek-high uniquely beats its floor" does not.
-- **R2 — the universal is usually hiding behind the fraction.** "4 of 5" on prior-crossing
-  is really "all four configurations with error mass to test." Lead with the universal.
+- **R2 — the universal is usually hiding behind the fraction.** "rises in 4 of 5" on
+  blind-point occupancy is really "falls in none of the five." Lead with the universal.
 - **R3 — state the population on every count.**
 
 ---

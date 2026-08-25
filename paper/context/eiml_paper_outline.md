@@ -95,8 +95,8 @@ Three consistency repairs found while reconciling:
 
 - **R1 — spans and universals, never singletons.** Filter part 2 forbids "model X does this
   and the others don't." Report ranges.
-- **R2 — the universal is usually hiding behind the fraction.** "4 of 5" prior-crossing is
-  "all four with error mass to test"; "rises in 4 of 5" is "falls in none of five."
+- **R2 — the universal is usually hiding behind the fraction.** "rises in 4 of 5" on
+  blind-point occupancy is "falls in none of the five." Lead with the universal.
 - **R3 — state the population on every count.**
 - **R4 — "frozen," "pre-registered," "pre-committed" are never used unqualified.** Stated in
   full in §6 below. Binding on §3, §5, §6, and on this document.
@@ -717,8 +717,9 @@ three open-weight and one closed (OpenAI gpt-5.6-sol is closed, frontier-tier); 
 single-round static setting. **Item 80's "no frontier model" is superseded 2026-08-24: the
 roster does contain a closed frontier-tier family.** **Rev 3: `|A| = 2` is now load-bearing rather
 than incidental** — it is what forces the one-bin degeneracy in §6, so the two mentions should
-be written to point at each other. Per item 80, describe the roster by what it is, never as
-"frontier."
+be written to point at each other. Per item 80, describe the roster by what it is — which,
+corrected 2026-08-24, includes one closed frontier-tier family (OpenAI gpt-5.6-sol); item 80's
+"never as frontier" instruction is superseded, since the roster does contain one.
 
 > **Rev 4, roster comparison verified and one precision risk.** BayesBench is confirmed at
 > **seven instruction-tuned models across two families** — LLaMA 3 at 3B/8B/70B and Qwen 2.5 at
