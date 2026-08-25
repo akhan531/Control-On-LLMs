@@ -395,8 +395,9 @@ disconfirmation.
 We write $\bstar := \qz$ at $\delta = 0$ only, where it is the correct
 posterior. At $\delta > 0$ the correct posterior is $\qd$ and $\qz$ becomes the
 \emph{credulous point}, credulous in that it takes every absence at face value
-as a negative, lying past correct in the direction of over-reading, so draws
-below correct in the dropout conditions are readable rather than merely wrong.
+as a negative, lying past correct in the direction of over-reading by the strict
+ordering of Lemma~\ref{lem:order}, so draws below correct in the dropout
+conditions are readable rather than merely wrong.
 
 %% ---------------------------------------------------------------------
 %% PROPOSITION 1 -- the pivot. Two-line inline proof.
@@ -818,14 +819,16 @@ significance there for the result to stand.%
 %%   FULL: 9 at level 2, 0 at level 3.
 \newcommand{\ParaAnchor}{%
 %% <ITEM66> Claim text. Read once more in your own voice before submitting.
-The error is not symmetric shrinkage toward the prior. In every configuration
-with error mass to test, the displaced mass sits above the prior or exactly at
+The error is not symmetric shrinkage toward the prior. In four of the five
+admitted configurations the displaced mass sits above the prior or exactly at
 the level of the silence-blind belief, a region symmetric shrinkage cannot
 reach, on the derivable-absences condition at $\delta = 0$ over all cells minus
 the admission exclusions: $8$ of $91$ error draws, $50$ of $80$, $140$ of $140$
-with $108$ landing exactly at that level, and $17$ of $52$. The fifth admitted configuration
-produces no error draws at all, so the test is undefined there rather than
-failed. The test is well posed for a stateable reason: the uniform prior at
+with $108$ landing exactly at that level, and $17$ of $52$.
+%% <ITEM66> sol-high sentence (audit E1); read once more before submission.
+The fifth produces sixteen error draws, every one of them a single bin from the
+target and none reaching the prior, so it contributes no mass to the region the
+test is about. The test is well posed for a stateable reason: the uniform prior at
 $0.5$ falls inside the band gap that straddles it exactly, so two levels lie
 wholly below it and two wholly above, with none ambiguous. Occupancy of the
 silence-blind level, compared from the printed-negatives condition to the

@@ -355,8 +355,10 @@ shrinkage; denominators are error draws):
 | glm-high | 4.8% (3/62) | 32.7% (17/52) | 100% (5/5) | eligible (22) |
 
 Kill condition (dies if fewer than two gated configs show above-prior or
-exact-`b_pos` mass in the RULED arms): **survived — all four configurations with error mass
-to test** (R2). sol-high has 0 error draws, so the test is **undefined rather than failed**.
+exact-`b_pos` mass in the RULED arms): **survived — all four configurations with mass in the
+tested region** (R2). sol-high produces **16 error draws, all at level 1, none above the prior
+and none at `level(b_pos)`**, so it contributes no mass to the tested region; the universal is
+four of five, not zero error draws (corrected 2026-08-24 against `s5_prior_crossing.py`).
 **Quote the δ=0 numerators from the PARTIAL_RULED column only** — 8/91, 50/80, 140/140,
 17/52. The eligibility counts 27 / 79 / 197 / 22 in the rightmost column **pool δ=0 with
 δ=0.3** and are on the banned list; the verdict survives on δ=0 alone. The by-group
@@ -381,7 +383,7 @@ checkpoint **before** each test ran.
 | B2a | "answers high in RULED" response bias | bias stands unless ≥⅔ of displaced D draws sit at exactly 2 (= `level(b_pos)`) | **dead**: deepseek-high 11–0, glm 28–2 (93%), glm-high 5–1 (83%) |
 | B2b | same bias, tested at pinned prompt length | flat-3 vs tracking `level(b_pos)` (which varies 3,3,3,2,2 across RULEDCTRL) | **dead**: no gated config is flat-3; glm's modal row 3,2,2,2,2 matches `level(b_pos)` on both informative cells at constant ~1009-char length. (deepseek-high: 15 sweep failures, noted) |
 | B4 | missingness artifact | any config whose `π_pos` inequality flips under worst-case failure reassignment is dropped | **holds 5/5**; only deepseek-high moves at all: 29.3% ≥ 14.3% worst-case |
-| prior-crossing | symmetric global conservatism (one gradient `g < 1` toward the prior) as the full account of the displacement | frozen rule above; dies if < 2 gated configs show above-prior/exact-`b_pos` mass in the RULED arms | **survived — all four configurations with error mass to test**; sol-high undefined rather than failed; quote the δ=0 numerators, never the pooled eligibility counts; FULL-arm distinguishability limited to deepseek-high and glm (see §11 band-geometry limitation) |
+| prior-crossing | symmetric global conservatism (one gradient `g < 1` toward the prior) as the full account of the displacement | frozen rule above; dies if < 2 gated configs show above-prior/exact-`b_pos` mass in the RULED arms | **survived — all four configurations with mass in the tested region**; sol-high produces 16 error draws, all at level 1, none in the tested region (four of five, not zero error draws); quote the δ=0 numerators, never the pooled eligibility counts; FULL-arm distinguishability limited to deepseek-high and glm (see §11 band-geometry limitation) |
 | ordinal extremity | **added 2026-08-21.** BayesBench's triage result: models sharpen the extreme labels and collapse the middle two, pushing ambiguous cases outward on a four-level ordinal scale — structurally this one. None of A1, A2, B1, B2, B4, or prior-crossing rules it out | dies if the displaced D-cell draws sit at `level(b_pos)` rather than at the scale endpoint | **dead, and dead in the opposite direction from the one it predicts.** On this scale levels 1 and 2 *are* the middle two, so extremity predicts level-1 draws moving to level 0; observed, they move to level 2. 44 of 47 displaced RULED draws at `level(b_pos)`, 3 at the endpoint, 0 past `b*`; endpoint mass 3 of 150 attempted (2.0%). Level 2 outnumbers level 3 in all three configurations with displaced mass to test |
 
 ## 8. Final claims
