@@ -149,8 +149,8 @@
 %% also moving the tally sentence into the anchoring paragraph.
 \anchorleadfalse
 
-\title{Channels to Targets: A Closed-Form Coordinate System for\\
-Silence-Blindness in LLM Observers}
+\title{Channels to Targets: A Closed-Form Coordinate System\\
+for Silence-Blindness in LLM Observers}
 
 %% Title alternatives, revisited at item 86:
 %%   What the Transcript Doesn't Say: Benchmarking Silence-Blindness with
@@ -221,8 +221,8 @@ are both measurable.
 %% <ITEM66> Claim text. Read once more in your own voice before submitting.
 The design's asset is that the map from channels to targets is many to one:
 three transcripts requiring three different amounts of work return the same
-correct answer, so a comparison across them holds the target fixed and varies
-only what the observer must do to reach it. This is what lets us ask EIML's
+correct answer (Figure~\ref{fig:schematic}), so a comparison across them holds
+the target fixed and varies only what the observer must do to reach it. This is what lets us ask EIML's
 question about benchmarking blind spots in a form with an answer, since the
 blind spot has coordinates rather than a name.
 
@@ -770,8 +770,9 @@ and no one-sidedness statement here can be pooled across the grid.
 \newcommand{\ParaTallies}{%
 %% <ITEM66> Claim text. Read once more in your own voice before submitting.
 On those three cells the derivable-absences condition runs $47$ to $0$ toward
-under-weighting across the five admitted configurations, on $150$ attempted
-draws of which $150$ were usable. The competence gate selects on the
+under-weighting across the five admitted configurations
+(Figure~\ref{fig:results}a), on $150$ attempted draws of which $150$ were
+usable. The competence gate selects on the
 printed-negatives condition and not on this one, so the result arm is
 unselected. At the registered unit of analysis, which pools mirrors and draws
 within a cell to a single modal level, eight of the fifteen configuration-by-cell
@@ -820,13 +821,15 @@ significance there for the result to stand.%
 The error is not symmetric shrinkage toward the prior. In every configuration
 with error mass to test, the displaced mass sits above the prior or exactly at
 the level of the silence-blind belief, a region symmetric shrinkage cannot
-reach: $8$ of $91$ error draws, $50$ of $80$, $140$ of $140$ with $108$ landing
-exactly at that level, and $17$ of $52$. The fifth admitted configuration
+reach, on the derivable-absences condition at $\delta = 0$ over all cells minus
+the admission exclusions: $8$ of $91$ error draws, $50$ of $80$, $140$ of $140$
+with $108$ landing exactly at that level, and $17$ of $52$. The fifth admitted configuration
 produces no error draws at all, so the test is undefined there rather than
 failed. The test is well posed for a stateable reason: the uniform prior at
 $0.5$ falls inside the band gap that straddles it exactly, so two levels lie
 wholly below it and two wholly above, with none ambiguous. Occupancy of the
-silence-blind level falls in none of the five and rises in four. An ordinal
+silence-blind level, compared from the printed-negatives condition to the
+derivable-absences one, falls in none of the five and rises in four. An ordinal
 extremity account predicts the opposite of what we see: on a four-level scale
 the two middle levels are the ones an extremity effect would evacuate outward,
 so it predicts mass accumulating at the two endpoints. Of the $47$ displaced
@@ -892,14 +895,15 @@ collected before it was conceived.
   \includegraphics[width=0.48\textwidth]{figures/fig2b_mass.pdf}%
   % \includegraphics[width=0.48\textwidth]{figures/fig2b_s1.pdf}%
   \caption{%% <ITEM66> Caption text.
-  \textbf{(a)} Signed displacement on the three cells where over-weighting is
-  expressible, for the five admitted configurations. The derivable-absences
-  condition is the result arm; the printed-negatives condition is the control
-  the competence gate selects on. The shaded region below zero is expressible
-  and unobserved. \textbf{(b)} The ladder: deleting one operation at a time
-  along the nesting $\{i,c,a\} \supset \{c,a\} \supset \{a\}$, with the
-  distance to the silence-blind belief marked for reference. The drop and the
-  residual gap are both visible.}
+  \textbf{(a)} Signed displacement $s_2$ on the three cells where over-weighting
+  is expressible, five admitted configurations, $150$ attempted draws per arm;
+  the result arm is derivable-absences, the control (gate-selected) is
+  printed-negatives. The $s_2 = -1$ (over-weighted) segment has zero width in
+  every bar, which is the finding. \textbf{(b)} Four-way mass split (beyond
+  $\bpos$, at $\bpos$, interior, at or past target) across rungs
+  \textsc{ruled}/\textsc{arith}/\textsc{full}, all cells minus admission
+  exclusions, denominators varying by configuration; starred configurations are
+  at ceiling, outside the claim population (\texttt{dsk}${=}$deepseek).}
   \label{fig:results}
 \end{figure}
 
@@ -954,7 +958,8 @@ not establish.
 Deleting the identification step frees the answers. Residence at the
 silence-blind belief collapses in every non-ceiling admitted configuration,
 from $4.6$ to $0.0$, from $30.6$ to $12.9$, and from $77.1$ to $50.0$ percent of
-draws: the absences were going unnoticed. But the freed answers do not arrive at
+usable draws over all cells minus the admission exclusions
+(Figure~\ref{fig:results}b): the absences were going unnoticed. But the freed answers do not arrive at
 the target. Interior mass, the mass strictly between the silence-blind belief
 and the correct one, rises in every one of them, from $65.4$ to $66.9$, $28.4$
 to $42.4$, and $17.1$ to $27.9$. Identification is repaired and conversion is
@@ -1185,8 +1190,8 @@ sensitivity down from $0.90$ to $0.56$, and the evidence the silences carry
 falls from $5.61$ through $1.83$ to $0.71$ nats, so tripling the count drops the
 evidence roughly eightfold. This is closed form and needs no draws. Second,
 over-reading is testable only in the weak-evidence corner, and the coupling is
-forced: the three cells where it is expressible carry silence evidence around
-fifty times weaker than the strongest cells in the grid, because over-reading
+forced: the three cells where it is expressible carry silence evidence between roughly
+fifty and sixty times weaker than the strongest cells in the grid, because over-reading
 needs headroom below the target, headroom requires the target to be high, and a
 high target means the silences carried little. Third, the response scale makes
 over-reads harder to see than under-reads: in those same cells the target sits
@@ -1258,8 +1263,9 @@ statistic and cannot serve as the harder test they appear to be. Relatedly, the
 one-sidedness reported in Section~\ref{sec:ex1} belongs to the two conditions
 that do not enumerate the absences and not to the no-dropout regime as such:
 enumeration produces over-reading with no dropout at all, and under stated
-dropout $6.3$ and $14.6$ percent of draws across all seven configurations sit
-below correct.
+dropout $39$ of $620$ draws ($6.3$ percent) on the derivable-absences arm and
+$91$ of $623$ ($14.6$ percent) on the enumerated arm, across all seven
+configurations, sit below correct.
 
 %% =====================================================================
 \section{Related work and limitations}
@@ -1303,7 +1309,7 @@ rule.
 %% TWO SENTENCES conceding that martingale and Lyapunov treatments of debate
 %% belief exist and that THE DYNAMICAL FRAME IS NOT THE CONTRIBUTION HERE.
 %% <ITEM66> Claim text. Read once more in your own voice before submitting.
-Belief dynamics in multi-agent settings already admit martingale and Lyapunov
+Belief dynamics in multi-agent settings already admit martingale
 treatments \citep{choi2025}. The dynamical frame is not our contribution here.
 Our setting is single-round and static by choice, because holding the target
 fixed is what makes the channel-set manipulation a controlled comparison.
@@ -1318,10 +1324,11 @@ fixed is what makes the channel-set manipulation a controlled comparison.
 %%   anchor comparison is that BayesBench uses seven models across two
 %%   families and CROWN-QA three across three, SO THIS IS A PEER ROSTER.
 %% <ITEM66> Claim text. Read once more in your own voice before submitting.
-Three limitations bound what we claim: the roster is seven open-weight
-configurations, comparable in breadth to the rosters our two closest anchors use;
-the candidate set is fixed at two, which is what forces the one-bin degeneracy
-described in Section~\ref{sec:blind}; and the setting is single-round and static.
+Three limitations bound what we claim: the roster is seven configurations across
+four model families, a model set no broader than our two closest anchors' (seven
+and three distinct models); the candidate set is fixed at two, which is what
+forces the one-bin degeneracy described in Section~\ref{sec:blind}; and the
+setting is single-round and static.
 
 %% =====================================================================
 %% REPRODUCTION STATEMENT. Cite frozen-outputs commit 9ade4d4.

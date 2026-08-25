@@ -56,6 +56,9 @@ ROW_ORDER = ("sol-high", "sol-none", "glm-high", "deepseek-high", "glm")
 CEILING = ("sol-high", "glm-high")
 NONCEIL = tuple(c for c in GATED if c not in CEILING)  # sol-none, deepseek-high, glm
 ALL_ORDER = GATED + ("deepseek", "anchor")  # gated first, then the two excluded
+# One abbreviation set used in BOTH panels (audit A2); keyed once in the caption.
+ABBR = {"sol-high": "sol-hi", "sol-none": "sol-no", "glm-high": "glm-hi",
+        "deepseek-high": "dsk-hi", "glm": "glm"}
 DCELLS = ("D1", "D2", "D3")
 CELLS14 = ("A1", "A2", "A3", "A4", "A5", "C1", "C2", "C3",
            "B1", "B2", "B3", "D1", "D2", "D3")
@@ -394,7 +397,7 @@ def panel_a(draws):
                 ax.barh(y, wdt, left=left, height=barh, linewidth=0.5, **style)
                 left += wdt
         yt.append(base)
-        ytl.append(cfg)
+        ytl.append(ABBR[cfg])                  # same abbreviations as panel (b) (A2)
     # label result/control once, on the top configuration's pair
     top = 0.0
     ax.text(30.7, top + gap_arm / 2, "result", va="center", ha="left",
@@ -442,10 +445,7 @@ def panel_b_mass(draws, usable, attempted):
     # its rung, which is short.
     fig, ax = plt.subplots(figsize=(3.05, 3.75))
     # Rungs are single-letter ticks (R/A/F, keyed in the legend) and configs are
-    # abbreviated once per group. Both keep this 15-row panel narrow enough to
-    # hold >=7pt text at 0.48\textwidth; full config names are in panel (a).
-    ABBR = {"sol-high": "sol-hi", "sol-none": "sol-no", "glm-high": "glm-hi",
-            "deepseek-high": "dsk-hi", "glm": "glm"}
+    # abbreviated once per group (module-level ABBR, shared with panel (a) per A2).
     barh, gap_rung, gap_cfg = 0.62, 0.72, 1.05
     y = 0.0
     yt, ytl = [], []
