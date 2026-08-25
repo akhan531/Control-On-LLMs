@@ -790,11 +790,12 @@ significance there for the result to stand.%
 
 %% P5 -- THE SHARPER CLAIM. The error anchors on b_pos, NOT on pi.
 %% Error mass sits above the prior or exactly at level(b_pos), unreachable by
-%% symmetric shrinkage, in ALL FOUR configurations with error mass to test
-%% (R2 -- lead with the universal, not "4 of 5"):
+%% symmetric shrinkage, in the four admitted configs with mass in the tested
+%% region (l_pos>=2 in every cell, so "at l_pos" is a SUBSET of "above prior" --
+%% the disjunction is vacuous; report at-l_pos separately for the anchoring claim):
 %%   sol-none 8/91 | deepseek-high 50/80 | glm 140/140 (108 exactly at l_pos)
-%%   glm-high 17/52 ; sol-high has 0 error draws, so the test is UNDEFINED
-%%   rather than failed. Kill bar of 2 fixed at a checkpoint before the test
+%%   glm-high 17/52 ; sol-high produces 16 error draws, all at level 1, none in
+%%   the tested region (four of five, not zero). Kill bar of 2 fixed at a checkpoint before the test
 %%   ran (R4: process claim).
 %%   BANNED: pooled totals 27/79/197/22.
 %% Blind-point occupancy FALLS IN NONE OF FIVE and rises in four
@@ -965,8 +966,10 @@ usable draws over all cells minus the admission exclusions
 (Figure~\ref{fig:results}b): the absences were going unnoticed. But the freed answers do not arrive at
 the target. Interior mass, the mass strictly between the silence-blind belief
 and the correct one, rises in every one of them, from $65.4$ to $66.9$, $28.4$
-to $42.4$, and $17.1$ to $27.9$. Identification is repaired and conversion is
-not. One further configuration, flagged at ceiling by the registered guard and
+to $42.4$, and $17.1$ to $27.9$. This pooled rise is not uniform across cell
+geometries: for sol-none it comes entirely from the distance-3 cells, while the
+distance-2 cells stay flat at 70.0 percent. Identification is repaired and
+conversion is not. One further configuration, flagged at ceiling by the registered guard and
 therefore outside this population, moves the other way, from $6.4$ to $10.7$,
 and we report it.
 
@@ -1318,7 +1321,8 @@ Our setting is single-round and static by choice, because holding the target
 fixed is what makes the channel-set manipulation a controlled comparison.
 
 %% LIMITATIONS, ONE SENTENCE, THREE CLAUSES:
-%%   seven open-weight configurations with no frontier model
+%%   seven configurations across four model families, three open-weight and one
+%%   closed (OpenAI gpt-5.6-sol); item 80's "no frontier model" is superseded
 %%   |A| = 2
 %%   single-round static setting
 %% |A| = 2 IS LOAD-BEARING RATHER THAN INCIDENTAL: it is what forces the
@@ -1327,11 +1331,12 @@ fixed is what makes the channel-set manipulation a controlled comparison.
 %%   anchor comparison is that BayesBench uses seven models across two
 %%   families and CROWN-QA three across three, SO THIS IS A PEER ROSTER.
 %% <ITEM66> Claim text. Read once more in your own voice before submitting.
+%% <ITEM66> roster clause rewritten per audit J1; read once more before submission.
 Three limitations bound what we claim: the roster is seven configurations across
-four model families, a model set no broader than our two closest anchors' (seven
-and three distinct models); the candidate set is fixed at two, which is what
-forces the one-bin degeneracy described in Section~\ref{sec:blind}; and the
-setting is single-round and static.
+four model families, three open-weight and one closed, which is no broader than
+the rosters our two closest anchors use; the candidate set is fixed at two, which
+is what forces the one-bin degeneracy described in Section~\ref{sec:blind}; and
+the setting is single-round and static.
 
 %% =====================================================================
 %% REPRODUCTION STATEMENT. Cite frozen-outputs commit 9ade4d4.

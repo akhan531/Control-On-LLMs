@@ -73,9 +73,13 @@ anchor.
 
 **The localization.** Both directions of error are expressible on one closed-form ruler, the
 evidence channel is decomposed (positives fix `b_pos`; the disconfirming results move `b_pos`
-to `b*`), and the roster is **seven open-weight configurations at two reasoning-effort
-settings**, a peer roster to both anchors — BayesBench uses seven models across two families,
-CROWN-QA three across three. **Never describe the roster as "frontier" (checklist item 80).**
+to `b*`), and the roster is **seven configurations across four model families — three
+open-weight (GLM, DeepSeek, Llama) and one closed (OpenAI gpt-5.6-sol) — at two
+reasoning-effort settings**, a peer roster to both anchors — BayesBench uses seven models
+across two families, CROWN-QA three across three. **The roster contains one closed,
+frontier-tier family (OpenAI gpt-5.6-sol, configs `sol-high`/`sol-none`) and must be described
+as such. Checklist item 80's "never frontier" rule was written on the false belief that the
+roster held no frontier model, and is superseded 2026-08-24.**
 
 What we find, with populations stated: **strictly one-sided under-use at δ=0**, zero
 over-reads in **150 attempted PARTIAL_RULED draws and 150 attempted FULL draws** across the
@@ -91,7 +95,8 @@ Both numbers are on the banned list in `claims_to_evidence.md` §7.
 
 **Why cross-method.** Their channels: token-probability credences on pre-trained
 models; multi-turn numeric trajectories on open instruct models. Ours: a single-shot
-ordinal answer from frontier instruction-tuned models, elicited with no probability
+ordinal answer from instruction-tuned models — one of the four families a closed
+frontier-tier system, the other three open-weight — elicited with no probability
 vocabulary anywhere in the prompt, scored by position between two closed-form
 posteriors. Imran et al. name instruction tuning/RLHF and non-token-probability
 elicitation as open questions; this example supplies evidence toward both. We do not
@@ -208,9 +213,10 @@ language the record cannot support.
 0.618/level 2). Every cell asserts `level(b_pos) ≠ level(b*)` at build time. Each cell
 runs in both mirrors (which printed label carries `p`) — a pure relabelling, asserted.
 
-**Roster.** Seven open-weight configurations: three families at default and high reasoning
-effort (`sol-none/sol-high`, `deepseek/deepseek-high`, `glm/glm-high`) plus one older
-`anchor` model. 84 stimuli × 5 draws × 7 configs = 2,940 calls, **2,894 usable**. Model
+**Roster.** Seven configurations across four model families, three open-weight and one closed:
+three families at default and high reasoning effort (`sol-none/sol-high` = OpenAI gpt-5.6-sol,
+**closed, frontier-tier**; `deepseek/deepseek-high`; `glm/glm-high`) plus one older `anchor`
+model (Llama-3.3-70b). 84 stimuli × 5 draws × 7 configs = 2,940 calls, **2,894 usable**. Model
 identity, provider, and version for item 80 are carried per record in the `slug` field of the
 frozen results.
 
@@ -390,8 +396,8 @@ checkpoint **before** each test ran.
 
 1. **The localization claim** (rewritten 2026-08-21; the arbitration framing is retired,
    see §2). Both directions of error are expressible on one closed-form ruler, and the
-   instrument says where each appears. Where absences are **not enumerated**, seven
-   open-weight configurations show **strictly one-sided under-use at δ=0**: **0 over-reads in
+   instrument says where each appears. Where absences are **not enumerated**, the seven
+   configurations (three model families open-weight, one closed) show **strictly one-sided under-use at δ=0**: **0 over-reads in
    150 attempted draws per arm** across the gated five, in the only cells where over-reading
    is expressible; D cells 47–0 in RULED (cell-level sign test p = 0.008) and 9–0 in FULL
    (p = 0.063, control); mean `s2` +0.20 to +0.76 in FULL. The over-direction **is**

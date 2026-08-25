@@ -427,10 +427,14 @@ failures.
 
 **¶5 — the sharper claim.** The error anchors on `b_pos`, not on `π`. Error mass sits above
 the prior or exactly at `level(b_pos)`, unreachable by symmetric shrinkage, in **all four
-configurations with error mass to test** (R2) — sol-none 8/91, deepseek-high 50/80, glm
-140/140 with 108 exactly at `l_pos`, glm-high 17/52. sol-high has 0 error draws, so the test is
-undefined rather than failed. Kill bar of 2 fixed at a checkpoint before the test ran (R4:
-process claim). Blind-point occupancy **falls in none of five** and rises in four. Quote the
+admitted configurations with mass in the tested region** (R2) — sol-none 8/91, deepseek-high 50/80, glm
+140/140 with 108 exactly at `l_pos`, glm-high 17/52. sol-high produces 16 error draws, all at level 1,
+none above the prior and none at `level(b_pos)`, so it contributes no mass to the tested region; the
+universal is four of five, not zero error draws (corrected 2026-08-24 against `s5_prior_crossing.py`).
+Kill bar of 2 fixed at a checkpoint before the test ran (R4:
+process claim). **Note (H1): `l_pos >= 2` in every cell, so "at `level(b_pos)`" is a subset of
+"above the prior" and that disjunct is vacuous; the anchoring claim needs the at-`l_pos` share
+reported separately.** Blind-point occupancy **falls in none of five** and rises in four. Quote the
 `δ=0`-only numerators, never the pooled RULED-arm totals (G2.2).
 
 **One clause on why the test is well-defined:** the uniform prior at 0.5 falls inside the
@@ -708,8 +712,10 @@ that the dynamical frame is not the contribution here.
 > One clause: the setting is single-round **by choice**, because the channel-set manipulation
 > requires the target held fixed. No long defence needed.
 
-**Limitations, one sentence, three clauses:** seven open-weight configurations with no frontier
-model; `|A| = 2`; single-round static setting. **Rev 3: `|A| = 2` is now load-bearing rather
+**Limitations, one sentence, three clauses:** seven configurations across four model families,
+three open-weight and one closed (OpenAI gpt-5.6-sol is closed, frontier-tier); `|A| = 2`;
+single-round static setting. **Item 80's "no frontier model" is superseded 2026-08-24: the
+roster does contain a closed frontier-tier family.** **Rev 3: `|A| = 2` is now load-bearing rather
 than incidental** — it is what forces the one-bin degeneracy in §6, so the two mentions should
 be written to point at each other. Per item 80, describe the roster by what it is, never as
 "frontier."
