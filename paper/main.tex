@@ -494,6 +494,13 @@ Proposition~\ref{prop:pivot} at $\delta=0$ and $\bpos$ as $\delta\to1$.
     \cond{full}           & positives, printed negatives & aggregate & $\bstar$ \\
     \cond{arith\_d0}      & positives, enumerated absences & convert, aggregate & $\bstar$ \\
     \cond{partial\_ruled} & positives, derivable absences & identify, convert, aggregate & $\bstar$ \\
+%% G4.7 ESCALATED 2026-08-25. "Discounted Bayesian filtering" for LLM updates
+%% is now TWO papers: Zhang et al. (arXiv:2512.18489, still unread) and Gupta
+%% et al. 2025, whose Table 1 fits a per-model exponential decay gamma over
+%% ICL history (instruction-tuned 0.31-0.47, base 0.88-0.91). Both discount by
+%% RECENCY over sequential evidence; our fourth operation discounts by a
+%% stated dropout rate against absences. Different object, occupied
+%% vocabulary. Read Zhang, then decide whether this row needs one sentence.
     \cond{arith\_d30}     & positives, enumerated absences, $\delta$ & convert, aggregate, discount & $\qd$ \\
     \cond{ruled\_d30}     & positives, derivable absences, $\delta$ & identify, convert, aggregate, discount & $\qd$ \\
     \bottomrule
@@ -709,12 +716,20 @@ instruction-tuned models across turns and report both directions, with the
 tendency shifting across scale: smaller models stay near the middle of the
 interval, while larger ones can push toward its extremes when the evidence is
 skewed. Under-use relative to Bayes has been called conservatism since
-\citet{edwards1968}. The two accounts are hard to compare because each scores an
-elicited answer against a reference the same model supplied. Our target is
-computed from a stated disclosure rule over exact rationals, so no part of the
-correct answer depends on what probability a model assigns to any string, and
-both directions become positions on one axis rather than findings to
-adjudicate.
+\citet{edwards1968}.
+%% <ITEM66> replaces two sentences (audit item 2); the removed pair wrongly said
+%% both anchors score against a model-supplied reference -- BayesBench has
+%% closed-form Bayesian references in two of its four environments.
+Imran et al.'s expected update is itself elicited from the model, read off
+its own token probabilities, and where a closed-form reference is available
+elsewhere it is computed from evidence the observer can see.
+\citet{gupta2025} show that on such evidence updates track the Bayesian
+posterior closely once enough of it accumulates, with residual deviation
+traceable to a model's own miscalibrated prior rather than to the update
+itself. Our target is computed from the disclosure rule over exact
+rationals, so the question here is not whether a belief moves correctly on
+what the transcript displays but whether it moves at all on what it
+withholds.
 
 %% P2 -- THE DISCLOSURE. Plain, unburied, one sentence.
 %% BOTH ANCHORS WERE SELECTED AFTER THE DATA EXISTED. The campaign was
@@ -818,6 +833,14 @@ significance there for the result to stand.%
 %%   mass to test: glm-high 5 vs 1, deepseek-high 11 vs 0, glm 28 vs 2. The
 %%   sol family produces none, so undefined rather than failed.
 %%   FULL: 9 at level 2, 0 at level 3.
+%% REBUTTAL ON FILE, if a referee raises prior miscalibration (Gupta et al.
+%% 2025). Their account predicts error mass at the model's OWN fixed internal
+%% bias, which would put it at the SAME level in every cell. Our at-l_pos mass
+%% tracks l_pos as l_pos moves: level 2 in the B and D cells, level 3 in the
+%% A and C cells. See glm's RULED row in paper/audit/geometry_by_distance.md
+%% (28 and 24 at level 2 for dist=1 and dist=2; 56 at level 3 for dist=3).
+%% A constant model-internal prior cannot produce a location that tracks a
+%% computed quantity. NOT in live text; page budget.
 \newcommand{\ParaAnchor}{%
 %% <ITEM66> Claim text. Read once more in your own voice before submitting.
 The error is not symmetric shrinkage toward the prior. In four of the five
@@ -1433,6 +1456,18 @@ H.~Y. Fu, A.~Shrivastava, J.~Moore, P.~West, C.~Tan, and A.~Holtzman.
 \newblock AbsenceBench: Language models can't tell what's missing.
 \newblock arXiv:2506.11440, 2025.
 %% PARTIAL (secondary bib). Directly about the identify operation.
+
+\bibitem[Gupta et al.(2025)]{gupta2025}
+R.~Gupta, R.~Corona, J.~Ge, E.~Wang, D.~Klein, T.~Darrell, and D.~M. Chan.
+\newblock Enough coin flips can make LLMs act Bayesian.
+\newblock In \emph{Proceedings of the 63rd Annual Meeting of the Association
+  for Computational Linguistics (Volume 1: Long Papers)}, pages 7634--7655,
+  2025. arXiv:2503.04722.
+%% VERIFIED, read in full 2026-08-25. Load-bearing: updates track Bayes on
+%% PRESENT evidence once enough accumulates; residual deviation attributed to
+%% the model's own miscalibrated prior, not to the update. CAUTION: their
+%% "prior" is an unstated model-internal bias toward heads, NOT a stated task
+%% prior. Do not conflate with our pi.
 
 \bibitem[Imran et al.(2025)]{imran2025}
 S.~Imran, I.~Kendiukhov, M.~Broerman, A.~Thomas, R.~Campanella, R.~Lamb, and

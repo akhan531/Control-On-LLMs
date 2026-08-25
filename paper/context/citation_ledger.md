@@ -149,7 +149,9 @@ Why we cite it: directly about the `identify` operation and therefore about Exam
 Status: **PARTIAL (secondary bib)** — from CROWN-QA's reference list.
 Why we cite it: the knowledge-base vocabulary for our `δ = 0` versus `δ > 0` distinction — closed-world treats missing facts as false, open-world leaves them unknown. That is the same object de Punder gives us as trimming versus censoring. **Having both the statistics vocabulary and the KB vocabulary in §7 is cheap and makes the positioning look deliberate rather than lucky.** Survey, so a single citation covers the line.
 
-*Lower priority, same provenance: Gupta et al., "Enough Coin Flips Can Make LLMs Act Bayesian," ACL 2025 Long Papers, 7634–7655 — LLM predictions approximate the exact posterior given enough in-context coin flips, with residual error attributed to the prior rather than the update. Only needed if §7 expands.*
+**[Gup25] Gupta, R.; Corona, R.; Ge, J.; Wang, E.; Klein, D.; Darrell, T.; and Chan, D. M. "Enough Coin Flips Can Make LLMs Act Bayesian." In *Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)*, pages 7634–7655, 2025. arXiv:2503.04722.**
+Status: **VERIFIED** — read in full 2026-08-25. Promoted from the §1.6 lower-priority note.
+Why we cite it: §4 ¶1. Updates track the Bayesian posterior on **present** evidence once enough accumulates; the residual deviation is attributed to the model's **own miscalibrated prior**, not to the update. **CAUTION:** their "prior" is an unstated model-internal bias toward heads, **not** a stated task prior — do not conflate with our `π`. Table 1 fits a per-model exponential decay `γ` over ICL history (instruction-tuned 0.31–0.47, base 0.88–0.91), which is discounting by **recency** over sequential evidence, a different object from our fourth operation (discount by a stated dropout rate against absences). Relevant to G4.7.
 
 ---
 
