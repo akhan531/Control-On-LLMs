@@ -1032,11 +1032,13 @@ rather than scoring it against a prediction.
 %%   One registered contrast died at 4/5 and was RETIRED RATHER THAN RESCUED.
 %%   BANNED: "4 of 5" cross-regime.
 %% <ITEM66> Claim text. Read once more in your own voice before submitting.
-The same handout repairs no one once a dropout rate is stated.
-%% <ITEM66> recovery bound rewritten per audit N3 (absolute bins, no gating); read once more.
-At $\delta = 0.3$ no configuration's deficit falls by more than $0.125$ bins, and
-a worst-case reassignment of unusable draws moves that bound to $0.20$. That
-covers all seven configurations and needs no gating argument. It is also where the geometry
+%% <ITEM66> dropout opening rewritten per audit item 1 (active harm); read once more.
+Once a dropout rate is stated the same handout does not merely fail to help;
+for three of the seven configurations it hurts, moving them $0.034$, $0.100$ and
+$0.232$ bins further from the target. At $\delta = 0.3$ no configuration's
+deficit falls by more than $0.125$ bins, and a worst-case reassignment of
+unusable draws moves that bound to $0.20$. That covers all seven configurations
+and needs no gating argument. It is also where the geometry
 does work: the target moves to the discounted belief and the undiscounted one
 becomes a credulous point past correct, so draws below correct are readable as
 over-reading rather than as noise. One contrast we had fixed at a checkpoint
@@ -1315,11 +1317,25 @@ configurations, sit below correct.
 %%   vocabularies in one sentence is cheap and makes the positioning look
 %%   deliberate.
 %% <ITEM66> Claim text. Read once more in your own voice before submitting.
-Our silence-blind belief trims the record where the correct update censors it,
-in the sense of \citet{depunder2026}: the omitted mass is exactly the silence
-probability, and that a divergence restricted to a sub-event loses its
-non-negativity is established there and in \citet{depunder2024} rather than
-here. The same distinction appears in the knowledge-base literature as the gap
+%% ITEM 50 DISCHARGED 2026-08-25, full read of arXiv/Tinbergen DP 23-084/III.
+%% Pun26's own contribution is that censoring PRESERVES divergence and strict
+%% propriety; they state they are the first to derive such a transformation.
+%% The non-negativity failures in that paper attach to (a) Holzmann-Klar's
+%% CONDITIONAL divergence, which fails condition (ii) of their Definition 2
+%% (see their Example F.1), and (b) the weighted likelihood score of Amisano
+%% and Giacomini, whose impropriety they attribute to Diks et al. 2011 and
+%% Gneiting and Ranjan 2011 rather than proving. The trimmed-quantity result
+%% we cite is Pun24's. The earlier ordering here was inverted.
+%% VOCABULARY CAUTION: "trimming" does not appear in Pun26's main text; their
+%% contrast is conditioning vs censoring. "In the sense of" is doing real work
+%% in that sentence. Do not sharpen it into a direct attribution of the word.
+%% <ITEM66> de Punder attribution corrected per audit item 2; read once more.
+Our correct update censors the record where the silence-blind belief trims it,
+in the sense of \citet{depunder2026}, and the mass censoring restores is exactly
+the silence probability: their censored log score adds to the trimmed one a term
+in the probability of the omitted region, which is our factor $(1 - L(a))^{N-k}$.
+That the trimmed quantity forfeits non-negativity is established in
+\citet{depunder2024} rather than here. The same distinction appears in the knowledge-base literature as the gap
 between closed-world and open-world readings of a missing fact
 \citep{razniewski2024}. Our contribution is the instrument built on that
 distinction, not the distinction.
