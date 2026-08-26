@@ -200,32 +200,38 @@ Silence-Blindness in LLM Observers}
 %% An observer sees k positive reports from N analysts under a rule where only
 %% positives are filed. The N-k absences are evidence.
 %% <ITEM66> Claim text. Read once more in your own voice before submitting.
-An observer reads a transcript in which $k$ of $N$ analysts have filed a report,
-under a stated rule that a report is filed only on a positive finding. The
-$N-k$ analysts who filed nothing have not been silent about nothing. Under that
-rule each absence is a negative finding, and an observer who conditions only on
-what appears has discarded most of the record.
+An observer reads a transcript in which $N$ analysts have each tested which
+candidate is responsible for a contamination event. From the record it is given,
+the observer must output the name of the responsible candidate and how confident 
+it is in its answer. However, what the
+transcript shows of those tests varies, like if only $k$ of the analysts file a report, 
+while the remaining $N-k$ file nothing. The filings that never arrive are part of that 
+record: whether the observer reads a missing report as a finding, as noise, or as nothing
+at all changes the belief it should hold, so an observer that conditions only on what 
+appears can discard much of the evidence.
 
 %% P2 -- THE MOVE.
 %% Write down what the transcript contains, and both the operations required
 %% and the correct answer follow in closed form. A real answer then has a
 %% LOCATION relative to that target.
 %% <ITEM66> Claim text. Read once more in your own voice before submitting.
-Our starting point is that this situation is small enough to solve exactly. Once
-the channels a transcript exposes are written down, the operations an observer
-must perform and the posterior it should hold both follow in closed form. An
-elicited answer is then not simply right or wrong: it has a location on an
-interval whose endpoints are named beliefs, and the distance and the direction
-are both measurable.
+Our starting point is that this situation is small enough to solve exactly through
+Bayesian inference. Once the specific features of information, or channels, a 
+transcript exposes are written down, the target posterior the observer should hold and
+the operations it must perform to reach that target both follow
+in closed form. An elicited answer is then not simply right or wrong: it has a
+location on an interval whose endpoints are reference beliefs, each the Bayesian
+posterior under a different reading of the transcript, and the distance and the
+direction are both measurable.
 
 %% P3 -- THE ASSET, plus the venue tie. Two sentences.
 %% <ITEM66> Claim text. Read once more in your own voice before submitting.
 The design's asset is that the map from channels to targets is many to one:
 three transcripts requiring three different amounts of work return the same
-correct answer (Figure~\ref{fig:schematic}), so a comparison across them holds
-the target fixed and varies only what the observer must do to reach it. This is what lets us ask EIML's
-question about benchmarking blind spots in a form with an answer, since the
-blind spot has coordinates rather than a name.
+correct answer, so a comparison across them holds
+the target fixed and varies only what the observer must do to reach it. This 
+framework is what lets us benchmark the blind spots of these observers in a form
+with an answer, since the blind spot has coordinates rather than a name.
 
 %% P4 -- CONTRIBUTIONS. Four typed bullets matching the four claims.
 %% Bullet 2 per V-24-2: scoped to gated configurations in the conditions that
@@ -247,7 +253,7 @@ blind spot has coordinates rather than a name.
     than on the prior.
   \item \textbf{Separating identification from interpretation.} How much of a
     configuration's silence deficit is failure to notice the absences rather
-    than failure to convert them is a per-configuration quantity the instrument
+    than failure to understand them is a per-configuration quantity the instrument
     measures, and enumerating the absences repairs the first without repairing
     the second.
   \item \textbf{The instrument's own limits, reported as results.} Two
@@ -270,6 +276,10 @@ blind spot has coordinates rather than a name.
 %%   transcripts, three different amounts of work.
 %% FIRST TO GO in the 3.5-page cut branch.
 %% ---------------------------------------------------------------------
+%% FIGURE 1 COMMENTED OUT per Ali 2026-08-26; revive when reviewing the examples
+%% (delete the \iffalse here and the matching \fi after \end{figure}). The P3
+%% \ref{fig:schematic} was removed to match.
+\iffalse
 \begin{figure}[t]
   \centering
   % \includegraphics[width=\textwidth]{fig1_schematic.pdf}
@@ -328,6 +338,7 @@ blind spot has coordinates rather than a name.
   between an elicited answer and that belief is comparable across them.}
   \label{fig:schematic}
 \end{figure}
+\fi %% end FIGURE 1 comment-out (revive with the \iffalse above)
 
 %% =====================================================================
 \section{The framework}
@@ -347,7 +358,7 @@ responsible, with a uniform prior $\pi$. We take $|A|=2$ throughout: the
 one-dimensionality that makes the word ``coordinate'' literal depends on it, and
 it is the source of a structural limitation we return to in
 Section~\ref{sec:blind}. Each of the $N$ analysts runs a binary assay returning \textsc{positive} or
-\textsc{negative}. If $a_0$ is responsible an assay returns \textsc{positive}
+\textsc{negative}. If $a_0$ is responsible, an assay returns \textsc{positive}
 with probability $p$; if $a_1$ is responsible, with probability $1-p$; and the
 results are independent given which candidate is responsible. We take $p > 1/2$,
 so a positive is more consistent with $a_0$ than with $a_1$ and tilts belief
@@ -531,12 +542,7 @@ walks. Two honest limits follow: aggregation is never identified in isolation, b
 no condition in our design sits below $\{a\}$, and discounting is identified
 only by the $\delta = 0.3$ conditions.
 
-%% FORWARD POINTER, one sentence. D1: the three-way decomposition and the
-%% W-bar machinery are CUT. W-bar = 0 identically in every reported cell.
-%% One sentence only. It goes to the EC paper with the N-scaling law.
-%% <ITEM66> Claim text. Read once more in your own voice before submitting.
-A three-way decomposition of total tracking error and a group-size scaling law
-follow from the same objects and are developed elsewhere.
+
 
 %% =====================================================================
 
@@ -565,17 +571,29 @@ follow from the same objects and are developed elsewhere.
 %%    out the pre-test.
 %% <ITEM66> Claim text. Read once more in your own voice before submitting.
 Answers are elicited as two enumerated fields, a candidate and a two-level
-confidence, giving four ordinal levels. The probability bands those levels
-occupy were measured rather than assumed, on both sides and without mirroring
-the low side from the high: a pre-test over $32$ stimuli at three draws per
-stimulus across all seven configurations ($659$ of $672$ usable) placed the
-switch edges at $0.20$ and $0.80$, with a low-high asymmetry of $0.000$ at the
-widest for six of the seven configurations on the wording the main campaign
-uses. The single exception is \texttt{anchor}, at $0.1$. Because the calibration
-probe samples at a resolution of $0.10$, the nominal cuts and the measured edges
-both fall inside the same sampled interval, so the invariance of level
-assignment across them is a fact about sampling resolution rather than a
-robustness result. Bands were never shown to the models.
+confidence, giving four ordinal levels. We elicit an ordinal level rather than a
+raw probability on purpose: a numerical posterior would confound the ability to
+reason about the evidence with the ability to carry out the arithmetic of
+Bayesian updating, and coarsening the answer to four ordered levels strips out
+the noise of that arithmetic and keeps the signal we mean to measure, whether
+the observer moves its belief in the right direction and far enough. The
+probability ranges these four levels occupy were measured, not assumed. In a
+calibration pre-test --- $32$ stimuli, three draws each, across all seven
+configurations, $659$ of $672$ answers usable --- we swept the true probability
+and recorded which of the four answers each model gave, so we could see where on
+the scale a model switches from very confident to only somewhat confident. That
+switch sits at $0.20$ on the low side and $0.80$ on the high side: a model is
+very confident in a candidate only once its probability clears $0.80$, very
+confident in the other candidate below $0.20$, and merely somewhat confident
+closer to even odds. We located the low edge and the high edge separately rather
+than assuming the low side mirrors the high, and for six of the seven
+configurations they came out symmetric about the $0.5$ midpoint; only
+\texttt{anchor} differed, by $0.1$. One caveat on precision: the probe sampled
+probabilities in steps of $0.10$, so it cannot tell the measured edge at $0.20$
+apart from a nominal cut at $0.25$, both falling in the same step, which means
+the level assignment agreeing under either cut reflects the coarseness of the
+probe rather than a demonstrated robustness. Bands were never shown to the
+models.
 
 %% DESIGN CONSTRAINTS, four clauses:
 %%  - every cell asserts level(b_pos) != level(target) at build time.
@@ -609,12 +627,23 @@ schema, and one rendered stimulus per condition.
 %% answer.
 %% CUT BRANCH: this paragraph shortens to one sentence at 3.5 pages.
 %% <ITEM66> Claim text. Read once more in your own voice before submitting.
-The bands have real gaps between them, and the viability filter is how the
-design survives those gaps rather than ignoring them. Five of the fourteen cells
-fail it on gap placement: two put the dropout target at $0.366$ and $0.392$,
-inside the gap between bands $0$ and $1$, and three put it between $0.512$ and
-$0.524$, inside the gap that straddles the prior. That is what reduces fourteen
-cells to the nine carrying the dropout conditions. The filter is also stricter
+The four levels sit in measured bands with deliberate gaps between them: level
+$0$ is $[0,0.20]$, level $1$ is $[0.40,0.45]$, level $2$ is $[0.55,0.70]$, and
+level $3$ is $[0.80,1]$, so the ranges $0.20$--$0.40$, $0.45$--$0.55$, and
+$0.70$--$0.80$ fall under no level at all, and the viability filter is how the
+design survives those gaps rather than ignoring them. The gaps are kept on
+purpose: they are the transition zones where a model's answer is not reliably one
+level, so extending the borders to close them would score answers where the level
+is ambiguous, turning threshold noise into apparent signal. A cell is usable only
+if the belief its correct answer should express lands inside a band, giving that
+answer a definite level; a cell fails on gap placement when that belief lands in
+one of the empty ranges instead, where the scale offers no level to score
+against. Five of the fourteen cells fail this way on their dropout target: two
+put it at $0.366$ and $0.392$, inside the $0.20$--$0.40$ gap between bands $0$
+and $1$, and three put it between $0.512$ and $0.524$, inside the $0.45$--$0.55$
+gap that straddles the prior, so in each the correct belief has no level and the
+cell is dropped. That is what reduces fourteen cells to the nine carrying the
+dropout conditions. The filter is also stricter
 than cell validity requires, since a cell carrying those conditions needs its
 dropout target to be distinguishable from both the silence-blind belief and the
 credulous point, which is why stating a dropout rate can change the correct
@@ -628,8 +657,8 @@ answer.
 %% <ITEM66> Claim text. Read once more in your own voice before submitting.
 We report $s_1 = |\lobs - \lcor|$, the signed $s_2 = \lobs - \lcor$ with
 positive values meaning under-weighted toward the target, and
-$s_3 = P(\lobs = \lcor)$, where $\lcor$ is the level of the target read off
-Table~\ref{tab:map}.
+$s_3 = P(\lobs = \lcor)$, where $\lobs$ is the level of observer reports and
+$\lcor$ is the level of the target read off Table~\ref{tab:map}.
 
 %% COMPETENCE GATE. Name BOTH excluded configurations with their FULL scores.
 %% Gate: mean s1 on FULL, draw level, all 14 cells, < 1.0 bin.
@@ -647,9 +676,15 @@ token budget, which is what the ``-high'' suffix on a configuration name denotes
 (abbreviated ``-hi'' in Figure~\ref{fig:results}); Appendix~\ref{app:models}
 gives the full table.
 %% <ITEM66> Claim text. Read once more in your own voice before submitting.
-A configuration failing the matched printed-negatives condition is excluded,
-because a failure on the derivable-absences condition from a configuration that
-also fails the printed one is a floor effect rather than a silence result. Five
+The gate turns on two conditions built from the same underlying record. In the
+printed-negatives condition (\cond{full}) every result, positive and negative,
+is displayed and completeness is asserted, so reaching the correct answer is a
+matter of aggregation; in the derivable-absences condition (\cond{partial\_ruled})
+only the positive reports appear, and the negatives must be inferred from the
+stated analyst count and filing rule. A configuration that fails the
+printed-negatives condition is excluded, because a failure on the
+derivable-absences condition from a configuration that also fails the printed one
+is a floor effect rather than a silence result. Five
 of seven configurations are admitted, at mean $s_1$ of $0.200$, $0.421$,
 $0.457$, $0.752$ and $0.764$ bins; the two excluded sit at $1.609$
 (\texttt{deepseek}) and $1.800$ (\texttt{anchor}). The gap between $0.764$ and
