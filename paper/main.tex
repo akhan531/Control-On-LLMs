@@ -590,8 +590,10 @@ robustness result. Bands were never shown to the models.
 Four constraints are enforced at build time. Every cell asserts that the
 silence-blind belief and the target fall in different levels, which holds
 fourteen for fourteen at $\delta = 0$ and nine for nine at $\delta = 0.3$.
-Prompts never use silence vocabulary, enforced by a forbidden-word list. Every
-stimulus appears in both label orderings. Count-control cells invert the correct
+%% <ITEM66> forbidden-list clause extended per lock-fix 4; read once more.
+A build-time forbidden-word list bans silence vocabulary together with Bayesian
+and computational vocabulary, so no prompt cues the operation it is testing for.
+Every stimulus appears in both label orderings. Count-control cells invert the correct
 level, so a configuration that always answers high-confidence is separable from
 a competent one. Appendix~\ref{app:prompts} reproduces the prompts, the response
 schema, and one rendered stimulus per condition.
@@ -1733,8 +1735,8 @@ raises both. The gate score is mean $s_1$ on the printed-negatives condition
 \end{table}
 
 The five configurations above the rule are admitted by the gate; \texttt{deepseek}
-and \texttt{anchor} are excluded. \texttt{sol-hi} does not accept a temperature,
-so its draws vary by seed alone.
+and \texttt{anchor} are excluded. The \texttt{openai/gpt-5.6-sol} model does not
+accept a temperature, so both \texttt{sol} configurations vary by seed alone.
 
 All calls went through the OpenRouter API. Each stimulus was drawn five times,
 one per seed (seeds $1$ through $5$); the campaign holds five draws per stimulus.
@@ -1777,9 +1779,10 @@ not hold.
 Coding agents and large language models assisted this project in two ways:
 executing and iterating the analysis pipeline in the repository, including data
 analysis and figure generation, and drafting and editing the manuscript. Every
-numeric quantity in the paper was verified against the frozen draw records
-independently of that assistance, by re-running the analysis scripts on the
-records; the design, the claims, and their scoping are the author's.
+numeric quantity in the paper was verified independently of that assistance,
+recomputed from the draw records at the cited commit or, where the quantity is
+analytic, re-derived from the model's closed form; the design, the claims, and
+their scoping are the author's.
 
 \end{document}
 
