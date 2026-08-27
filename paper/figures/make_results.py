@@ -1,17 +1,17 @@
 #!/usr/bin/env python
-"""make_fig2.py -- Figure 2 for main.tex, COMPUTED from the draw records.
+"""make_results.py -- the results figure for main.tex, COMPUTED from the draw records.
 
 This figure carries real data. Nothing here is hand-placed. Every Section 2
 number the figure touches is a live assertion below; a failed assertion is a
 stop condition (the script raises rather than drawing a wrong figure).
 
 Outputs, written to paper/figures/:
-  fig2a_s2_dcells.pdf        panel (a): signed s2 on the D-cells, result vs control
-  fig2b_mass.pdf             panel (b) variant 1: four-way mass split
-  fig2b_s1.pdf               panel (b) variant 2: the s1 ladder
-  fig2b_geometry_check.txt   diagnostic (not a figure): mass split by distance class
+  results_signed_error.pdf    panel (a): signed s2 on the D-cells, result vs control
+  results_mass.pdf            panel (b) variant 1: four-way mass split
+  results_abs_error.pdf       panel (b) variant 2: the s1 ladder
+  results_geometry_check.txt  diagnostic (not a figure): mass split by distance class
 
-Run from anywhere:  python paper/figures/make_fig2.py
+Run from anywhere:  python paper/figures/make_results.py
 No arguments. No absolute paths: every path is derived from __file__ relative to
 the repo root. If an input is missing, the script fails naming the path it wanted.
 """
@@ -385,7 +385,7 @@ def diagnostic(draws, usable, attempted, fails):
         w("  -> Section 5's headline survives a per-distance-class reading, not just the pool.")
 
     text = "\n".join(lines)
-    (FIGDIR / "fig2b_geometry_check.txt").write_text(text + "\n")
+    (FIGDIR / "results_geometry_check.txt").write_text(text + "\n")
     print(text)
     return by_class_ok, verdicts
 
@@ -447,7 +447,7 @@ def panel_a(draws):
     ax.legend(handles=handles, loc="upper center", bbox_to_anchor=(0.5, -0.20),
               ncol=2, fontsize=FS_MIN, frameon=False, handlelength=1.1,
               columnspacing=1.0, handletextpad=0.4)
-    fig.savefig(FIGDIR / "fig2a_s2_dcells.pdf", format="pdf", bbox_inches="tight")
+    fig.savefig(FIGDIR / "results_signed_error.pdf", format="pdf", bbox_inches="tight")
     plt.close(fig)
 
 
@@ -511,7 +511,7 @@ def panel_b_mass(draws, usable, attempted):
                           "* at ceiling; outside the claim population")
     leg.get_title().set_fontsize(FS_MIN - 1)
     leg.get_title().set_color("0.3")
-    fig.savefig(FIGDIR / "fig2b_mass.pdf", format="pdf", bbox_inches="tight")
+    fig.savefig(FIGDIR / "results_mass.pdf", format="pdf", bbox_inches="tight")
     plt.close(fig)
 
 
@@ -557,7 +557,7 @@ def panel_b_s1(draws):
         ax.spines[sp].set_visible(False)
     ax.text(0.9, ymax * 1.06, "* at ceiling (0.15-bin guard)",
             fontsize=FS_MIN - 1, style="italic", color="0.3", va="top", ha="left")
-    fig.savefig(FIGDIR / "fig2b_s1.pdf", format="pdf", bbox_inches="tight")
+    fig.savefig(FIGDIR / "results_abs_error.pdf", format="pdf", bbox_inches="tight")
     plt.close(fig)
 
 
@@ -570,8 +570,8 @@ def main():
     panel_b_mass(draws, usable, attempted)
     panel_b_s1(draws)
     print("\nWrote:")
-    for f in ("fig2a_s2_dcells.pdf", "fig2b_mass.pdf", "fig2b_s1.pdf",
-              "fig2b_geometry_check.txt"):
+    for f in ("results_signed_error.pdf", "results_mass.pdf", "results_abs_error.pdf",
+              "results_geometry_check.txt"):
         print(f"  paper/figures/{f}")
 
 

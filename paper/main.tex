@@ -199,7 +199,6 @@ Silence-Blindness in LLM Observers}
 %% P1 -- THE PROBLEM.
 %% An observer sees k positive reports from N analysts under a rule where only
 %% positives are filed. The N-k absences are evidence.
-%% <ITEM66> Claim text. Read once more in your own voice before submitting.
 An observer reads a transcript in which $N$ analysts have each tested which
 candidate is responsible for a contamination event. From the record it is given,
 the observer must output the name of the responsible candidate and how confident 
@@ -214,7 +213,6 @@ appears can discard much of the evidence.
 %% Write down what the transcript contains, and both the operations required
 %% and the correct answer follow in closed form. A real answer then has a
 %% LOCATION relative to that target.
-%% <ITEM66> Claim text. Read once more in your own voice before submitting.
 Our starting point is that this situation is small enough to solve exactly through
 Bayesian inference. Once the specific features of information, or channels, a 
 transcript exposes are written down, the target posterior the observer should hold and
@@ -225,13 +223,14 @@ posterior under a different reading of the transcript, and the distance and the
 direction are both measurable.
 
 %% P3 -- THE ASSET, plus the venue tie. Two sentences.
-%% <ITEM66> Claim text. Read once more in your own voice before submitting.
 The design's asset is that the map from channels to targets is many to one:
-three transcripts requiring three different amounts of work return the same
-correct answer, so a comparison across them holds
-the target fixed and varies only what the observer must do to reach it. This 
-framework is what lets us benchmark the blind spots of these observers in a form
-with an answer, since the blind spot has coordinates rather than a name.
+transcripts with different channels require the observer to perform different
+operations to absorb all the evidence available. However, if the target posterior
+is the same, a comparison across them holds the target fixed and varies only what 
+the observer must do to reach it. This framework gives us a mathematical coordinate
+system to benchmark whether LLMs reason under the limits of their own knowledge,
+distinguishing what a transcript makes known from what its silences leave
+unknown rather than reading absence as no evidence at all.
 
 %% P4 -- CONTRIBUTIONS. Four typed bullets matching the four claims.
 %% Bullet 2 per V-24-2: scoped to gated configurations in the conditions that
@@ -282,7 +281,7 @@ with an answer, since the blind spot has coordinates rather than a name.
 \iffalse
 \begin{figure}[t]
   \centering
-  % \includegraphics[width=\textwidth]{fig1_schematic.pdf}
+  % \includegraphics[width=\textwidth]{schematic.pdf}
   %% Concept schematic, NO DATA. Every x-position is the raw probability value
   %% under one shared transform (x=12.7cm, sized to fit \textwidth with the
   %% label overhangs). Markers are drawn as fixed-size nodes so xscaling cannot
@@ -341,7 +340,7 @@ with an answer, since the blind spot has coordinates rather than a name.
 \fi %% end FIGURE 1 comment-out (revive with the \iffalse above)
 
 %% =====================================================================
-\section{The framework}
+\section{The framework}\label{sec:framework}
 %% BUDGET 0.75 pages. THE CONTRIBUTION, and the largest non-example section
 %% by design. NOTHING IN THIS SECTION MOVES UNDER PAGE PRESSURE.
 %% =====================================================================
@@ -360,16 +359,16 @@ it is the source of a structural limitation we return to in
 Section~\ref{sec:blind}. Each of the $N$ analysts runs a binary assay returning \textsc{positive} or
 \textsc{negative}. If $a_0$ is responsible, an assay returns \textsc{positive}
 with probability $p$; if $a_1$ is responsible, with probability $1-p$; and the
-results are independent given which candidate is responsible. We take $p > 1/2$,
-so a positive is more consistent with $a_0$ than with $a_1$ and tilts belief
+results are independent given which candidate is responsible. We take $1/2 < p < 1$,
+so a \textsc{positive} is more consistent with $a_0$ than with $a_1$ and tilts belief
 toward $a_0$. What the observer's transcript shows of these outcomes is fixed by
 a \emph{disclosure rule}, and it is this rule that our conditions vary: some
-display every result, others file a report only on a positive and leave the
-negatives to be recovered from $N$ and the count of filed reports. In the
+display every result, others only file the $k$ \textsc{positive} reports and leave the
+$N-k$ \textsc{negative} reports as absences to be recovered from $N$ and the count of filed reports. In the
 dropout conditions, where only positives are filed, a positive additionally
 fails to be filed with probability $\delta$. This is the bookbag-and-poker-chip
 paradigm of \citet{phillips1966} conditioned on a disclosure rule. Across
-conditions the transcript therefore displays different channels, as
+conditions, the transcript therefore displays different channels, as
 Table~\ref{tab:map} sets out, and it is the channel set a transcript exposes
 that determines both the operations a correct observer must perform and the
 belief it should hold.
@@ -406,7 +405,7 @@ disconfirmation.
 %% <ITEM66> Claim text. Read once more in your own voice before submitting.
 We write $\bstar := \qz$ at $\delta = 0$ only, where it is the correct
 posterior. At $\delta > 0$ the correct posterior is $\qd$ and $\qz$ becomes the
-\emph{credulous point}, credulous in that it takes every absence at face value
+\emph{credulous point}, in that it takes every absence at face value
 as a negative, lying past correct in the direction of over-reading by the strict
 ordering of Lemma~\ref{lem:order}, so draws below correct in the dropout
 conditions are readable rather than merely wrong.
@@ -444,7 +443,7 @@ appears anywhere in the model.
 %% the outline. WRITING THIS LINE IS A REAL TASK, NOT TRANSCRIPTION.
 %% ---------------------------------------------------------------------
 \begin{lemma}[Ordering]\label{lem:order}
-Let $|A| = 2$ and $p > 1/2$, and consider a transcript with at least one absence
+Let $|A| = 2$ and $1/2 < p < 1$, and consider a transcript with at least one absence
 ($N - k \ge 1$). For every $\delta \in (0,1)$ the beliefs $\bpos$, $\qd$, $\qz$
 are strictly ordered in log-odds, and $\qd$ moves monotonically toward $\bpos$ as
 $\delta$ increases.
@@ -553,6 +552,21 @@ only by the $\delta = 0.3$ conditions.
 %% BUDGET 0.65 pages.
 %% =====================================================================
 
+%% SECTION LEAD-IN + ROSTER. Models introduced first, chronologically.
+The framework of Section~\ref{sec:framework} is a claim about any
+observer that reads such a transcript. We now put real LLM observers on it,
+running the conditions of Table~\ref{tab:map} as prompts and reading each
+model's answer as a location on the same coordinate.
+The seven configurations run four model families: \texttt{openai/gpt-5.6-sol},
+\texttt{z-ai/glm-5.2}, \texttt{deepseek/deepseek-v4-flash-0731}, and
+\texttt{meta-llama/llama-3.3-70b-instruct}. Every family except the Llama one
+contributes two configurations that differ in reasoning setting and the paired
+token budget, which is what the ``-high'' suffix on a configuration name denotes
+(abbreviated ``-hi'' in Figure~\ref{fig:results}); Appendix~\ref{app:models}
+gives the full table.
+
+\subsection{Realizing the coordinate system for LLM observers}
+
 %% RESPONSE SCALE. Four ordinal levels from two enum fields,
 %% candidate x two-level confidence.
 %% BANDS WERE MEASURED, NOT ASSUMED. Row 1.4, rewritten rev 4:
@@ -569,7 +583,6 @@ only by the $\delta = 0.3$ conditions.
 %%  - pre-test population: 32 stimuli x 3 DRAWS x 7, 659/672 usable.
 %%    Three draws, not five. Any "five draws throughout" sentence must carve
 %%    out the pre-test.
-%% <ITEM66> Claim text. Read once more in your own voice before submitting.
 Answers are elicited as two enumerated fields, a candidate and a two-level
 confidence, giving four ordinal levels. We elicit an ordinal level rather than a
 raw probability on purpose: a numerical posterior would confound the ability to
@@ -577,12 +590,16 @@ reason about the evidence with the ability to carry out the arithmetic of
 Bayesian updating, and coarsening the answer to four ordered levels strips out
 the noise of that arithmetic and keeps the signal we mean to measure, whether
 the observer moves its belief in the right direction and far enough. The
-probability ranges these four levels occupy were measured, not assumed. In a
-calibration pre-test --- $32$ stimuli, three draws each, across all seven
-configurations, $659$ of $672$ answers usable --- we swept the true probability
-and recorded which of the four answers each model gave, so we could see where on
-the scale a model switches from very confident to only somewhat confident. That
-switch sits at $0.20$ on the low side and $0.80$ on the high side: a model is
+probability ranges these four levels occupy were measured, not assumed.
+In a calibration pre-test, each configuration is handed a stated
+probability for one candidate directly, with no inference to perform, and answers
+in the same two enumerated fields. Sweeping that stated probability ($32$
+stimuli, three draws each, across all seven configurations, $659$ of $672$
+answers usable) and taking, at each step, the answer a configuration gave most
+often across its draws, we read off where on the scale a model switches from very
+confident to only somewhat confident. That
+switch sits at $0.20$ on the low side and $0.80$ on the high side
+(Figure~\ref{fig:calmap}): a model is
 very confident in a candidate only once its probability clears $0.80$, very
 confident in the other candidate below $0.20$, and merely somewhat confident
 closer to even odds. We located the low edge and the high edge separately rather
@@ -595,6 +612,19 @@ the level assignment agreeing under either cut reflects the coarseness of the
 probe rather than a demonstrated robustness. Bands were never shown to the
 models.
 
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\textwidth]{figures/confidence_map.pdf}
+  \caption{The calibration confidence map. Each row is one configuration;
+  reading its cells outward from even odds, the answer switches from somewhat to
+  very confident. Six of the seven switch together at the $0.20$ and $0.80$ ticks
+  (bold); \texttt{anchor} is the exception, holding very confidence one step
+  further in, to $0.30$ on the low side (boxed). Colour encodes the answer given
+  most often in each cell: hue is the chosen candidate, $\Sigma$ or $\Theta$, and shade its
+  confidence, dark for very and pale for somewhat.}
+  \label{fig:calmap}
+\end{figure}
+
 %% DESIGN CONSTRAINTS, four clauses:
 %%  - every cell asserts level(b_pos) != level(target) at build time.
 %%    Verified in both regimes: fourteen for fourteen at delta=0,
@@ -604,11 +634,9 @@ models.
 %%  - every stimulus appears in both label orderings.
 %%  - count-control cells invert the correct level, so a fixed
 %%    high-confidence responder is separable from a competent one.
-%% <ITEM66> Claim text. Read once more in your own voice before submitting.
 Four constraints are enforced at build time. Every cell asserts that the
 silence-blind belief and the target fall in different levels, which holds
 fourteen for fourteen at $\delta = 0$ and nine for nine at $\delta = 0.3$.
-%% <ITEM66> forbidden-list clause extended per lock-fix 4; read once more.
 A build-time forbidden-word list bans silence vocabulary together with Bayesian
 and computational vocabulary, so no prompt cues the operation it is testing for.
 Every stimulus appears in both label orderings. Count-control cells invert the correct
@@ -626,7 +654,6 @@ schema, and one rendered stimulus per condition.
 %% level(q_0), which is why stating a dropout rate can change the correct
 %% answer.
 %% CUT BRANCH: this paragraph shortens to one sentence at 3.5 pages.
-%% <ITEM66> Claim text. Read once more in your own voice before submitting.
 The four levels sit in measured bands with deliberate gaps between them: level
 $0$ is $[0,0.20]$, level $1$ is $[0.40,0.45]$, level $2$ is $[0.55,0.70]$, and
 level $3$ is $[0.80,1]$, so the ranges $0.20$--$0.40$, $0.45$--$0.55$, and
@@ -649,12 +676,30 @@ dropout target to be distinguishable from both the silence-blind belief and the
 credulous point, which is why stating a dropout rate can change the correct
 answer.
 
+\subsection{The competence gate}
+
+Before reading any model against the coordinate, we check that it can
+read the record at all. A competence gate separates the configurations that
+handle the plainly stated version of the task from those that do not, so that a
+later failure on the harder conditions can be read as silence-blindness rather
+than as an inability to do the arithmetic.
+The gate turns on two conditions built from the same underlying record. In the
+printed-negatives condition (\cond{full}), every result, positive and negative,
+is displayed and completeness is asserted, so reaching the correct answer is a
+matter of aggregation; in the derivable-absences condition (\cond{partial\_ruled}),
+only the positive reports appear, and the negatives must be inferred from the
+stated analyst count and filing rule. A configuration that fails the
+printed-negatives condition is excluded, because a failure on the
+derivable-absences condition from a configuration that also fails the printed one
+is a floor effect rather than a silence result.
+
 %% STATISTICS.
 %%   s1 = |l_obs - l_cor|
 %%   s2 = l_obs - l_cor  (positive = under-weighted toward the target)
 %%   s3 = P(l_obs = l_cor)
 %%   l_cor = level(target(C)) read off Table 1.
-%% <ITEM66> Claim text. Read once more in your own voice before submitting.
+To measure where a model lands on the coordinate, we need a distance in
+levels. We now define the statistics that report it.
 We report $s_1 = |\lobs - \lcor|$, the signed $s_2 = \lobs - \lcor$ with
 positive values meaning under-weighted toward the target, and
 $s_3 = P(\lobs = \lcor)$, where $\lobs$ is the level of observer reports and
@@ -667,60 +712,27 @@ $\lcor$ is the level of the target read off Table~\ref{tab:map}.
 %% Gap 0.764 -> 1.609, so membership is BAR-INSENSITIVE. Say so.
 %% Rationale: a RULED failure from a configuration that also fails FULL is a
 %% floor effect.
-%% <ITEM66> roster-naming sentences added per audit B1; read once more.
-The seven configurations run four model families: \texttt{openai/gpt-5.6-sol},
-\texttt{z-ai/glm-5.2}, \texttt{deepseek/deepseek-v4-flash-0731}, and
-\texttt{meta-llama/llama-3.3-70b-instruct}. Every family except the Llama one
-contributes two configurations that differ in reasoning setting and the paired
-token budget, which is what the ``-high'' suffix on a configuration name denotes
-(abbreviated ``-hi'' in Figure~\ref{fig:results}); Appendix~\ref{app:models}
-gives the full table.
-%% <ITEM66> Claim text. Read once more in your own voice before submitting.
-The gate turns on two conditions built from the same underlying record. In the
-printed-negatives condition (\cond{full}) every result, positive and negative,
-is displayed and completeness is asserted, so reaching the correct answer is a
-matter of aggregation; in the derivable-absences condition (\cond{partial\_ruled})
-only the positive reports appear, and the negatives must be inferred from the
-stated analyst count and filing rule. A configuration that fails the
-printed-negatives condition is excluded, because a failure on the
-derivable-absences condition from a configuration that also fails the printed one
-is a floor effect rather than a silence result. Five
-of seven configurations are admitted, at mean $s_1$ of $0.200$, $0.421$,
+Five of seven configurations are admitted, at mean $s_1$ of $0.200$, $0.421$,
 $0.457$, $0.752$ and $0.764$ bins; the two excluded sit at $1.609$
 (\texttt{deepseek}) and $1.800$ (\texttt{anchor}). The gap between $0.764$ and
 $1.609$ means membership does not depend on where in that interval the bar is
 placed.
 
-%% ONE SENTENCE, high value, from claims_to_evidence rev 4:
+%% END PARAGRAPH: anchor consistency + campaign totals + pre-registration.
 %% anchor is the exception in FOUR INDEPENDENT PLACES -- W1 reachability,
 %% W1 wording stability, W1 low-high asymmetry, and the delta=0 competence
-%% gate -- plus P4 on D1-D3. Four instrument checks and one behavioural gate
-%% select the same configuration. That is a CONSISTENCY RESULT, not five
-%% separate caveats.
-%% <ITEM66> Claim text. Read once more in your own voice before submitting.
+%% gate -- plus P4 on D1-D3. CONSISTENCY RESULT, not five separate caveats.
+%% CAMPAIGN: 7,051 usable of 7,210 attempted across FIVE arms, 5 draws/stimulus.
+%%   The W1 pre-test's 659/672 sits OUTSIDE that total, 3 draws, different set.
+%%   BANNED: "~7,050" as a bare total.
+%% PRE-REGISTRATION: R4 APPLIES HARD; scoring deferred to S6.
 The configuration the gate excludes at $1.800$ is also the one that fails the
 pre-test's reachability check, the only one whose switch point moves between
 wordings, and the only one with nonzero low-high asymmetry, so four instrument
-checks and one behavioural gate select the same configuration.
-
-%% CAMPAIGN, ONE SENTENCE. Correct arithmetic:
-%%   84 stimuli (14 cells x 3 arms x 2 mirrors) x 5 draws x 7 configurations
-%%   = 2,940 calls at delta=0, 2,894 usable
-%%   620/630 at delta=0.30 | 623/630 ARITH_D30 | 959/980 ARITH_D0
-%%   1,955/2,030 sweeps
-%%   TOTAL: 7,051 usable of 7,210 attempted across FIVE experimental arms.
-%%   The W1 pre-test's 659/672 sits OUTSIDE that total, on a different
-%%   stimulus set at THREE draws per stimulus.
-%%   BANNED: "~7,050" as a bare total.
-%% <ITEM66> Claim text. Read once more in your own voice before submitting.
-Across five experimental arms the campaign holds $7{,}051$ usable draws of
-$7{,}210$ attempted, at five draws per stimulus; the pre-test described above
-contributes a further $659$ of $672$ on a separate stimulus set at three draws
-per stimulus.
-
-%% PRE-REGISTRATION, ONE SENTENCE, with scoring deferred to S6.
-%% R4 APPLIES HARD HERE.
-%% <ITEM66> Claim text. Read once more in your own voice before submitting.
+checks and one behavioural gate select the same configuration. Across five
+experimental arms the campaign holds $7{,}051$ usable draws of $7{,}210$
+attempted, at five draws per stimulus; the pre-test described above contributes a
+further $659$ of $672$ on a separate stimulus set at three draws per stimulus.
 Predictions, gates, and kill conditions were fixed in a specification document
 and implemented as executable decision rules; Section~\ref{sec:blind} scores
 them and states plainly what our record does and does not establish about when
@@ -769,9 +781,10 @@ skewed. Under-use relative to Bayes has been called conservatism since
 %% closed-form Bayesian references in two of its four environments.
 Imran et al.'s expected update is itself elicited from the model, read off
 its own token probabilities, and where a closed-form reference is available
-elsewhere it is computed from evidence the observer can see.
-\citet{gupta2025} show that on such evidence updates track the Bayesian
-posterior closely once enough of it accumulates, with residual deviation
+elsewhere, it is computed from evidence the observer can see.
+\citet{gupta2025} show that updates track the Bayesian
+posterior closely when enough of that evidence has accumulated in the model's
+context, with residual deviation
 traceable to a model's own miscalibrated prior rather than to the update
 itself. Our target is computed from the disclosure rule over exact
 rationals, so the question here is not whether a belief moves correctly on
@@ -832,16 +845,21 @@ and no one-sidedness statement here can be pooled across the grid.
 %% Also BANNED here: the 176 and 206 denominators.
 \newcommand{\ParaTallies}{%
 %% <ITEM66> Claim text. Read once more in your own voice before submitting.
-On those three cells the derivable-absences condition runs $47$ to $0$ toward
+On those three cells, the derivable-absences condition runs $47$ to $0$ toward
 under-weighting across the five admitted configurations
 (Figure~\ref{fig:results}a), on $150$ attempted draws of which $150$ were
-usable. The competence gate selects on the
-printed-negatives condition and not on this one, so the result arm is
-unselected. At the registered unit of analysis, which pools mirrors and draws
-within a cell to a single modal level, eight of the fifteen configuration-by-cell
+usable. The competence gate admits configurations by their performance on the
+printed-negatives condition, not on this derivable-absences one, so the arm
+that carries the result played no part in the selection.s
+At the registered unit of analysis, which reduces one configuration's
+several runs of a single cell (its repeated samples and the two mirrored,
+label-swapped presentations of that cell) to the single ordinal level they most
+often returned, eight of the fifteen configuration-by-cell
 units are displaced toward under-weighting and none toward over-weighting
 (two-sided exact sign test, $p = 0.008$); the remaining seven carry no displaced
-mass and are undefined rather than failed. The printed-negatives condition,
+mass and are undefined rather than failed.
+
+The printed-negatives condition,
 which is the arm the gate selects on, runs $9$ to $0$ on the same $150$
 attempted draws, five of fifteen units displaced, $p = 0.063$. That arm is a
 control and not independent corroboration: every over-read it produces across
@@ -891,7 +909,7 @@ significance there for the result to stand.%
 \newcommand{\ParaAnchor}{%
 %% <ITEM66> Claim text. Read once more in your own voice before submitting.
 The error is not symmetric shrinkage toward the prior. In four of the five
-admitted configurations the displaced mass sits above the prior or exactly at
+admitted configurations, the displaced mass sits above the prior or exactly at
 the level of the silence-blind belief, a region symmetric shrinkage cannot
 reach, on the derivable-absences condition at $\delta = 0$ over all cells minus
 the admission exclusions: $8$ of $91$ error draws, $50$ of $80$, $140$ of $140$
@@ -901,10 +919,15 @@ The fifth produces sixteen error draws, every one of them a single bin from the
 target and none reaching the prior, so it contributes no mass to the region the
 test is about. The test is well posed for a stateable reason: the uniform prior at
 $0.5$ falls inside the band gap that straddles it exactly, so two levels lie
-wholly below it and two wholly above, with none ambiguous. Occupancy of the
-silence-blind level, compared from the printed-negatives condition to the
-derivable-absences one, falls in none of the five and rises in four. An ordinal
-extremity account predicts the opposite of what we see: on a four-level scale
+wholly below it and two wholly above, with none ambiguous. 
+
+Occupancy of the 
+silence-blind level, compared from the printed-negatives 
+condition to the derivable-absences one, falls in none of the five and rises
+in four.
+
+An ordinal
+extremity account predicts the opposite of what we see: on a four-level scale,
 the two middle levels are the ones an extremity effect would evacuate outward,
 so it predicts mass accumulating at the two endpoints. Of the $47$ displaced
 draws, $44$ land at the level of the silence-blind belief, which is not an
@@ -962,12 +985,12 @@ collected before it was conceived.
 %% ---------------------------------------------------------------------
 \begin{figure}[t]
   \centering
-  \includegraphics[width=0.48\textwidth]{figures/fig2a_s2_dcells.pdf}\hfill
+  \includegraphics[width=0.48\textwidth]{figures/results_signed_error.pdf}\hfill
   %% Panel (b): CHOOSE ONE variant (Fig 2 spec: Ali picks, do not merge).
   %% Active = variant 1, the four-way mass split. To use variant 2, the s1
   %% ladder, comment the next line and uncomment the one after it.
-  \includegraphics[width=0.48\textwidth]{figures/fig2b_mass.pdf}%
-  % \includegraphics[width=0.48\textwidth]{figures/fig2b_s1.pdf}%
+  \includegraphics[width=0.48\textwidth]{figures/results_mass.pdf}%
+  % \includegraphics[width=0.48\textwidth]{figures/results_abs_error.pdf}%
   \caption{%% <ITEM66> Caption text.
   \textbf{(a)} Signed displacement $s_2$ on the three cells where over-weighting
   is expressible, five admitted configurations, $150$ attempted draws per arm;
@@ -993,7 +1016,8 @@ collected before it was conceived.
 %% confounded.
 %% <ITEM66> Claim text. Read once more in your own voice before submitting.
 When a system fails to use the absences, it may be failing to notice them or
-failing to convert them once noticed. In general these two are confounded,
+failing to understand what they mean in context. In general,
+ these two are confounded,
 because a task that makes the absences easier to see usually also makes them
 easier to interpret.
 
@@ -1029,17 +1053,27 @@ not establish.
 %%   glm-high's occupancy RISES 6.4->10.7 and is reported; it sits outside
 %%     the population by the registered 0.15-bin ceiling guard.
 %% <ITEM66> Claim text. Read once more in your own voice before submitting.
-Deleting the identification step frees the answers. Residence at the
-silence-blind belief collapses in every non-ceiling admitted configuration,
+Deleting the identification step frees the answers. Each pair below runs from
+the derivable-absences condition to the enumerated one, the direction in which
+reaching the target posterior takes one operation fewer; read that way, the more
+operations the target requires, the more mass sits at the silence-blind belief.
+Residence there collapses in every non-ceiling admitted configuration once the
+step is removed,
 from $4.6$ to $0.0$, from $30.6$ to $12.9$, and from $77.1$ to $50.0$ percent of
 usable draws over all cells minus the admission exclusions
 (Figure~\ref{fig:results}b): the absences were going unnoticed. But the freed answers do not arrive at
 the target. Interior mass, the mass strictly between the silence-blind belief
-and the correct one, rises in every one of them, from $65.4$ to $66.9$, $28.4$
+and the correct one, rises in every one of them as that step comes out, from $65.4$ to $66.9$, $28.4$
 to $42.4$, and $17.1$ to $27.9$. This pooled rise is not uniform across cell
 geometries: for sol-none it comes entirely from the distance-3 cells, while the
 distance-2 cells stay flat at 70.0 percent. Identification is repaired and
-conversion is not. One further configuration, flagged at ceiling by the registered guard and
+conversion is not. Each half names a different comparison: identification is the
+operation the derivable-absences condition demands and the enumerated one drops,
+so its repair is the collapse above, read from the former to the latter;
+conversion is the operation that still separates the enumerated condition from
+the one that prints every result and asks only for aggregation, so its failure is
+why the freed mass rises into the interior rather than reaching the target, even
+with identification handed over. One further configuration, flagged at ceiling by the registered guard and
 therefore outside this population, moves the other way, from $6.4$ to $10.7$,
 and we report it.
 
@@ -1082,8 +1116,10 @@ rather than scoring it against a prediction.
 %% <ITEM66> dropout opening rewritten per audit item 1 (active harm); read once more.
 Once a dropout rate is stated the same handout does not merely fail to help;
 for three of the seven configurations it hurts, moving them $0.034$, $0.100$ and
-$0.232$ bins further from the target. At $\delta = 0.3$ no configuration's
-deficit falls by more than $0.125$ bins, and a worst-case reassignment of
+$0.232$ bins further from the target. At $\delta = 0.3$, no configuration's distance 
+to the target falls by more than $0.125$ bins when the
+absences are enumerated rather than left to be inferred at that same dropout
+rate, and a worst-case reassignment of
 unusable draws moves that bound to $0.20$. That covers all seven configurations
 and needs no gating argument. It is also where the geometry
 does work: the target moves to the discounted belief and the undiscounted one
