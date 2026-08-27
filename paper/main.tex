@@ -139,15 +139,14 @@
 \newcommand{\cond}[1]{\textsc{#1}}   % condition names: \cond{full}, \cond{ruled_d30}
 
 %% ---- Section 4 headline toggle. OPEN ITEM (outline sec 7).
-%% \anchorleadtrue   -> S4 leads with the b_pos-anchoring result
-%%                      (prior-crossing + level split, two independent supports)
-%% \anchorleadfalse  -> S4 leads with the D-cell 47-0 tallies
-%% Both orderings are written below as macros so they cannot drift apart.
-%% Flip this one line, recompile, read both, decide.
+%% \anchorleadtrue   -> S4 leads with \ParaAnchor (occupancy + extremity)
+%% \anchorleadfalse  -> S4 leads with \ParaTallies (the D-cell 47-0 tallies)
+%% (Named from the retired b_pos-anchoring result; the toggle now just orders the
+%% two macros so they cannot drift apart.) Flip this one line, recompile, decide.
 \newif\ifanchorlead
 %% FIXED 2026-08-23: was \anchorleadtrue, which put "the 47 displaced draws"
 %% one paragraph BEFORE the 47-0 tally was introduced. Do not flip back without
-%% also moving the tally sentence into the anchoring paragraph.
+%% also moving the tally sentence into \ParaAnchor.
 \anchorleadfalse
 
 \title{Channels to Targets: A Closed-Form Coordinate System for
@@ -248,8 +247,8 @@ unknown rather than reading absence as no evidence at all.
   \item \textbf{Localizing the direction of error.} Among the five
     configurations admitted by the competence gate, in the two conditions that
     do not enumerate the absences, under-weighting is the only direction of
-    error observed, and the error anchors on the silence-blind belief rather
-    than on the prior.
+    error observed, and a model comes to rest on the silence-blind belief more
+    often when the absences must be recovered than when they are printed.
   \item \textbf{Separating identification from interpretation.} How much of a
     configuration's silence deficit is failure to notice the absences rather
     than failure to understand them is a per-configuration quantity the instrument
@@ -703,7 +702,7 @@ levels. We now define the statistics that report it.
 We report $s_1 = |\lobs - \lcor|$, the signed $s_2 = \lobs - \lcor$ with
 positive values meaning under-weighted toward the target, and
 $s_3 = P(\lobs = \lcor)$, where $\lobs$ is the level of observer reports and
-$\lcor$ is the level of the target read off Table~\ref{tab:map}.
+$\lcor$ is the level of the correct target read off Table~\ref{tab:map}.
 
 %% COMPETENCE GATE. Name BOTH excluded configurations with their FULL scores.
 %% Gate: mean s1 on FULL, draw level, all 14 cells, < 1.0 bin.
@@ -742,9 +741,10 @@ they were fixed.
 \section{Example 1: which direction does the error run?}\label{sec:ex1}
 %% BUDGET 0.60 pages.
 %% OPEN ITEM: headline ordering. Toggle \anchorleadtrue / \anchorleadfalse
-%% in the preamble. Rev 3 note: the b_pos-anchoring result now has TWO
-%% independent supports (prior-crossing and the level split), which
-%% strengthens the case for giving it the headline over the tallies.
+%% in the preamble to order \ParaAnchor (occupancy + extremity) against
+%% \ParaTallies (the D-cell tallies). The prior-crossing support was cut
+%% 2026-08-27, so \ParaAnchor now rests on the occupancy result and the
+%% extremity refutation.
 %%
 %% NOTE the dependency: S4's arbitration sentence locates the over-updating
 %% regime using S5's result. Either order them accordingly or state the
@@ -763,7 +763,6 @@ they were fixed.
 %%    record's error, corrected at item 36.
 %%  - The populations DO NOT OVERLAP and that is load-bearing.
 %%  - Construct name: conservatism, after Edwards.
-%% <ITEM66> Claim text. Read once more in your own voice before submitting.
 Whether language models update too little or too much is contested, and the two
 closest anchors disagree on populations that do not overlap.
 \citet{imran2025} report that pre-trained-only checkpoints update less than
@@ -806,14 +805,17 @@ were registered, the literature engagement was not.
 %% b* < b_pos in every cell; l_cor = 0 in 11 of 14 cells; so over-weighting is
 %% only EXPRESSIBLE where l_cor >= 1, which is cells D1-D3.
 %% STATE THE DENOMINATOR HONESTLY AND UP FRONT.
-%% <ITEM66> Claim text. Read once more in your own voice before submitting.
 The comparison uses two channel sets, printed negatives against derivable
 absences, which require different operations and share a target by
 Proposition~\ref{prop:pivot}. Because the target lies below the silence-blind
-belief in every cell, and lies in the bottom level in eleven of the fourteen,
-over-weighting is structurally inexpressible outside the three cells where the
-target sits one level up. Those three cells carry every claim in this section,
-and no one-sidedness statement here can be pooled across the grid.
+belief in every cell, an answer that under-weights the silence stays high, above
+the target, while one that over-weights it falls below. The first eleven cells have a
+target that already rests on the bottom level (Appendix~\ref{app:cells}), so nothing lies
+below it and over-weighting is structurally inexpressible. We therefore built three cells, 
+D1--D3, with the target one level up
+($\lcor = 1$ rather than $0$), specifically so that an answer can fall on either
+side of it; these three are where under-weighting and over-weighting are both
+expressible, and the direction-of-error result is measured on them by design.
 
 %% ---------------------------------------------------------------------
 %% The two result paragraphs are defined as macros so the two candidate
@@ -844,40 +846,27 @@ and no one-sidedness statement here can be pooled across the grid.
 %% sentence that the paper assumes no independence across draws).
 %% Also BANNED here: the 176 and 206 denominators.
 \newcommand{\ParaTallies}{%
-%% <ITEM66> Claim text. Read once more in your own voice before submitting.
 On those three cells, the derivable-absences condition runs $47$ to $0$ toward
 under-weighting across the five admitted configurations
 (Figure~\ref{fig:results}a), on $150$ attempted draws of which $150$ were
 usable. The competence gate admits configurations by their performance on the
 printed-negatives condition, not on this derivable-absences one, so the arm
-that carries the result played no part in the selection.s
+that carries the result played no part in the selection.
 At the registered unit of analysis, which reduces one configuration's
 several runs of a single cell (its repeated samples and the two mirrored,
 label-swapped presentations of that cell) to the single ordinal level they most
 often returned, eight of the fifteen configuration-by-cell
 units are displaced toward under-weighting and none toward over-weighting
 (two-sided exact sign test, $p = 0.008$); the remaining seven carry no displaced
-mass and are undefined rather than failed.
-
-The printed-negatives condition,
-which is the arm the gate selects on, runs $9$ to $0$ on the same $150$
-attempted draws, five of fifteen units displaced, $p = 0.063$. That arm is a
-control and not independent corroboration: every over-read it produces across
-the full roster comes from the two configurations the gate excluded. The
-direction persists under the easier channel set, and it does not need to reach
-significance there for the result to stand.%
+mass and are undefined rather than failed. This direction persists in the
+printed-negatives condition, $9$ to $0$ on the same $150$ attempted draws, five
+of fifteen units displaced, $p = 0.063$.%
 }
 
-%% P5 -- THE SHARPER CLAIM. The error anchors on b_pos, NOT on pi.
-%% Error mass sits above the prior or exactly at level(b_pos), unreachable by
-%% symmetric shrinkage, in the four admitted configs with mass in the tested
-%% region (l_pos>=2 in every cell, so "at l_pos" is a SUBSET of "above prior" --
-%% the disjunction is vacuous; report at-l_pos separately for the anchoring claim):
-%%   sol-none 8/91 | deepseek-high 50/80 | glm 140/140 (108 exactly at l_pos)
-%%   glm-high 17/52 ; sol-high produces 16 error draws, all at level 1, none in
-%%   the tested region (four of five, not zero). Kill bar of 2 fixed at a checkpoint before the test
-%%   ran (R4: process claim).
-%%   BANNED: pooled totals 27/79/197/22.
+%% P5 -- OCCUPANCY + THE FOURTH KILLED ALTERNATIVE.
+%% The b_pos-anchoring / prior-crossing claim (old row 2.5, the 8/91 .. 17/52
+%% numerators) was CUT 2026-08-27 as weak -- see the ledger. What remains here is
+%% the occupancy result (now Figure 2b) and the extremity refutation.
 %% Blind-point occupancy FALLS IN NONE OF FIVE and rises in four
 %%   (0->4.6, 12.4->30.6, 6.4->77.1, 0.7->6.4; sol-high 0->0 at ceiling).
 %%   BANNED: "5/5" occupancy.
@@ -907,24 +896,39 @@ significance there for the result to stand.%
 %% A constant model-internal prior cannot produce a location that tracks a
 %% computed quantity. NOT in live text; page budget.
 \newcommand{\ParaAnchor}{%
-%% <ITEM66> Claim text. Read once more in your own voice before submitting.
-The error is not symmetric shrinkage toward the prior. In four of the five
-admitted configurations, the displaced mass sits above the prior or exactly at
-the level of the silence-blind belief, a region symmetric shrinkage cannot
-reach, on the derivable-absences condition at $\delta = 0$ over all cells minus
-the admission exclusions: $8$ of $91$ error draws, $50$ of $80$, $140$ of $140$
-with $108$ landing exactly at that level, and $17$ of $52$.
-%% <ITEM66> sol-high sentence (audit E1); read once more before submission.
-The fifth produces sixteen error draws, every one of them a single bin from the
-target and none reaching the prior, so it contributes no mass to the region the
-test is about. The test is well posed for a stateable reason: the uniform prior at
-$0.5$ falls inside the band gap that straddles it exactly, so two levels lie
-wholly below it and two wholly above, with none ambiguous. 
+We also ask how often belief comes to rest exactly on the silence-blind level,
+and whether that changes with the channel. Occupancy of that level, the fraction
+of usable draws that land on it, is measured for the five admitted configurations
+over all cells minus the admission exclusions, under both the printed-negatives
+condition and the derivable-absences one at $\delta = 0$
+(Figure~\ref{fig:results}b). That level is one of the two above the prior: the
+uniform prior at $0.5$ falls inside the band gap that straddles it exactly, so two
+levels lie wholly below it and two wholly above, with none ambiguous. Occupancy
+rises when the negatives must be inferred rather than read, and falls for none of
+the five, so a model settles on the silence-blind belief more readily precisely
+where the silence has to be recovered.
 
-Occupancy of the 
-silence-blind level, compared from the printed-negatives 
-condition to the derivable-absences one, falls in none of the five and rises
-in four.
+%% Figure 2 serves the tallies and occupancy paragraphs above; the extremity
+%% paragraph below is a separate point (float moved here 2026-08-27).
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.48\textwidth]{figures/results_signed_error.pdf}\hfill
+  %% Panel (b): silence-blind-level occupancy, FULL vs RULED (make_occupancy.py).
+  \includegraphics[width=0.48\textwidth]{figures/results_occupancy.pdf}%
+  \caption{%% <ITEM66> Caption text.
+  \textbf{(a)} Signed displacement $s_2$ on the three cells where over-weighting
+  is expressible, five admitted configurations, $150$ attempted draws per arm;
+  the result arm is derivable-absences, the control (gate-selected) is
+  printed-negatives. The $s_2 = -1$ (over-weighted) segment has zero width in
+  every bar, which is the finding. \textbf{(b)} Occupancy of the silence-blind
+  level, the percent of usable draws landing exactly on it, under the
+  printed-negatives condition (open marker) and the derivable-absences one
+  (filled), for the five admitted configurations over all 14 cells at $\delta = 0$.
+  Occupancy rises in four of the five and falls in
+  none, reaching $77.1$ percent for \texttt{glm}; \texttt{sol-hi} sits at zero in
+  both. Configurations are abbreviated (\texttt{dsk}${=}$deepseek).}
+  \label{fig:results}
+\end{figure}
 
 An ordinal
 extremity account predicts the opposite of what we see: on a four-level scale,
@@ -969,40 +973,6 @@ which is the thesis.
 This example required no new inference calls and runs entirely on draws
 collected before it was conceived.
 
-%% ---------------------------------------------------------------------
-%% FIGURE 2 -- two panels, one float, placed to serve S4 and S5.
-%% 2(a) SPEC: signed s2 on D-cells, five gated configurations, FULL and RULED
-%%   paired. Zero line marked. Region below zero shaded and labelled
-%%   "expressible, unobserved". The panel MUST make clear that RULED is the
-%%   result arm and FULL the control, since the gate selects on FULL.
-%% 2(b) SPEC: three rungs on x in nesting order
-%%   (PARTIAL_RULED -> ARITH_D0 -> FULL), five gated configurations as lines,
-%%   s1 on y, target floor at zero, b_pos distance marked as a horizontal
-%%   reference. Shows both the drop and the residual gap.
-%% OPEN ITEM (outline sec 7): 2(b)'s statistic. Specced on s1; blind-point
-%%   occupancy may read better. Decide when the figure is drawn.
-%% Items 43-46 (figures and captions) are DOWNSTREAM of having pages.
-%% ---------------------------------------------------------------------
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=0.48\textwidth]{figures/results_signed_error.pdf}\hfill
-  %% Panel (b): CHOOSE ONE variant (Fig 2 spec: Ali picks, do not merge).
-  %% Active = variant 1, the four-way mass split. To use variant 2, the s1
-  %% ladder, comment the next line and uncomment the one after it.
-  \includegraphics[width=0.48\textwidth]{figures/results_mass.pdf}%
-  % \includegraphics[width=0.48\textwidth]{figures/results_abs_error.pdf}%
-  \caption{%% <ITEM66> Caption text.
-  \textbf{(a)} Signed displacement $s_2$ on the three cells where over-weighting
-  is expressible, five admitted configurations, $150$ attempted draws per arm;
-  the result arm is derivable-absences, the control (gate-selected) is
-  printed-negatives. The $s_2 = -1$ (over-weighted) segment has zero width in
-  every bar, which is the finding. \textbf{(b)} Four-way mass split (beyond
-  $\bpos$, at $\bpos$, interior, at or past target) across rungs
-  \textsc{ruled}/\textsc{arith}/\textsc{full}, all cells minus admission
-  exclusions, denominators varying by configuration; starred configurations are
-  at ceiling, outside the claim population (\texttt{dsk}${=}$deepseek).}
-  \label{fig:results}
-\end{figure}
 
 %% =====================================================================
 \section{Example 2: identification or interpretation?}\label{sec:ex2}
@@ -1028,7 +998,8 @@ easier to interpret.
 %% out of the map.
 %% <ITEM66> Claim text. Read once more in your own voice before submitting.
 Table~\ref{tab:map} separates them without a new task. Its three shared-target
-conditions have strictly nested operation sets, so moving up the ladder deletes
+conditions (\cond{full}, \cond{arith\_d0}, and \cond{partial\_ruled}) have
+strictly nested operation sets, so moving up the ladder deletes
 exactly one operation and changes nothing else, and the deletion is performed by
 the transcript rather than by an instruction. This does not have to be designed
 in; it falls out of the map.
@@ -1041,6 +1012,17 @@ The added rung contributes $980$ calls, $959$ usable, over a stimulus set fixed
 at a content hash; Section~\ref{sec:blind} states what that hash does and does
 not establish.
 
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.55\textwidth]{figures/results_mass.pdf}
+  \caption{Four-way mass split (beyond $\bpos$, at $\bpos$, interior, at or past
+  target) across the rungs \textsc{ruled}/\textsc{arith}/\textsc{full}, all cells
+  minus admission exclusions, denominators varying by configuration. Starred
+  configurations are at ceiling, outside the claim population
+  (\texttt{dsk}${=}$deepseek).}
+  \label{fig:mass}
+\end{figure}
+
 %% P4 -- THE RESULT, HEADLINE FIRST. Settled 2026-08-21: the headline is the
 %% RISING INTERIOR MASS, a universal over the claim population with no
 %% fraction to defend.
@@ -1052,7 +1034,6 @@ not establish.
 %%   IDENTIFICATION IS REPAIRED; CONVERSION IS NOT.
 %%   glm-high's occupancy RISES 6.4->10.7 and is reported; it sits outside
 %%     the population by the registered 0.15-bin ceiling guard.
-%% <ITEM66> Claim text. Read once more in your own voice before submitting.
 Deleting the identification step frees the answers. Each pair below runs from
 the derivable-absences condition to the enumerated one, the direction in which
 reaching the target posterior takes one operation fewer; read that way, the more
@@ -1061,7 +1042,7 @@ Residence there collapses in every non-ceiling admitted configuration once the
 step is removed,
 from $4.6$ to $0.0$, from $30.6$ to $12.9$, and from $77.1$ to $50.0$ percent of
 usable draws over all cells minus the admission exclusions
-(Figure~\ref{fig:results}b): the absences were going unnoticed. But the freed answers do not arrive at
+(Figure~\ref{fig:mass}): the absences were going unnoticed. But the freed answers do not arrive at
 the target. Interior mass, the mass strictly between the silence-blind belief
 and the correct one, rises in every one of them as that step comes out, from $65.4$ to $66.9$, $28.4$
 to $42.4$, and $17.1$ to $27.9$. This pooled rise is not uniform across cell
@@ -1615,6 +1596,71 @@ A.~Samanta, A.~Magesh, T.~Lancewicki, A.~Jain, Y.~Yu, P.~Sajda, K.~Hassani,
 \end{thebibliography}
 
 \appendix
+
+%% =====================================================================
+\section{The cell design}\label{app:cells}
+%% =====================================================================
+
+Each row of Table~\ref{tab:cells} is a \emph{cell}: one scenario put to the
+observers, fixed by an analyst count $N$, the number of filed positives $k$, and
+a per-assay strength $p$. The conditions of Table~\ref{tab:map} are run on each
+of these fourteen scenarios, and the draws they return are the data behind every
+result in the paper. In the table $N$, $k$, and $p$ are the inputs; every other
+column is computed from them: the absences $N - k$, the silence-blind belief
+$\bpos$ and the correct posterior $\qz$ at $\delta = 0$, and the levels $\lpos$
+and $\lcor$ that those two beliefs occupy.
+
+\begin{table}[t]
+  \caption{The fourteen cells. $N$, $k$, and $p$ are inputs; the remaining
+  columns are computed from them. $\bpos$ is the belief that ignores the
+  absences and $\qz$ the correct posterior at $\delta = 0$, with $\lpos$ and
+  $\lcor$ their ordinal levels. Beliefs are exact rationals, shown to three
+  places.}
+  \label{tab:cells}
+  \centering
+  \small
+  \begin{tabular}{lrrrrrrrr}
+    \toprule
+    cell & $N$ & $k$ & $N-k$ & $p$ & $\bpos$ & $\qz$ & $\lpos$ & $\lcor$ \\
+    \midrule
+    A1 &  5 & 2 & 3 & 0.81 & 0.948 & 0.190 & 3 & 0 \\
+    A2 &  8 & 3 & 5 & 0.67 & 0.893 & 0.195 & 3 & 0 \\
+    A3 & 10 & 4 & 6 & 0.67 & 0.944 & 0.195 & 3 & 0 \\
+    A4 & 13 & 5 & 8 & 0.62 & 0.920 & 0.187 & 3 & 0 \\
+    A5 & 14 & 5 & 9 & 0.67 & 0.972 & 0.056 & 3 & 0 \\
+    \midrule
+    B1 & 11 & 3 & 8 & 0.57 & 0.700 & 0.196 & 2 & 0 \\
+    B2 &  5 & 1 & 4 & 0.62 & 0.620 & 0.187 & 2 & 0 \\
+    B3 &  8 & 2 & 6 & 0.59 & 0.674 & 0.189 & 2 & 0 \\
+    \midrule
+    C1 &  6 & 2 & 4 & 0.88 & 0.982 & 0.018 & 3 & 0 \\
+    C2 &  8 & 3 & 5 & 0.79 & 0.982 & 0.066 & 3 & 0 \\
+    C3 & 11 & 4 & 7 & 0.73 & 0.982 & 0.048 & 3 & 0 \\
+    \midrule
+    D1 &  5 & 2 & 3 & 0.56 & 0.618 & 0.440 & 2 & 1 \\
+    D2 &  8 & 3 & 5 & 0.54 & 0.618 & 0.421 & 2 & 1 \\
+    D3 & 10 & 4 & 6 & 0.53 & 0.618 & 0.440 & 2 & 1 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+The cells fall into four blocks. \textbf{A} is the span-three backbone: the
+silence-blind belief sits at the top level ($\lpos = 3$) while the correct answer
+sits at the bottom ($\lcor = 0$), the widest displacement the scale allows, with
+$N$ and $k$ varied so that a level-three blind belief is built from different
+amounts of evidence. \textbf{B} is the span-two backbone, the same construction
+one level before, with the blind belief at level two; together A and B measure
+under-weighting at the two levels the blind belief can occupy. \textbf{C} is a
+count control at level three: $\bpos$ is held essentially constant ($0.982$
+across the block) while $k$ varies, so a configuration that reasons about the
+evidence answers the same across C1--C3 whereas one that merely tracks the number
+of filed positives does not, which separates competence from count-following.
+\textbf{D} is a count control at level two, and the one block built with
+$\lcor = 1$ by design: holding $\bpos$ fixed at $0.618$ plays the same control
+role as C, but placing the correct answer one level off the floor is what makes
+over-weighting expressible. D is the only block where an answer can land above
+the target as well as below it, and we built it that way on purpose so that
+under-weighting can be tested against over-weighting rather than only measured.
 
 %% =====================================================================
 \section{Prompts and elicitation}\label{app:prompts}
