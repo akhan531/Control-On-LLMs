@@ -16,6 +16,7 @@
 \usepackage{amsfonts}
 \usepackage{amsthm}
 \usepackage{graphicx}
+\usepackage{subcaption}
 \usepackage{microtype}
 \usepackage{nicefrac}
 \usepackage{xcolor}
@@ -249,11 +250,9 @@ unknown rather than reading absence as no evidence at all.
     do not enumerate the absences, under-weighting is the only direction of
     error observed, and a model comes to rest on the silence-blind belief more
     often when the absences must be recovered than when they are printed.
-  \item \textbf{Separating identification from interpretation.} How much of a
-    configuration's silence deficit is failure to notice the absences rather
-    than failure to understand them is a per-configuration quantity the instrument
-    measures, and enumerating the absences repairs the first without repairing
-    the second.
+  \item \textbf{Separating identification from interpretation.} Enumerating the
+    absences repairs a configuration's failure to notice them without repairing
+    its failure to understand them.
   \item \textbf{The instrument's own limits, reported as results.} Two
     structural quantities are welded together by the geometry, one of our
     registered checks does not measure what it names, and our primary
@@ -1012,15 +1011,88 @@ The added rung contributes $980$ calls, $959$ usable, over a stimulus set fixed
 at a content hash; Section~\ref{sec:blind} states what that hash does and does
 not establish.
 
+%% CEILING GUARD. Registered as a decision rule (arith_d0_prereg.md); ordering
+%% deferred to S6 per R4. The empty gap is the load-bearing, verifiable fact.
+%% <ITEM66> Claim text. Read once more in your own voice before submitting.
+To separate the failure to identify the absences from the failure to interpret
+them, we compare a configuration's answers when the absences must be inferred
+(the derivable-absences condition) against its answers when they are spelled out
+(the enumerated condition). Whatever enumerating them recovers is what the
+configuration could not identify on its own. However, that comparison only means something
+for a configuration that has trouble reading silence in the first place. Some
+configurations do not: they handle the condition where the absences must be
+inferred about as well as the one where every result is printed, so they carry no
+identification deficit. Trying to quantify how much the enumeration of absences helps
+the LLM reason would be be measuring repair where there was nothing to repair.
+
+We guard against this with a rule fixed as a written decision criterion, not a
+line drawn afterward. A configuration's difficulty with silence is the gap
+between its error when the absences must be inferred and its error when every
+result is printed, $s_{1,\mathrm{RULED}} - s_{1,\mathrm{FULL}}$. A configuration
+for which that gap is below $0.15$ bins is declared \emph{at ceiling} and set
+aside as uninformative for identification localization. These
+configurations are at the ceiling of silence-reading ability, and this section
+asks about configurations with a genuine deficit. Section~\ref{sec:blind} states 
+plainly what our record
+does and does not establish about when this rule was fixed; what the data settles
+directly is stronger, and appears in Table~\ref{tab:ceiling}: the threshold falls
+in an empty gap.
+
+\begin{table}[t]
+  \caption{Silence-reading difficulty per admitted configuration: cell-weighted
+  mean $s_1$ on the derivable-absences and printed-negatives conditions and their
+  difference, over cells minus admission exclusions at $\delta = 0$. The $0.15$-bin threshold
+  falls in an empty gap. \texttt{sol-high} and \texttt{glm-high} sit well below it
+  and near zero (\texttt{sol-high} is negative, scoring better when the absences
+  must be inferred than when they are printed), so these two read silence with
+  essentially no difficulty; the other three carry a genuine deficit, and the
+  localization comparison is valid only for them.}
+  \label{tab:ceiling}
+  \centering
+  \small
+  \begin{tabular}{lrrr}
+    \toprule
+    configuration & $s_{1,\mathrm{FULL}}$ & $s_{1,\mathrm{RULED}}$ &
+      $s_{1,\mathrm{RULED}} - s_{1,\mathrm{FULL}}$ \\
+    \midrule
+    \texttt{sol-none}      & $0.431$ & $0.762$ & $0.331$ \\
+    \texttt{deepseek-high} & $0.758$ & $1.020$ & $0.261$ \\
+    \texttt{glm}           & $0.764$ & $2.243$ & $1.479$ \\
+    \midrule
+    \texttt{sol-high}$^{\ast}$ & $0.200$ & $0.114$ & $-0.086$ \\
+    \texttt{glm-high}$^{\ast}$ & $0.457$ & $0.486$ & $0.029$ \\
+    \bottomrule
+  \end{tabular}\\[2pt]
+  {\footnotesize $^{\ast}$ at ceiling
+  ($s_{1,\mathrm{RULED}} - s_{1,\mathrm{FULL}} < 0.15$ bins).}
+\end{table}
+
 \begin{figure}[t]
   \centering
-  \includegraphics[width=0.55\textwidth]{figures/results_mass.pdf}
-  \caption{Four-way mass split (beyond $\bpos$, at $\bpos$, interior, at or past
-  target) across the rungs \textsc{ruled}/\textsc{arith}/\textsc{full}, all cells
-  minus admission exclusions, denominators varying by configuration. Starred
-  configurations are at ceiling, outside the claim population
-  (\texttt{dsk}${=}$deepseek).}
-  \label{fig:mass}
+  \begin{subfigure}[t]{0.49\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/results_residence.pdf}
+    \caption{Residence at the silence-blind belief, over cells minus admission
+    exclusions. It collapses for the three deficit configurations; the two ceiling
+    configurations do not follow, with \texttt{glm-hi} rising instead.}
+    \label{fig:residence}
+  \end{subfigure}\hfill
+  \begin{subfigure}[t]{0.49\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/results_interior.pdf}
+    \caption{Interior mass, on the cells that can express it (\texttt{D1}--\texttt{D3}
+    excluded, where target and silence-blind belief are adjacent). It rises for
+    all five, but the two ceiling configurations are set aside.}
+    \label{fig:interior}
+  \end{subfigure}
+  \caption{Identification is repaired; interpretation is not. Moving from the
+  derivable-absences condition (\textsc{ruled}) to the enumerated one
+  (\textsc{arith}) at $\delta = 0$; filled marker \textsc{ruled}, open marker
+  \textsc{arith}, rows grouped by the ceiling guard. \textbf{(a)} residence at the
+  silence-blind belief collapses, so the absences were going unnoticed;
+  \textbf{(b)} the freed mass rises into the interior rather than reaching the
+  target (\texttt{dsk}${=}$deepseek).}
+  \label{fig:repair}
 \end{figure}
 
 %% P4 -- THE RESULT, HEADLINE FIRST. Settled 2026-08-21: the headline is the
@@ -1034,105 +1106,32 @@ not establish.
 %%   IDENTIFICATION IS REPAIRED; CONVERSION IS NOT.
 %%   glm-high's occupancy RISES 6.4->10.7 and is reported; it sits outside
 %%     the population by the registered 0.15-bin ceiling guard.
-Deleting the identification step frees the answers. Each pair below runs from
-the derivable-absences condition to the enumerated one, the direction in which
-reaching the target posterior takes one operation fewer; read that way, the more
-operations the target requires, the more mass sits at the silence-blind belief.
-Residence there collapses in every non-ceiling admitted configuration once the
-step is removed,
-from $4.6$ to $0.0$, from $30.6$ to $12.9$, and from $77.1$ to $50.0$ percent of
-usable draws over all cells minus the admission exclusions
-(Figure~\ref{fig:mass}): the absences were going unnoticed. But the freed answers do not arrive at
-the target. Interior mass, the mass strictly between the silence-blind belief
-and the correct one, rises in every one of them as that step comes out, from $65.4$ to $66.9$, $28.4$
-to $42.4$, and $17.1$ to $27.9$. This pooled rise is not uniform across cell
-geometries: for sol-none it comes entirely from the distance-3 cells, while the
-distance-2 cells stay flat at 70.0 percent. Identification is repaired and
-conversion is not. Each half names a different comparison: identification is the
-operation the derivable-absences condition demands and the enumerated one drops,
-so its repair is the collapse above, read from the former to the latter;
-conversion is the operation that still separates the enumerated condition from
-the one that prints every result and asks only for aggregation, so its failure is
-why the freed mass rises into the interior rather than reaching the target, even
-with identification handed over. One further configuration, flagged at ceiling by the registered guard and
-therefore outside this population, moves the other way, from $6.4$ to $10.7$,
-and we report it.
+Deleting the identification step frees the answers off the silence-blind belief.
+Moving from the derivable-absences condition to the enumerated one, residence at
+that belief collapses in every deficit configuration, from $4.6$ to $0.0$, from
+$30.6$ to $12.9$, and from $77.1$ to $50.0$ percent of usable draws over cells
+minus the admission exclusions (Figure~\ref{fig:residence}): the absences were
+going unnoticed. We report that for the two ceiling configurations,
+\texttt{glm-high} moves the other way, $6.4$ to $10.7$, and \texttt{sol-high}
+has no residence to lose. Both do not follow the pattern from the deficit models, as
+they have no genuine deficit to repair in the first place. But the freed answers 
+do not arrive at the target. Interior mass, the
+mass strictly between the silence-blind belief and the correct one, rises in
+every deficit configuration as the step comes out, from $85.0$ to $87.0$, $36.5$
+to $54.1$, and $21.8$ to $35.5$ percent on the cells that can express it, with
+$\mathrm{D_1}$--$\mathrm{D_3}$ dropped since these cells have the target and the
+silence-blind belief adjacent to each other, so no level lies between them.
+(Figure~\ref{fig:interior}). Interior mass rises for all five admitted
+configurations, but the two ceiling rations are set aside since we
+already established that they carry no repair interpretation. 
 
-%% P5 -- THE PER-MODEL SPLIT.
-%% STATE THE PART-2 SENTENCE FIRST (row 4.7): FIVE OF FIVE admitted
-%% configurations receive a well-defined verdict, three numeric positions and
-%% two adjudicated "ceiling". This must appear BEFORE the numbers do.
-%% THEN, under V-24-1, the numbers: THE CLOSURES SPAN 28% TO 114%
-%%   (lambda: sol-none 0.72, glm 0.67, deepseek-high -0.14), with the top of
-%%   the range past the printed-negatives floor (deepseek-high's ARITH s1 of
-%%   0.721 below its FULL floor of 0.758).
-%%   Phrased as a SPAN per R1, never as a fact about one configuration.
-%%   BANNED: "~100%" gap closure.
-%% DEFINE lambda EXPLICITLY AT FIRST USE AND NEVER CALL IT ATTENUATION --
-%%   the symbol names a different object in the closed-avenue record (23b).
-%% V-24-1: lambda is retired as a REGISTERED PREDICTION TARGET (the
-%%   registration carried no numeric bounds) and retained as a DESCRIPTIVE
-%%   MEASURED QUANTITY. Do not score it against a registration.
-%% <ITEM66> Claim text. Read once more in your own voice before submitting.
-The split is a per-configuration quantity and not a constant. All five admitted
-configurations receive a well-defined verdict: three numeric positions and two
-adjudicated at ceiling by the registered guard. Writing $\lambda$ for the share
-of the gap between the two conditions that enumeration leaves unclosed, the
-closures span $28$ to $114$ percent of that gap, with the top of the range
-falling past the printed-negatives floor. The registration for this rung carried
-no numeric bounds, so we report $\lambda$ as a measured descriptive quantity
-rather than scoring it against a prediction.
-
-%% P6 -- THE delta=0.3 NULL, MOVED UP. Row 4.6: THE STRONGEST
-%% POPULATION-LEVEL STATEMENT IN EITHER EXAMPLE, and it was buried.
-%%   No configuration recovers more than 12.5% of its deficit; gated <= 8.0%;
-%%   worst-case missingness bound <= 0.20 bins. An interval containing ALL
-%%   SEVEN configurations, needing NO GATING ARGUMENT.
-%%   At delta = 0.3 the target moves to q_delta and q_0 becomes the credulous
-%%   point past correct, which is what makes below-correct draws readable as
-%%   over-reading.
-%%   One registered contrast died at 4/5 and was RETIRED RATHER THAN RESCUED.
-%%   BANNED: "4 of 5" cross-regime.
-%% <ITEM66> Claim text. Read once more in your own voice before submitting.
-%% <ITEM66> dropout opening rewritten per audit item 1 (active harm); read once more.
-Once a dropout rate is stated the same handout does not merely fail to help;
-for three of the seven configurations it hurts, moving them $0.034$, $0.100$ and
-$0.232$ bins further from the target. At $\delta = 0.3$, no configuration's distance 
-to the target falls by more than $0.125$ bins when the
-absences are enumerated rather than left to be inferred at that same dropout
-rate, and a worst-case reassignment of
-unusable draws moves that bound to $0.20$. That covers all seven configurations
-and needs no gating argument. It is also where the geometry
-does work: the target moves to the discounted belief and the undiscounted one
-becomes a credulous point past correct, so draws below correct are readable as
-over-reading rather than as noise. One contrast we had fixed at a checkpoint
-failed on this arm and is retired rather than rescued.
-
-%% P7 -- THE RECORD-LENGTH PARAGRAPH (item 30 part 4). ONE CONSOLIDATED
-%% PARAGRAPH rather than three findings a reviewer assembles into an
-%% objection. State the evidence FOR the alternative first:
-%%   V-E2-4d's count-control concordance fails for sol-none, glm, deepseek
-%%   both ceiling configurations move the WRONG WAY under enumeration
-%%     (+0.043, +0.114), which is what a record-length cost looks like
-%% THE DEFENCE:
-%%   length cannot explain glm's 0.493
-%%   V-E2-3's per-line effect dies everywhere (-0.89 to +0.17) after a
-%%     collinearity audit at max |r| 0.34
-%% STATE that V-E2-4d inherits S6's P5 defect: its constancy criterion is
-%%   confounded in the C group and clean in the D group. SAY WHICH HALF IS
-%%   WHICH.
-%% BANNED: "five configurations respond to record length".
-%% <ITEM66> Claim text. Read once more in your own voice before submitting.
-The obvious alternative is that enumeration changes the record's length rather
-than its content, and there is real evidence for it: the count-control
-concordance fails for three configurations, and both ceiling configurations move
-the wrong way under enumeration, by $0.043$ and $0.114$ bins, which is the shape
-a length cost would take. Two things stand against it. Length cannot account for
-a gain of $0.493$ bins, and a per-line effect fails to appear anywhere, ranging
-from $-0.89$ to $+0.17$ after a collinearity audit bounding the relevant
-correlation at $0.34$. The concordance test also inherits the defect we describe
-in Section~\ref{sec:blind}: its constancy criterion is confounded in the
-count-control group and clean in the group carrying this example's claims.
+Identification is the one operation the derivable-absences
+condition needs that the enumerated one does not, so the collapse in residence 
+at the silence-blind belief is evidence that enumerating the absences for the LLM
+observer improves its ability to recognize that the silences hold some evidential
+significance. However, the increase in interior mass is 
+evidence that identifying the absences for the observer is not enough push the observer
+all the way to the correct answer.
 
 %% P8 -- THE BRIDGE BACK TO S4. Row 4.11, one of the three new assets:
 %% over-reading appears at delta=0 too, once absences are ENUMERATED.
@@ -1240,7 +1239,7 @@ and not about verified ordering.
       & Specification text says $8$ of $11$; executed as $6$ of $8$. The
         non-control set has eight members, so the original figure was a
         miscount. Proportion $0.727 \to 0.75$. Dated amendment. \\
-    Enumerated-rung $\lambda$ predictions
+    Enumerated-rung localization predictions
       & Tier 2, content hash
       & Directional, no numeric bounds. Scored as directional. \\
     Enumerated-rung ceiling guard

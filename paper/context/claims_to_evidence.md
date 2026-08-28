@@ -126,12 +126,13 @@ Lands in §5 and Figure 2(b).
 
 | # | evidence | population | source | status |
 |---|---|---|---|---|
-| 4.1 | Paired Δ`s1` (ARITH_D0 − PARTIAL_RULED): sol-none **−0.092**, deepseek-high **−0.299**, glm **−0.493** | G3ncl × C14 minus P4 | `s3_ladder_summary.py` | verified |
-| 4.2 | The two ceiling configurations move the other way and trivially: sol-high **+0.043**, glm-high **+0.114** | G5 minus G3ncl | same | verified — consistent with a record-length cost, magnitude inside the 0.15-bin guard |
-| 4.3 | Share of the RULED→FULL gap closed, as `1 − λ`: **the closures span 28% to 114%** (sol-none λ 0.72, glm 0.67, deepseek-high −0.14). The top of the range sits past the printed-negatives floor — deepseek-high's ARITH `s1` of 0.721 is below its FULL floor of 0.758. | G3ncl × C14 minus P4 | same | **verified, governed by V-24-1.** Phrased per R1: a span, never "deepseek-high uniquely beats its floor." Never "≈100%." |
+| 4.1 | **CUT from the paper body 2026-08-28 (P5 trim; λ retired).** Paired Δ`s1` (ARITH_D0 − PARTIAL_RULED): sol-none **−0.092**, deepseek-high **−0.299**, glm **−0.493** | G3ncl × C14 minus P4 | `s3_ladder_summary.py` | verified |
+| 4.2 | **CUT from the paper body 2026-08-28 (P5/P7 trim).** The two ceiling configurations move the other way and trivially: sol-high **+0.043**, glm-high **+0.114** | G5 minus G3ncl | same | verified — consistent with a record-length cost, magnitude inside the 0.15-bin guard |
+| 4.3 | **CUT from the paper body 2026-08-28 (λ retired).** Share of the RULED→FULL gap closed, as `1 − λ`: **the closures span 28% to 114%** (sol-none λ 0.72, glm 0.67, deepseek-high −0.14). The top of the range sits past the printed-negatives floor — deepseek-high's ARITH `s1` of 0.721 is below its FULL floor of 0.758. | G3ncl × C14 minus P4 | same | **verified, governed by V-24-1.** Phrased per R1: a span, never "deepseek-high uniquely beats its floor." Never "≈100%." |
+| 4.3b | **Ceiling-guard table (Table `tab:ceiling`, §5, added 2026-08-27).** Cell-weighted mean `s1`, cells minus P4, δ=0. FULL / RULED / (RULED−FULL): sol-none 0.431 / 0.762 / **0.331**; deepseek-high 0.758 / 1.020 / **0.261**; glm 0.764 / 2.243 / **1.479**; sol-high 0.200 / 0.114 / **−0.086**; glm-high 0.457 / 0.486 / **0.029**. The 0.15-bin guard falls in an **empty gap** — smallest non-ceiling gap 0.261 vs largest ceiling 0.029 — and sol-high is negative (better on RULED than FULL). **Cell-weighted (the λ method), not the draw-weighted gate score**, so deepseek-high's FULL reads 0.758 here vs 0.752 at the gate (G5). | G5 × C14 minus P4, cell-weighted | `s3_ladder_summary.py` (same `s1` as λ) | verified 2026-08-27 — FULL 0.758 and ARITH 0.721 for deepseek-high match row 4.3; Δs1 reconciles with 4.1 |
 | 4.4 | Blind-point residence collapses for the stuck configurations: `π_pos` falls sol-none 4.6→0.0, deepseek-high 30.6→12.9, glm 77.1→50.0 — **3 of 3 non-ceiling**. glm-high **rises** 6.4→10.7 and must be reported. | G3ncl for the fall; glm-high is in G5 but ceiling-flagged | same | verified |
 | 4.5 | **The §5 headline.** Interpretation is not repaired: interior mass **rises in every non-ceiling configuration** — sol-none 65.4→66.9, deepseek-high 28.4→42.4, glm 17.1→27.9. The freed answers land short of target. | G3ncl × C14 minus P4 | same | verified — a universal over the claim population with no fraction to defend |
-| 4.6 | **The strongest population-level statement in either example.** The same handout repairs no one at δ=0.3: no configuration recovers more than **12.5%** of its deficit, gated ≤ **8.0%**, worst-case missingness bound ≤ 0.20 bins. An interval containing **all seven** configurations. | A7 × C9 × δ=0.3 | `s3_arith_summary.py`, V-E2-4a | verified — currently buried in §5 ¶6; **move it up** |
+| 4.6 | **CUT from the paper body 2026-08-28 (P6, δ=0.3 null; bounds driven by the two gate-excluded configs).** **The strongest population-level statement in either example.** The same handout repairs no one at δ=0.3: no configuration recovers more than **12.5%** of its deficit, gated ≤ **8.0%**, worst-case missingness bound ≤ 0.20 bins. An interval containing **all seven** configurations. | A7 × C9 × δ=0.3 | `s3_arith_summary.py`, V-E2-4a | verified — currently buried in §5 ¶6; **move it up** |
 | 4.7 | The sentence that carries §5-filter part 2: **five of five admitted configurations receive a well-defined verdict** — three numeric positions, two adjudicated `ceiling`. This must appear before the numbers do. | G5 | rows 4.1–4.4 | verified (item 33) |
 | 4.8 | Enumeration is read, not shape-matched or line-counted: mimicry cross-tab dies for every gated configuration; per-line effect dies everywhere (−0.89 to +0.17) after a collinearity audit at max \|r\| 0.34 | G5 | V-E2-1, V-E2-3 | verified; deepseek alone is line-counter-consistent and is gate-excluded |
 | 4.9 | Robustness: worst-case missingness holds (deepseek-high in [−0.379, −0.229]); mirror split holds for all five non-ceiling δ=0 gains | G5 | V-E2-4a, V-E2-4b | verified; glm's gain is mirror-asymmetric (−0.04/−0.94), sign-consistent |
@@ -194,6 +195,18 @@ caveats, and it costs no extra space.
 ## 6. Gap register
 
 ### Closed
+
+**2026-08-28:** §5 trimmed to the identification/interpretation **dichotomy**
+(Figure 3, rows 4.4/4.5). **Cut from the paper body:** P5 (the λ localization
+split), P6 (the δ=0.3 null), and P7 (the record-length rebuttal). λ is fully
+retired from the body — a fit descriptive quantity with no robustness evidence
+and no numeric registration; the §6 registration table keeps the honest record
+("directional, no numeric bounds"). The contributions bullet now claims only the
+dichotomy, not a "per-configuration quantity." **Now unsurfaced in the paper:**
+rows 4.1 (paired Δs1), 4.2 (ceiling s1 moves), 4.3 (λ closures 28–114%), 4.6
+(δ=0.3 null; its bounds were driven by the two gate-excluded configs, deepseek
+and anchor). **Still live:** 4.4 (residence, Fig 3a), 4.5 (interior, Fig 3b,
+D-excluded), 4.11 (over-reading, P8), 4.3b (ceiling-guard table, Table 2).
 
 **2026-08-27:** Row 2.5 (`b_pos`-anchored / prior-crossing claim) **cut from the paper**,
 retired as weak — the contrast is structurally near-forced and the per-configuration
