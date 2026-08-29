@@ -60,6 +60,9 @@ FAMILIES = (
 )
 CONFIG_ORDER = tuple(c for _, cfgs in FAMILIES for c in cfgs)
 
+# display alias: the draw records key on "anchor"; the paper shows "llama"
+DISPLAY = {"anchor": "llama"}
+
 # four categories: hue = candidate, lightness = confidence.
 # diverging blue(THETA)<->red(SIGMA); dark = very, pale = somewhat.
 CAT_COLOR = {
@@ -215,9 +218,9 @@ def draw(modal, n):
             t.set_fontweight("bold")
     ax.set_xlabel("stated probability of one candidate", fontsize=FS_LAB)
 
-    # y ticks: config names
+    # y ticks: config names (anchor shown as its paper alias, llama)
     ax.set_yticks([yj - 0.5 for yj in ys])
-    ax.set_yticklabels(order, fontsize=FS_TICK)
+    ax.set_yticklabels([DISPLAY.get(c, c) for c in order], fontsize=FS_TICK)
 
     # family label in the far-left gutter, centred on each group's cells
     for (top, _), (famname, cfgs) in zip(fam_spans, FAMILIES):
