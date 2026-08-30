@@ -16,6 +16,7 @@
 \usepackage{amsfonts}
 \usepackage{amsthm}
 \usepackage{graphicx}
+\usepackage{float}
 \usepackage{subcaption}
 \usepackage{microtype}
 \usepackage{nicefrac}
@@ -186,9 +187,25 @@ Silence-Blindness in LLM Observers}
 %%      we report the outcome under both readings of our own exclusion clause.
 %% =====================================================================
 \begin{abstract}
-%% DELIBERATELY EMPTY. Written last, per item 87. The five-sentence plan is in
-%% the comment block directly above this environment. Draft text was removed
-%% 2026-08-23 at Ali's request so it cannot be mistaken for final copy.
+%% PROVISIONAL DRAFT inserted 2026-08-29 at Ali's request ("for now"). Ali's own
+%% wording; the five-sentence plan is in the comment block above. Not yet final.
+Large language models are often evaluated on their ability to reason from
+evidence that is presented in their input. We study a complementary question:
+can a model reason from evidence that is not explicitly written, but is derivable
+from a known disclosure rule? We introduce a controlled Bayesian framework for
+quantifying this ability. The framework holds the underlying posterior fixed
+while varying how evidence is represented: explicitly, through an enumerated
+record of absent observations, or implicitly, where the model must derive those
+absences from the disclosure rule. This separates the ability to identify
+implicit evidence from the ability to incorporate it into a belief. Across five
+model configurations that demonstrate a baseline inferential ability, we find a
+clear asymmetry: among 150 draws, 103 reach the target belief, and 47 miss it,
+with all 47 errors under-weighting the evidence conveyed by silence rather than
+over-weighting. Furthermore, we find that explicitly enumerating absences
+substantially reduces the tendency for the observer to hold the silence-blind belief, but does
+not consistently recover the full Bayesian update. These results suggest that even
+when the relevant evidence is logically recoverable from the transcript,
+identifying and interpreting that evidence can be distinct failure modes.
 \end{abstract}
 
 %% =====================================================================
@@ -219,19 +236,18 @@ Bayesian inference. Once the specific features of information, or channels, a
 transcript exposes are written down, the target posterior the observer should hold and
 the operations it must perform to reach that target both follow
 in closed form. Therefore, an elicited answer is not just right or wrong, but exists
-on an interval with reference beliefs (Bayesian posteriors) as the endpoints.
-Furthemore, the distance of the observer's answer to these reference beliefs are measurable.
+on an interval with reference beliefs.
+Furthermore, the distance of the observer's answer to these reference beliefs are measurable.
 
 %% P3 -- THE ASSET, plus the venue tie. Two sentences.
-The framework's asset is that it maps channels in the transcript to targets posteriors, 
+The framework's asset is that it maps channels in the transcript to target posteriors, 
 and it is many to one:
 transcripts with different channels require the observer to perform different
 operations to absorb all the evidence available. However, if the target posterior
 is the same, a comparison across them holds the target fixed and varies only what 
 the observer must do to reach it. This framework gives us a mathematical coordinate
-system to benchmark an LLM's ability to reason under the limits of their own knowledge by 
-distinguishing what the transcript makes known from what its silences leave
-unknown.
+system to benchmark an LLM's ability to reason with evidence that is not explicitly
+written but is derivable from a disclosure rule.
 
 %% P4 -- CONTRIBUTIONS. Four typed bullets matching the four claims.
 %% Bullet 2 per V-24-2: scoped to gated configurations in the conditions that
@@ -242,7 +258,7 @@ unknown.
 %% <ITEM66> Claim text. Read once more in your own voice before submitting.
 \begin{itemize}
 \itemsep0em
-  \item \textbf{An instrument.} A closed-form map from the channels a
+  \item \textbf{A framework.} A closed-form map from the channels a
     transcript exposes to the operations required and the target posterior the
     observer should reach, with two reference beliefs and three conditions
     that share one target under different required operations.
@@ -250,14 +266,13 @@ unknown.
     configurations admitted by the competence gate, in the two conditions that
     do not enumerate the absences, under-weighting is the only direction of
     error observed, and a configuration resides on the silence-blind belief more
-    often when the absences must be identified than when they are printed.
+    often when the absences must be identified than when the reports are printed.
   \item \textbf{Separating identification from interpretation.} Enumerating the
     absences repairs a configuration's failure to notice them without repairing
     its failure to understand them.
-  \item \textbf{The instrument's own limits, reported as results.} Two
-    structural quantities are welded together by the geometry, one of our
-    registered checks does not measure what it names, and our primary
-    registered prediction did not hold.XXXXXX
+  \item \textbf{The instrument's own limits, reported as results.} Principled 
+    design choices that limit the freedom and consistency of experiments that 
+    are able to be ran.
 \end{itemize}
 
 %% ---------------------------------------------------------------------
@@ -353,7 +368,7 @@ unknown.
 %% <ITEM66> Claim text. Read once more in your own voice before submitting.
 Two candidates $A=\{a_0,a_1\}$ are under consideration and exactly one is
 responsible, with a uniform prior. We take $|A|=2$, and this
-one-dimensionality makes this framework trule a "coordinate system", and
+one-dimensionality makes this framework truly a "coordinate system", and
 it is the source of a structural limitation mentioned in
 Section~\ref{sec:blind}. Each of the $N$ analysts runs a binary assay returning \textsc{positive} or
 \textsc{negative}. If $a_0$ is responsible, an assay returns \textsc{positive}
@@ -370,7 +385,7 @@ paradigm of \citet{phillips1966} conditioned on a disclosure rule. Therefore, th
 transcript displays different channels across different conditions, as seen in
 Table~\ref{tab:map}. It is the channel set a transcript exposes
 that determines both the operations a correct observer must perform and the
-belief it should hold.
+belief it should hold. 
 
 %% REFERENCE BELIEFS -- three displayed numbered equations. L(a) is the
 %% likelihood of a positive under candidate a.
@@ -389,10 +404,11 @@ assays. Two beliefs are definable from the transcript alone:
 %%  (2) treats every absence as a negative finding: the correct posterior, the target
 %% <ITEM66> Claim text. Read once more in your own voice before submitting.
 Equation~\eqref{eq:bpos} reads the positive filed reports as if they were the
-whole record; call this belief the silence-blind reference $\bpos$.
-Equation~\eqref{eq:qzero} instead scores every absence as a negative finding. Under the disclose rule,
-this is the correct posterior; call it the target $\btar$. These two beliefs are
-the endpoints of the interval on which the observer's answer is located.
+whole record; call it the silence-blind belief $\bpos$. 
+Equation~\eqref{eq:qzero} instead scores every absence as a negative finding. Under the disclosure rule,
+this is the correct posterior; call it the target $\btar$. These are the two reference beliefs on 
+the interval on which the observer's answer is located. 
+
 
 %% ---------------------------------------------------------------------
 %% SHARED TARGET -- the design's asset. The three conditions convey the same N
@@ -400,9 +416,9 @@ the endpoints of the interval on which the observer's answer is located.
 %% Then ONE sentence on exact-rational verification, no floating point.
 %% ---------------------------------------------------------------------
 %% <ITEM66> Claim text. Read once more in your own voice before submitting.
-This design's asset is that the conditions that print the absences, enumerate
-them, or leave them to be derived all encode the same information about the $N$
-reports. They all return the same target, which makes their comparison controlled. 
+This design's asset is that the conditions that print the negatives, enumerate
+the absences, or leave them to be derived all encode the same information about the $N$
+reports. They all return the same target, which makes their comparison valid. 
 \\
 %% ---------------------------------------------------------------------
 %% LEMMA 1 -- ordering. Two-belief version: b_pos strictly above the target
@@ -419,7 +435,7 @@ below the silence-blind level.
 Let $a_0$ be the candidate with $L(a_0)=p$ and $a_1$ the other, so $L(a_1)=1-p$
 and $p>1/2$ gives $L(a_0)>L(a_1)$. Write $\Lambda(b):=\log\frac{b(a_0)}{b(a_1)}$
 for the log-odds a belief $b$ places on $a_0$. The two beliefs share the
-presence term $k\log\frac{p}{1-p}$ and differ only if the $N-k$
+presence term $k\log\frac{p}{1-p}$ and differ only in how the $N-k$
 absences are scored:
 \[
   \Lambda(\bpos) = k\log\tfrac{p}{1-p}, \qquad
@@ -469,15 +485,21 @@ $\Lambda(\btar)<\Lambda(\bpos)$.
 %% <ITEM66> Claim text. Read once more in your own voice before submitting.
 Three operations appear in Table~\ref{tab:map}. To \emph{identify} is to
 determine if reports are absent and how many; if $N$ is present in the transcript,
-this boils down to a single subtraction, so noticing that absences and 
-counting the them are two different parts of one step. To \emph{convert} is to read an absence as a
+this boils down to a single subtraction, so noticing the absences and 
+counting them are two different parts of one step. To \emph{convert} is to read an absence as a
 negative finding. To \emph{aggregate} is to combine the findings into a
 posterior. The three conditions sharing a target have the nested required operation
 sets $\{a\} \subset \{c,a\} \subset \{i,c,a\}$, which Example~2 investigates.
-One honest limit follows: aggregation is never identified in isolation,
+One honest limit follows: aggregation is never isolated,
 because no condition in our design sits below $\{a\}$.
 
-
+The object we measure is the observer's ability to reason
+with evidence that is not explicitly written in the transcript but is derivable 
+from understanding its disclosure rule. The reference beliefs give points to compare
+the observer's response to: in a condition where the absences are 
+derivable, occupancy of $\bpos$ is diagnostic of failing to incorporate the silent
+evidence, while occupancy of $\btar$ indicates success in using that evidence to reach
+the target posterior.
 
 %% =====================================================================
 
@@ -494,13 +516,13 @@ reference beliefs for any
 observer that reads such a transcript. We now put real LLM observers on it,
 running the conditions of Table~\ref{tab:map} as prompts and plotting each
 model's response on the same coordinate.
-The seven configurations we initially tested span across four model families: 
+The seven configurations we initially tested span four model families: 
 \texttt{openai/gpt-5.6-sol},
 \texttt{z-ai/glm-5.2}, \texttt{deepseek/deepseek-v4-flash-0731}, and
 \texttt{meta-llama/llama-3.3-70b-instruct}. Every family except the Llama one
 contributes two configurations that differ in reasoning setting and the paired
-token budget, which is what the ``-high'' suffix on a configuration name denotes
-(abbreviated ``-hi'' in Figure~\ref{fig:results} and Figure~\ref{fig:repair}); Appendix~\ref{app:models}
+token budget, which is what the "-high" suffix on a configuration name denotes
+(abbreviated "-hi" in Figure~\ref{fig:results} and Figure~\ref{fig:repair}); Appendix~\ref{app:models}
 gives the full table.
 
 \subsection{The response scale}
@@ -537,26 +559,13 @@ In a calibration pre-test, each configuration is given the stated probability fo
 being responsible. With no inference to perform, the LLM responds with its internal mapping
 from a numerical probability to either "Very confident" or "Somewhat confident" (Appendix~\ref{app:calib}).
 For six of the
-seven configurations, that switch that separates the two ordinal levels is at $0.20$ on the low side
+seven configurations, the switch that separates the two ordinal levels is at $0.20$ on the low side
  and $0.80$ on the
-high side, with \texttt{llama} being the lone exception (Figure~\ref{fig:calmap}). 
+high side, with \texttt{llama} being the lone exception.
 A model is very
-confident in a candidate only once its probability clears $0.80$, very confident
+confident in a candidate once its probability clears $0.80$, very confident
 in the other candidate below $0.20$, and merely somewhat confident closer to even
 odds.
-
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=\textwidth]{figures/confidence_map.pdf}
-  \caption{The calibration confidence map. Each row is one configuration;
-  reading its cells outward from even odds, the answer switches from somewhat to
-  very confident. Six of the seven switch together at the $0.20$ and $0.80$ ticks
-  (bold); \texttt{llama} is the exception, holding very confidence one step
-  further in, to $0.30$ on the low side (boxed). Colour encodes the answer given
-  most often in each cell: hue is the chosen candidate, $\Sigma$ or $\Theta$, and shade its
-  confidence, dark for very and pale for somewhat.}
-  \label{fig:calmap}
-\end{figure}
 
 %% THE BAND GAPS ARE LOAD-BEARING. The response scale has deliberate gaps
 %% between the four levels; every cell is built so both b_pos and the target
@@ -580,10 +589,12 @@ Four constraints are enforced at build time. Every cell is designed so that the
 silence-blind belief and the target fall in different levels, which holds in
 all fourteen cells.
 A build-time forbidden-word list bans silence vocabulary together with Bayesian
-and computational vocabulary, so no cues are given in the prompt for what operation it is testing for.
+and computational vocabulary, so no cues are given in the prompt for what operation it is testing.
 Every stimulus is tested with both label orderings. Count-control cells invert the correct
 level, so a configuration that always answers high-confidence is separable from
-a competent one. Appendix~\ref{app:prompts} reproduces the prompts, the response
+a competent one. These controls are intended to distinguish evidence-sensitive inference 
+from heuristics based on the number of positive reports. Appendix~\ref{app:prompts} 
+reproduces the prompts, the response
 schema, and one rendered stimulus per condition.
 
 \subsection{The competence gate}
@@ -606,13 +617,18 @@ both conditions is a floor effect rather than a silence result.
 To measure where a model lands on the coordinate, we need a distance in
 levels. We now define the statistics that report it.
 We report $s_1 = |\lobs - \lcor|$ and the signed $s_2 = \lobs - \lcor$, with
-positive values meaning under-weighted toward the target, where $\lobs$ is the
-level of observer reports and $\lcor$ is the level of the correct target read off
+positive values meaning under-weighting toward the target, where $\lobs$ is the
+level of observer reports and $\lcor$ is the level of the target read off
 Table~\ref{tab:map}. With this, five of seven configurations are admitted, at mean $s_1$
 on the printed-negatives condition of $0.200$, $0.421$,
-$0.457$, $0.752$ and $0.764$ bins; the two excluded sit at $1.609$
-(\texttt{deepseek}) and $1.800$ (\texttt{llama}). A mean $s_1$ above one means on average, the
-answer lands more than a full level from the target, so the gate sets these two aside.
+$0.457$, $0.752$ and $0.764$ levels; the two excluded sit at $1.609$
+(\texttt{deepseek}) and $1.800$ (\texttt{llama}). A mean $s_1$ above one means that, on average, the
+answer lands more than a full level from the target, so the gate sets these two aside. 
+All results in the next two sections are therefore reported only for those five: 
+the configurations that demonstrate a baseline ability to perform inference 
+with all evidence printed. The results below should 
+then be read as characterizing silence-reading behavior among models with 
+this baseline inference ability and not all LLMs generally.
 
 %% END PARAGRAPH: llama consistency + campaign totals + pre-registration.
 %% llama is the exception in FOUR INDEPENDENT PLACES -- W1 reachability,
@@ -623,17 +639,12 @@ answer lands more than a full level from the target, so the gate sets these two 
 %%   delta=0 arms; the two delta=0.3 arms 620/630 + 623/630 are removed).
 %%   The W1 pre-test's 659/672 sits OUTSIDE that total, 3 draws, different set.
 %% PRE-REGISTRATION: R4 APPLIES HARD; scoring deferred to S6.
-The configuration the gate excludes at $1.800$ is also the one that fails the
-pre-test's reachability check, the only one whose switch point moves between
-wordings, and the only one with nonzero low-high asymmetry, so four instrument
-checks and one behavioural gate select the same configuration. The campaign
+The campaign
 holds $5{,}808$ usable draws of $5{,}950$ attempted, at five draws per stimulus;
 the pre-test described above contributes a further $659$ of $672$ on a separate
 stimulus set at three draws per stimulus.
-Predictions, gates, and kill conditions were fixed in a specification document
-and implemented as executable decision rules; Section~\ref{sec:blind} scores
-them and states plainly what our record does and does not establish about when
-they were fixed.
+
+
 
 %% =====================================================================
 \section{Example 1: which direction does the error run?}\label{sec:ex1}
@@ -662,7 +673,7 @@ they were fixed.
 %%  - The populations DO NOT OVERLAP and that is load-bearing.
 %%  - Construct name: conservatism, after Edwards.
 Whether language models update too little or too much is contested, and the two
-closest anchors disagree on the populations that do not overlap.
+closest anchors disagree, on the populations that do not overlap.
 \citet{imran2025} report that pre-trained-only checkpoints update less than
 a correct Bayesian update would, with the shortfall shrinking as models scale, measured over
 token log-probabilities. They describe the shortfall as unexplained and
@@ -689,8 +700,7 @@ withholds.
 %% BOTH ANCHORS WERE SELECTED AFTER THE DATA EXISTED. The campaign was
 %% registered; the literature engagement was not.
 %% <ITEM66> Claim text. Read once more in your own voice before submitting.
-Both anchors were selected after our data existed: the campaign's predictions
-were registered, the literature engagement was not.
+
 
 %% P3 -- THE SETUP IN FRAMEWORK TERMS.
 %% Two channel sets, {positives, printed negatives} and {positives, derivable
@@ -740,19 +750,21 @@ expressible, and the direction-of-error result is measured on them.
 %% sentence that the paper assumes no independence across draws).
 %% Also BANNED here: the 176 and 206 denominators.
 \newcommand{\ParaTallies}{%
-On those three cells, the derivable-absences condition displaces $47$ of the
-$150$ draws across the five admitted configurations, and every one of those $47$
+\textbf{The error runs one way.} Out of $150$ draws spread across the three cells and five admitted configurations, 
+$47$ missed the target posterior, and every one of those $47$
 errors under-weights the silence while not a single draw over-weights it
 (Figure~\ref{fig:results}a). The competence gate admits configurations by their performance on the
-printed-negatives condition and not on derivable-absences one, so the arm
+printed-negatives condition and not on the derivable-absences one, so the arm
 that carries the result played no part in the selection.
-At the registered unit of analysis, a configuration's modal answer on a cell, 
+At the unit of analysis, a configuration's modal answer on a cell, 
 eight of the fifteen configuration-by-cell
 units are displaced toward under-weighting and none toward over-weighting
 (two-sided exact sign test, $p = 0.008$); the remaining seven carry no displaced
 mass. This direction persists in the
 printed-negatives condition: $9$ to $0$ on the same $150$ draws, five
-of fifteen units displaced, $p = 0.063$.%
+of fifteen units displaced, $p = 0.063$. Among errors that the instrument 
+can express in these cells, the admitted configurations display a strong directional 
+tendency to under-weight the silence rather than over-weight it.
 }
 
 %% P5 -- OCCUPANCY + THE FOURTH KILLED ALTERNATIVE.
@@ -788,14 +800,15 @@ of fifteen units displaced, $p = 0.063$.%
 %% A constant model-internal prior cannot produce a location that tracks a
 %% computed quantity. NOT in live text; page budget.
 \newcommand{\ParaAnchor}{%
-We also ask how often belief resides on the silence-blind belief,
+\textbf{Occupancy.} We also ask how often belief resides on the silence-blind belief,
 and whether that changes based on the channels in the transcript.
 Occupancy of that level, the fraction
 of draws that land on it, is measured for the five admitted configurations
-over all cells, under both the printed-negatives and derivable-absences conditions.
+over all cells, under both the printed-negatives and derivable-absences conditions
 (Figure~\ref{fig:results}b). Occupancy of the silence-blind level either
 rises or stays the same when the negatives must be inferred rather than read,
-so a model settles on the silence-blind belief when the silence has to be recovered.
+so the evaluated configurations settle on the silence-blind belief more often when the 
+silence has to be recovered.
 
 %% Figure 2 serves the tallies and occupancy paragraphs above; the extremity
 %% paragraph below is a separate point (float moved here 2026-08-27).
@@ -845,7 +858,7 @@ mass at the internal silence-blind level outnumbers mass at the endpoint.%
 %% This is also where the S5 dependency is discharged.
 %% <ITEM66> Claim text. Read once more in your own voice before submitting.
 The one-sidedness here is a property of the information in the transcript
-and not of the instrument. In Section~\ref{sec:ex2}, over-direction is seen 
+and not of the instrument. In Section~\ref{sec:ex2}, over-weighting is seen
 with the same models, but with different channel sets. The objection that our 
 roster is too small to produce it becomes the observation
 that our instrument sees it only where the transcript enumerates the absences.
@@ -879,46 +892,39 @@ exactly one operation and changes nothing else, and the deletion is done simply
 by changing the channels in the transcript. This does not have to be designed
 in; it falls out of the map.
 
-%% P3 -- THE DATA. 980 calls, 959 usable. Stimuli fixed at a sha256 before any
-%% call; the registration document is committed, though three days after
-%% collection. S6 states this. R4 APPLIES.
-%% <ITEM66> Claim text. Read once more in your own voice before submitting.
-The added rung contributes $980$ calls, $959$ usable, over a stimulus set fixed
-at a content hash; Section~\ref{sec:blind} states what that hash does and does
-not establish.
-
-%% CEILING GUARD. Registered as a decision rule (arith_d0_prereg.md); ordering
-%% deferred to S6 per R4. The empty gap is the load-bearing, verifiable fact.
+%% CEILING GUARD. A written decision criterion (0.15-bin gap). The empty gap is
+%% the load-bearing, verifiable fact.
 To separate the failure to identify the absences from the failure to interpret
 them, we compare a configuration's answers when the absences must be inferred
 (the derivable-absences condition) against its answers when they are listed out
-(the enumerated condition). Whatever accuracy enumerating the absences recovers is what the
-configuration could not identify on its own. However, that comparison only means something
+(the enumerated condition). 
+Because both conditions state the same filing rule as seen in Appendix~\ref{app:prompts},
+the only additional operation 
+required with derivable-absences is to identify the $N-k$ absent reports from the stated 
+analyst count. Whatever accuracy enumerating the absences recovers is what the
+configuration could not identify on its own. 
+
+However, that comparison only means something
 for a configuration that has trouble reading silence in the first place. Some
 configurations do not: they handle the condition where the absences must be
 inferred about as well as the condition where every result is printed, so they carry minimal
 difficulty in identifying and interpreting silence. Trying to quantify how much the 
-enumeration of absences helps the these configurations reason would be be measuring 
+enumeration of absences helps these configurations reason would be measuring 
 repair where there was nothing to repair.
 
-We separate these configurations with a rule fixed as a written decision criterion, not a
-line drawn afterward. A configuration's difficulty with silence is the gap
+We separate these configurations with a written decision criterion. A configuration's difficulty with silence is the gap
 between its error when the absences must be inferred and its error when every
 result is printed, $s_{1,\mathrm{RULED}} - s_{1,\mathrm{FULL}}$. A configuration
-for which that gap is below $0.15$ bins is declared \emph{at ceiling} and set
+for which that gap is below $0.15$ levels is declared \emph{at ceiling} and set
 aside as uninformative for identification localization. These
 configurations are at the ceiling of silence-reading ability, and this section
-asks about configurations with a genuine deficit in identifying absenses. 
-Section~\ref{sec:blind} states 
-plainly what our record
-does and does not establish about when this rule was fixed; what the data settles
-directly is stronger, and appears in Table~\ref{tab:ceiling}: the threshold falls
-in an empty gap.
+asks about configurations with a genuine deficit in identifying absences. 
+The threshold falls in an empty gap (Table~\ref{tab:ceiling}).
 
-\begin{table}[t]
+\begin{table}[H]
   \caption{Silence-reading difficulty per admitted configuration: cell-weighted
   mean $s_1$ on the derivable-absences and printed-negatives conditions and their
-  difference, over cells. The $0.15$-bin threshold
+  difference, over cells. The $0.15$-level threshold
   falls in an empty gap. \texttt{sol-high} and \texttt{glm-high} sit well below it
   and near zero (\texttt{sol-high} is negative, scoring better when the absences
   must be inferred than when they are printed), so these two read silence with
@@ -941,36 +947,10 @@ in an empty gap.
     \bottomrule
   \end{tabular}\\[2pt]
   {\footnotesize $^{\ast}$ at ceiling
-  ($s_{1,\mathrm{RULED}} - s_{1,\mathrm{FULL}} < 0.15$ bins).}
+  ($s_{1,\mathrm{RULED}} - s_{1,\mathrm{FULL}} < 0.15$ levels).}
 \end{table}
 
-\begin{figure}[t]
-  \centering
-  \begin{subfigure}[t]{0.49\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{figures/results_residence.pdf}
-    \caption{Residence at the silence-blind belief, over cells minus admission
-    exclusions. It collapses for the three deficit configurations; the two ceiling
-    configurations do not follow, with \texttt{glm-hi} rising instead.}
-    \label{fig:residence}
-  \end{subfigure}\hfill
-  \begin{subfigure}[t]{0.49\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{figures/results_interior.pdf}
-    \caption{Interior mass, on the cells that can express it (\texttt{D1}--\texttt{D3}
-    excluded, where target and silence-blind belief are adjacent). It rises for
-    all five, but the two ceiling configurations are set aside.}
-    \label{fig:interior}
-  \end{subfigure}
-  \caption{Identification is repaired; interpretation is not. Moving from the
-  derivable-absences condition (\textsc{ruled}) to the enumerated one
-  (\textsc{arith}); filled marker \textsc{ruled}, open marker
-  \textsc{arith}, rows grouped by the ceiling guard. \textbf{(a)} residence at the
-  silence-blind belief collapses, so the absences were going unnoticed;
-  \textbf{(b)} the freed mass rises into the interior rather than reaching the
-  target (\texttt{dsk}${=}$deepseek).}
-  \label{fig:repair}
-\end{figure}
+
 
 %% P4 -- THE RESULT, HEADLINE FIRST. Settled 2026-08-21: the headline is the
 %% RISING INTERIOR MASS, a universal over the claim population with no
@@ -983,33 +963,60 @@ in an empty gap.
 %%   IDENTIFICATION IS REPAIRED; CONVERSION IS NOT.
 %%   glm-high's occupancy RISES 6.4->10.7 and is reported; it sits outside
 %%     the population by the registered 0.15-bin ceiling guard.
-Deleting the identification step frees answers off the silence-blind belief.
-Moving from the derivable-absences condition to the enumerated one, residence at
+\textbf{Identification is repaired.} Deleting the identification step frees answers from the silence-blind belief.
+Moving from the derivable-absences condition to the enumerated one, occupancy of
 that belief collapses in every deficit configuration, from $4.6$ to $0.0$, from
 $30.6$ to $12.9$, and from $77.1$ to $50.0$ percent of draws (Figure~\ref{fig:residence}): the absences were
 going unnoticed, so enumerating them helped the configuration realize there were silences 
 in the first place. We report that for the two ceiling configurations,
 \texttt{glm-high} moves the other way, $6.4$ to $10.7$, and \texttt{sol-high}
-has no residence to lose. Both do not follow the pattern from the deficit models, as
+has no occupancy to lose. Neither follows the pattern from the deficit configurations, as
 they have no genuine deficit to repair in the first place. 
 
-But the answers freed from the silence-blind belief 
+\textbf{Interpretation is not.} The answers freed from the silence-blind belief 
 do not arrive at the target. Interior mass, the
 mass strictly between the silence-blind belief and the target posterior, rises in
 every deficit configuration as the step comes out, from $85.0$ to $87.0$, $36.5$
 to $54.1$, and $21.8$ to $35.5$ percent on the cells that can express it, with
-$\mathrm{D_1}$--$\mathrm{D_3}$ dropped since these cells have the target and the
-silence-blind belief adjacent to each other, so no level lies between them.
+D1--D3 dropped since these cells have the target and the
+silence-blind belief adjacent to each other, so no level lies between them
 (Figure~\ref{fig:interior}). Interior mass rises for all five admitted
 configurations, but the two ceiling configurations are set aside since we
-established that they are uninformative for understanding the split in silence reading. 
+established that they are uninformative for understanding the split in silence-reading. 
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[t]{0.49\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/results_residence.pdf}
+    \caption{Occupancy of the silence-blind belief, over cells. It collapses for the three deficit configurations; the two ceiling
+    configurations do not follow, with \texttt{glm-hi} rising instead.}
+    \label{fig:residence}
+  \end{subfigure}\hfill
+  \begin{subfigure}[t]{0.49\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figures/results_interior.pdf}
+    \caption{Interior mass, on the cells that can express it (D1--D3
+    excluded, where target and silence-blind belief are adjacent). It rises for
+    all five, but the two ceiling configurations are set aside.}
+    \label{fig:interior}
+  \end{subfigure}
+  \caption{Identification is repaired; interpretation is not. Moving from the
+  derivable-absences condition (\textsc{ruled}) to the enumerated one
+  (\textsc{arith}); filled marker \textsc{ruled}, open marker
+  \textsc{arith}, rows grouped by the ceiling guard. \textbf{(a)} occupancy of the
+  silence-blind belief collapses, so the absences were going unnoticed;
+  \textbf{(b)} the freed mass rises into the interior rather than reaching the
+  target (\texttt{dsk}${=}$deepseek).}
+  \label{fig:repair}
+\end{figure}
 
 Identification is the one operation the derivable-absences
-condition needs that the enumerated one does not, so the collapse in residence 
-at the silence-blind belief is evidence that enumerating the absences for the LLM
-observer improves its ability to recognize that the silences hold some evidential
+condition needs that the enumerated one does not, so the collapse in occupancy of
+the silence-blind belief is evidence that enumerating the absences for the evaluated
+configuration improves its ability to recognize that the silences hold some evidential
 significance. However, the increase in interior mass is 
-evidence that identifying the absences for the observer is not enough push the observer
+evidence that identifying the absences for the configuration is not enough to push it
 all the way to the correct answer.
 
 %% P8 -- THE BRIDGE BACK TO S4. Row 4.11, one of the three new assets:
@@ -1053,280 +1060,64 @@ the target fixed and vary which operations the transcript requires to read the a
 far belief should move.
 
 %% =====================================================================
-\section{What the instrument cannot identify}\label{sec:blind}
-%% BUDGET 0.40 pages. THIS SECTION IS CLAIM 4.
-%% FRAMED AS A CONTRIBUTION, NOT AN APOLOGY.
-%% CUT BRANCH: at 3.5 pages Table 2 goes to an appendix and this section
-%% becomes prose; blind spots 5 and 6 merge into one sentence. If they merge,
-%% KEEP the one-bin sentence and CUT the span-pooling sentence.
+\section{Limitations and future directions}\label{sec:blind}
+%% BUDGET ~0.4 pages. Three structural limits (pairs fused by the geometry), then
+%% a closing future-directions paragraph. Roster/setting bullets + related-work
+%% paragraphs CUT 2026-08-29 per Ali. Characterizations TYPED BY ALI (item 66).
 %% =====================================================================
 
-%% TWO FRAMING SENTENCES THE TABLE NEEDS, BEFORE the table:
-%%  1. The spec defined a THREE-BAND outcome space: >=2 families passes,
-%%     0 families is falsification with a registered consequence (the paper
-%%     becomes a negative-results report), 1 family is neither. NAMING THE
-%%     BANDS is what makes the dual reporting legible.
-%%  2. ORDERING IS NOT ESTABLISHED FOR ANY ARTIFACT IN THIS PROJECT, and this
-%%     section says so in its own text. ONE PLAIN SENTENCE covering the spec,
-%%     the stimuli, and the band pre-test TOGETHER. The reviewer who checks
-%%     will find the general fact, so conceding the general fact is both
-%%     cheaper and more honest than conceding an instance.
-%%     Cite PROVENANCE.md rather than expanding here.
-%%     Supporting facts, DO NOT ENUMERATE THEM ALL IN THE PAPER:
-%%       version control begins 2026-08-20, after the 08-14 pre-test and the
-%%       08-15 campaign; draw records carry no wall-clock field; the spec file
-%%       holding P1-P5 has an mtime roughly five hours AFTER the campaign it
-%%       registers.
-%% R4 IS BINDING ON EVERY WORD OF THIS SECTION.
+%% LIMITATIONS -- bulleted. Three structural (pairs fused by the geometry) + two
+%% scope. |A|=2 is ONE bullet; single-round static is ONE bullet. Count-vs-weight
+%% bullet (nats/KL, foreign to the ordinal frame; definitional not a limit) CUT
+%% 2026-08-29 per Ali.
+%% Numbers: eps0 ~50-60x (5.7); band 1 = 0.40-0.45, gaps 0.20/0.10 (5.8);
+%%   |A|=2 one-bin (G4.5).
 %% <ITEM66> Claim text. Read once more in your own voice before submitting.
-Our specification defined a three-band outcome space in advance: a pass required
-the effect in at least two of three families, zero families counted as
-falsification with the registered consequence that this becomes a
-negative-results report, and one family was neither. Naming the bands is what
-makes the result below reportable rather than merely disappointing. One thing
-our record cannot do is order itself. Nothing in the repository establishes that
-any registration predates the calls it registers, for the specification, the
-stimulus set, or the band pre-test alike; version control begins after both
-campaigns, draw records carry no wall-clock field, and the specification file
-was edited after the campaign it registers. What is verifiable is content
-integrity and deterministic regeneration, and we describe every decision rule as
-fixed at a checkpoint before its test ran, which is a claim about our process
-and not about verified ordering.
+The instrument as designed does have its limitations:
+\begin{itemize}
+\itemsep0em
+  \item \textbf{Isolation against expressibility.} Coarsening each answer to one
+    of four ordinal levels is what lets us read the direction and magnitude of a
+    model's update without confounding it with its ability to do Bayesian arithmetic,
+    but that same coarseness leaves only a small, finite set of
+    $(\lpos, \lcor)$ configurations a cell can express, a limit the continuous
+    framework does not have. Over-weighting is only expressible when the target
+    posterior is not at an endpoint, which is only three out of fourteen cells. 
+    This is why the direction test of Figure~\ref{fig:results} rests entirely on 
+    just D1--D3, and
+    in those same cells, the target and the silence-blind belief occupy adjacent
+    levels, leaving no level between them, which is why D1--D3 are dropped from the
+    interior-mass panel, Figure~\ref{fig:interior}. The two pull against each
+    other: a coarser scale isolates the reasoning signal more cleanly but
+    expresses fewer configurations, and a finer one expresses more but lets the
+    arithmetic confound the silence-reading we are trying to measure.
+  \item \textbf{Over-read against under-read visibility.} 
+    For cells D1--D3, $\lcor$ = 1, which sits in $[0.40,0.45]$, the narrowest 
+    band in the instrument. It has a gap of $0.20$ below it and $0.10$ above, so
+    registering an over-read takes roughly twice the excursion an under-read does.
+  \item \textbf{Resolution against candidate count.} With two candidates, the
+    silence-blind belief is at least $0.5$ by construction, so it will only ever
+    occupy the top two levels. In the cells carrying Section~\ref{sec:ex1}'s
+    result, the intermediate region is empty outright, so the $47$--$0$ test lives
+    on a one-level span, which follows from fixing $|A| = 2$.
+\end{itemize}
 
-%% ---------------------------------------------------------------------
-%% TABLE 2 -- registration scoring. THREE TIERS, LABELLED AS THREE TIERS.
-%% Tier labels describe WHERE something was registered, NOT that its ordering
-%% was verified (R4).
-%% ---------------------------------------------------------------------
-\begin{table}[t]
-  \caption{%% <ITEM66> Caption text.
-  Registration scoring across three tiers. Tier labels record where an item was
-  registered, not that its ordering against the campaign was verified; see
-  Section~\ref{sec:blind}.}
-  \label{tab:prereg}
-  \centering
-  \small
-  \begin{tabular}{p{0.26\textwidth}p{0.25\textwidth}p{0.34\textwidth}}
-    \toprule
-    item & tier and where registered & outcome \\
-    \midrule
-    \textbf{P3 (primary)}: gap $>0.5$ in $\ge 2$ of $3$ families
-      & Tier 1, specification, internal timestamp
-      & Falsified under a strict reading of our own P5 exclusion clause
-        ($0$ of $3$); held in $1$ of $3$ under a loose one. The single family
-        that clears it at $0.821$ also fails P5. Both readings reported. \\
-    P1 and P2, the two halves
-      & Tier 1, same
-      & $1$ of $3$ each, in \emph{different} families. No family carries both
-        halves. \\
-    Non-control cell bar
-      & Tier 1, amended
-      & Specification text says $8$ of $11$; executed as $6$ of $8$. The
-        non-control set has eight members, so the original figure was a
-        miscount. Proportion $0.727 \to 0.75$. Dated amendment. \\
-    Enumerated-rung localization predictions
-      & Tier 2, content hash
-      & Directional, no numeric bounds. Scored as directional. \\
-    Enumerated-rung ceiling guard
-      & Tier 2, same
-      & Sharp $0.15$-bin threshold, scored cleanly. \\
-    Cross-regime contrast
-      & Tier 3, fixed at a checkpoint, absent from the specification
-      & Did not hold. Retired rather than rescued. \\
-    \bottomrule
-  \end{tabular}
-\end{table}
-
-%% BLIND-SPOT STATEMENTS. Restructured around A PATTERN rather than a list.
-%% STATE THE PATTERN ONCE, THEN INSTANTIATE IT. Three (arguably four) of
-%% these are the same shape: two properties you would want to vary
-%% independently, welded together by the geometry.
+%% FUTURE DIRECTIONS -- each limit -> a way to stress/extend the instrument.
+%% #1 (isolation/expressibility) + #3 (|A|=2) share the 'richer coordinate'
+%% repair; #2 (visibility) -> symmetric bands. Stay in the closed-form setting.
 %% <ITEM66> Claim text. Read once more in your own voice before submitting.
-The instrument's limits are not a list of unrelated caveats. Three of them are
-the same shape: a pair of properties one would want to vary independently, fused
-by the geometry of the construction.
-
-%% INSTANCE 1 -- COUNT AGAINST WEIGHT. Row 5.6. THE STRONGEST ITEM IN THE
-%% SECTION; a reviewer cannot argue with it. Closed form, no draws required.
-%%   Pinning the target while raising N-k from 4 to 12 forces p from 0.90 to
-%%   0.56, and the evidence the silences carry falls 5.61 -> 1.83 -> 0.71
-%%   nats. Tripling the count drops the evidence roughly EIGHTFOLD.
-%% INSTANCE 2 -- EVIDENCE STRENGTH AGAINST OVER-READ EXPRESSIBILITY. Row 5.7.
-%%   The D cells carry eps0 of 0.065 / 0.080 / 0.064 against 3.84 for C1,
-%%   FIFTY TIMES WEAKER, and are the only cells where over-reading is
-%%   expressible. Over-reading needs headroom below b*, headroom needs b*
-%%   high, and b* high means the silences carried little.
-%% INSTANCE 3 -- OVER-READ VISIBILITY AGAINST UNDER-READ VISIBILITY. Row 5.8.
-%%   THIS SHIPS WITH CLAIM 2'S ZERO. In the D cells b* sits at
-%%   0.440 / 0.421 / 0.440, inside band 1, which spans 0.40-0.45 and is the
-%%   NARROWEST band in the instrument. The gap below is 0.20 wide; the gap
-%%   above is 0.10. Registering an over-read takes roughly TWICE the
-%%   excursion in probability that registering an under-read does.
-%% <ITEM66> Claim text. Read once more in your own voice before submitting.
-First, count and weight are anti-correlated by construction: holding the target
-fixed while raising the number of absences from four to twelve forces the assay
-sensitivity down from $0.90$ to $0.56$, and the evidence the silences carry
-falls from $5.61$ through $1.83$ to $0.71$ nats, so tripling the count drops the
-evidence roughly eightfold. This is closed form and needs no draws. Second,
-over-reading is testable only in the weak-evidence corner, and the coupling is
-forced: the three cells where it is expressible carry silence evidence between roughly
-fifty and sixty times weaker than the strongest cells in the grid, because over-reading
-needs headroom below the target, headroom requires the target to be high, and a
-high target means the silences carried little. Third, the response scale makes
-over-reads harder to see than under-reads: in those same cells the target sits
-inside the narrowest band in the instrument, with a gap of $0.20$ below it and
-$0.10$ above, so registering an over-read requires roughly twice the excursion
-in probability that registering an under-read does. That asymmetry ships with
-the zero reported in Section~\ref{sec:ex1}.
-
-%% NON-INSTANCE 4 -- OUR OWN REGISTERED CHECK P5 DOES NOT MEASURE WHAT IT
-%% NAMES. Row 5.9. It requires the modal answer constant across k, but in the
-%% count-control group b_pos is pinned while the correct level varies, so a
-%% configuration TRACKING the target fails and one PARKED at the blind point
-%% passes. Our most silence-blind configuration returns a perfectly constant
-%% row (3/3/3); a tracking one returns 0/1/1. THIS IS WHY TABLE 2 REPORTS TWO
-%% READINGS.
-%% BANNED: "five configurations respond to record length".
-%% <ITEM66> Claim text. Read once more in your own voice before submitting.
-A fourth limit is our own. One registered check requires the modal answer to
-stay constant as the report count varies, but in the count-control group the
-silence-blind belief is pinned while the correct level moves, so a configuration
-tracking the target fails the check and one parked at the silence-blind belief
-passes it. The most silence-blind configuration in our roster returns a
-perfectly constant row. This is why Table~\ref{tab:prereg} reports the primary
-outcome under both readings of that check's exclusion clause.
-
-%% NON-INSTANCE 5 -- OUR NORMALISED STATISTIC s IS SPAN-DEPENDENT AND, IN THE
-%% CELLS CARRYING CLAIM 2, DEGENERATE. Rows 5.10 + G4.5.
-%%   Span-dependence: spans run 3,3,3,2,2 across the control sweep and cannot
-%%     be pooled. Retired and REPORTED rather than quietly dropped.
-%%   Degeneracy (ANALYTIC, not empirical, and written down as a structural
-%%     limit before the campaign ran):
-%%       |A| = 2 => b_pos >= 0.5 always => the blind belief occupies only
-%%       2 OF THE 4 BINS => the falsification test is ALWAYS a one-bin
-%%       discrimination.
-%%       In the D cells specifically, l_pos = 2 against l_cor = 1 leaves INT
-%%       structurally empty, so THE 47-0 TEST ITSELF LIVES ON A ONE-BIN SPAN.
-%%       The fair symmetry test and the instrument's narrowest limitation are
-%%       THE SAME GEOMETRY: a fourth instance of the pattern, not a separate
-%%       caveat.
-%%       Companion degeneracy: at k = 6 both beliefs land in level 3 at both
-%%       delta, so those cells carry no information under four bins.
-%%   STATE THE REPAIR WITH THE LIMITATION: it follows from |A| = 2, an axis
-%%     dropped deliberately and marked for revisit, so this is a SCOPED
-%%     LIMITATION rather than an open problem. IT SEEDS S7.
-%% IF 5 AND 6 MERGE: KEEP THE ONE-BIN SENTENCE, CUT THE SPAN-POOLING ONE.
-%% <ITEM66> Claim text. Read once more in your own voice before submitting.
-A fifth is that our normalised statistic is span-dependent, since the spans
-available across the control sweep differ and cannot be pooled; we retire it and
-report it rather than dropping it quietly. Its companion is structural and is a
-fourth instance of the pattern above. With two candidates the silence-blind
-belief is at least $0.5$ by construction, so it occupies only two of the four
-bins and the falsification test is always a one-bin discrimination; in the cells
-carrying Section~\ref{sec:ex1}'s result the intermediate region is empty
-outright, so the fair symmetry test and the instrument's narrowest limitation
-are the same geometry. The repair is stated with the limitation: both follow
-from fixing the candidate set at two, an axis we dropped deliberately and mark
-for revisit.
-
-%% NON-INSTANCE 6 -- delta > 0 IS MECHANICALLY EASIER UNDER AN ORDINAL
-%% STATISTIC, so it cannot serve as the harder test it appears to be.
-%% V-24-2: ONE-SIDEDNESS IS A PROPERTY OF THE NON-ENUMERATED ARMS, NOT OF
-%% delta=0. Enumeration produces over-reading at delta=0, and at stated
-%% dropout 6.3% and 14.6% of draws sit below correct, ACROSS ALL SEVEN
-%% CONFIGURATIONS under a gate WITH NO GAP (say so: the gapless gate makes
-%% membership bar-sensitive there, unlike the delta=0 gate).
-%% <ITEM66> Claim text. Read once more in your own voice before submitting.
-A sixth is that the dropout conditions are mechanically easier under an ordinal
-statistic and cannot serve as the harder test they appear to be. Relatedly, the
-one-sidedness reported in Section~\ref{sec:ex1} belongs to the two conditions
-that do not enumerate the absences and not to the no-dropout regime as such:
-enumeration produces over-reading with no dropout at all, and under stated
-dropout $39$ of $620$ draws ($6.3$ percent) on the derivable-absences arm and
-$91$ of $623$ ($14.6$ percent) on the enumerated arm, across all seven
-configurations, sit below correct.
-
-%% =====================================================================
-\section{Related work and limitations}
-%% BUDGET 0.25 pages. Related-work characterizations TYPED BY ALI (item 66).
-%% Source text and load-bearing facts per anchor: citation_ledger sec 1.4-1.6.
-%% CUT BRANCH: drops to three sentences at 3.5 pages.
-%% =====================================================================
-
-%% TRIMMING AND CENSORING, FIRST AND PROMINENTLY. VOLUNTEERED, NOT CONCEDED.
-%%   de Punder et al.: b_pos TRIMS, q_delta CENSORS. State that restricted-KL
-%%   negativity is established THERE and that our contribution is the
-%%   instrument, not that fact.
-%%   Item 50 requires a re-read of Pun25 for the vocabulary before this
-%%   paragraph is written. CHECK WHETHER THAT RE-READ HAPPENED.
-%% THE KNOWLEDGE-BASE VOCABULARY, ONE CLAUSE: closed-world treats missing
-%%   facts as false, open-world leaves them unknown (Razniewski et al.).
-%%   Same object de Punder gives us as trimming versus censoring. Having both
-%%   vocabularies in one sentence is cheap and makes the positioning look
-%%   deliberate.
-%% <ITEM66> Claim text. Read once more in your own voice before submitting.
-%% ITEM 50 DISCHARGED 2026-08-25, full read of arXiv/Tinbergen DP 23-084/III.
-%% Pun26's own contribution is that censoring PRESERVES divergence and strict
-%% propriety; they state they are the first to derive such a transformation.
-%% The non-negativity failures in that paper attach to (a) Holzmann-Klar's
-%% CONDITIONAL divergence, which fails condition (ii) of their Definition 2
-%% (see their Example F.1), and (b) the weighted likelihood score of Amisano
-%% and Giacomini, whose impropriety they attribute to Diks et al. 2011 and
-%% Gneiting and Ranjan 2011 rather than proving. The trimmed-quantity result
-%% we cite is Pun24's. The earlier ordering here was inverted.
-%% VOCABULARY CAUTION: "trimming" does not appear in Pun26's main text; their
-%% contrast is conditioning vs censoring. "In the sense of" is doing real work
-%% in that sentence. Do not sharpen it into a direct attribution of the word.
-%% <ITEM66> de Punder attribution corrected per audit item 2; read once more.
-Our correct update censors the record where the silence-blind belief trims it,
-in the sense of \citet{depunder2026}, and the mass censoring restores is exactly
-the silence probability: their censored log score adds to the trimmed one a term
-in the probability of the omitted region, which is our factor $(1 - L(a))^{N-k}$.
-That the trimmed quantity forfeits non-negativity is established in
-\citet{depunder2024} rather than here. The same distinction appears in the knowledge-base literature as the gap
-between closed-world and open-world readings of a missing fact
-\citep{razniewski2024}. Our contribution is the instrument built on that
-distinction, not the distinction.
-
-%% THE FOURTH CONCESSION. That LLMs mishandle absent evidence IS KNOWN
-%% (CROWN-QA, AbsenceBench, Eo26). Concede it, THEN locate the contribution:
-%% they ask whether absence licenses an inference, we ask HOW FAR THE BELIEF
-%% SHOULD MOVE, and only the second needs a computed target.
-%% <ITEM66> Claim text. Read once more in your own voice before submitting.
-That language models mishandle absent evidence is known
-\citep{crownqa2026,absencebench2025}. Those results ask whether an absence
-licenses an inference at all; we ask how far a belief should move once it does,
-and only the second question requires a target computed from the disclosure
-rule.
-
-%% TWO SENTENCES conceding that martingale and Lyapunov treatments of debate
-%% belief exist and that THE DYNAMICAL FRAME IS NOT THE CONTRIBUTION HERE.
-%% <ITEM66> Claim text. Read once more in your own voice before submitting.
-Belief dynamics in multi-agent settings already admit martingale
-treatments \citep{choi2025}. The dynamical frame is not our contribution here.
-Our setting is single-round and static by choice, because holding the target
-fixed is what makes the channel-set manipulation a controlled comparison.
-
-%% LIMITATIONS, ONE SENTENCE, THREE CLAUSES:
-%%   seven configurations across four model families, three open-weight and one
-%%   closed (OpenAI gpt-5.6-sol); item 80's "no frontier model" is superseded
-%%   |A| = 2
-%%   single-round static setting
-%% |A| = 2 IS LOAD-BEARING RATHER THAN INCIDENTAL: it is what forces the
-%%   one-bin degeneracy in S6, so THE TWO MENTIONS SHOULD POINT AT EACH OTHER.
-%% ITEM 80 (superseded 2026-08-24): describe the roster BY WHAT IT IS -- which
-%%   includes one closed frontier-tier family (OpenAI gpt-5.6-sol, configs
-%%   sol-high/sol-none). The old "never as frontier" rule was written on the
-%%   false belief the roster had none; it does. The anchor comparison is that
-%%   BayesBench uses seven models across two families and CROWN-QA three across
-%%   three, SO THIS IS A PEER ROSTER (three open-weight families and one closed).
-%% <ITEM66> Claim text. Read once more in your own voice before submitting.
-%% <ITEM66> roster clause rewritten per audit J1; read once more before submission.
-Three limitations bound what we claim: the roster is seven configurations across
-four model families, three open-weight and one closed, which is no broader than
-the rosters our two closest anchors use; the candidate set is fixed at two, which
-is what forces the one-bin degeneracy described in Section~\ref{sec:blind}; and
-the setting is single-round and static.
+Each of these limitations is also a direction for improving the instrument. The first and
+third share a repair, a richer coordinate system built off the existing framework:
+adding ordinal levels or moving
+beyond two candidates would increase the number of belief configurations the current scale
+cannot structurally express and make it easier to design cells for testing the way the observer 
+can reside relative to the reference beliefs.
+The open question is how far the scale can be refined before the arithmetic confound
+that the coarse scale excluded returns. The second calls
+for a narrower fix: bands placed symmetrically about the target posterior would let an
+over-read and an under-read of the same size register equally, removing the
+advantage the scale currently gives to under-reading. None of these requires
+leaving the closed-form setting that makes the reference beliefs computable to begin with.
 
 %% =====================================================================
 %% REPRODUCTION STATEMENT. Cite frozen-outputs commit 9ade4d4.
@@ -1342,10 +1133,9 @@ the setting is single-round and static.
 %%   2. Four analysis scripts carry hardcoded absolute paths (standing risk 2).
 %%      Either fix them or do not claim the code runs on another machine. The
 %%      sentence below deliberately says "available at", not "reproducible".
-\paragraph{Reproduction.} Stimuli, decision rules, draw records, and analysis
-scripts are available at \url{https://github.com/akhan531/Control-On-LLMs},
-commit \texttt{9ade4d4}, together with a provenance statement describing exactly
-what the record establishes and what it does not.
+\paragraph{Reproduction.} Stimuli, draw records, and analysis scripts are
+available at \url{https://github.com/akhan531/Control-On-LLMs}, commit
+\texttt{9ade4d4}.
 
 %% <ITEM66> acknowledgments draft; final wording is Ali's.
 \section*{Acknowledgments}
@@ -1392,28 +1182,6 @@ supervision.
 %%     with a citation in the discount row of Section 2.
 \begin{thebibliography}{99}
 
-\bibitem[Choi et al.(2025)]{choi2025}
-H.~K. Choi, X.~Zhu, and S.~Li.
-\newblock Debate or vote: Which yields better decisions in multi-agent large
-  language models?
-\newblock \emph{NeurIPS}, 2025. arXiv:2508.17536.
-%% PARTIAL: confirm volume and Spotlight designation before citing.
-
-\bibitem[de Punder et al.(2024)]{depunder2024}
-R.~de Punder, T.~Dimitriadis, and R.-J. Lange.
-\newblock Expected Kullback-Leibler-based characterizations of score-driven
-  updates.
-\newblock arXiv:2408.02391, 2024.
-%% VERIFIED.
-
-\bibitem[de Punder et al.(2026)]{depunder2026}
-R.~de Punder, C.~G.~H. Diks, R.~J.~A. Laeven, and D.~J.~C. van Dijk.
-\newblock Localizing strictly proper scoring rules.
-\newblock \emph{Journal of the American Statistical Association}, 2026.
-  \newblock DOI 10.1080/01621459.2025.2576189.
-%% VERIFIED. Item 50 requires a re-read for the trimming/censoring vocabulary
-%% before the S7 paragraph is written.
-
 \bibitem[Edwards(1968)]{edwards1968}
 W.~Edwards.
 \newblock Conservatism in human information processing.
@@ -1421,12 +1189,6 @@ W.~Edwards.
   Judgment}. Wiley, 1968.
 %% Cite the 1968 original, note the 1982 reprint, and use ONE form
 %% consistently throughout.
-
-\bibitem[Fu et al.(2025)]{absencebench2025}
-H.~Y. Fu, A.~Shrivastava, J.~Moore, P.~West, C.~Tan, and A.~Holtzman.
-\newblock AbsenceBench: Language models can't tell what's missing.
-\newblock arXiv:2506.11440, 2025.
-%% PARTIAL (secondary bib). Directly about the identify operation.
 
 \bibitem[Gupta et al.(2025)]{gupta2025}
 R.~Gupta, R.~Corona, J.~Ge, E.~Wang, D.~Klein, T.~Darrell, and D.~M. Chan.
@@ -1461,13 +1223,6 @@ L.~D. Phillips and W.~Edwards.
 \newblock Conservatism in a simple probability inference task.
 \newblock \emph{Journal of Experimental Psychology}, 72(3):346--354, 1966.
 
-\bibitem[Razniewski et al.(2024)]{razniewski2024}
-S.~Razniewski, H.~Arnaout, S.~Ghosh, and F.~Suchanek.
-\newblock Completeness, recall, and negation in open-world knowledge bases: A
-  survey.
-\newblock \emph{ACM Computing Surveys}, 56(6):1--42, 2024.
-%% PARTIAL (secondary bib). Survey, so one citation covers the line.
-
 \bibitem[Samanta et al.(2026)]{bayesbench2026}
 A.~Samanta, A.~Magesh, T.~Lancewicki, A.~Jain, Y.~Yu, P.~Sajda, K.~Hassani,
   A.~Modi, D.~R. Jiang, and Y.~Efroni.
@@ -1479,6 +1234,7 @@ A.~Samanta, A.~Magesh, T.~Lancewicki, A.~Jain, Y.~Yu, P.~Sajda, K.~Hassani,
 
 \end{thebibliography}
 
+\clearpage
 \appendix
 
 %% =====================================================================
@@ -1488,13 +1244,14 @@ A.~Samanta, A.~Magesh, T.~Lancewicki, A.~Jain, Y.~Yu, P.~Sajda, K.~Hassani,
 Each row of Table~\ref{tab:cells} is a \emph{cell}: one scenario put to the
 observers, fixed by an analyst count $N$, the number of filed positives $k$, and
 a per-assay strength $p$. The conditions of Table~\ref{tab:map} are run on each
-of these fourteen scenarios, and the draws they return are the data behind every
-result in the paper. In the table $N$, $k$, and $p$ are the inputs; every other
+of these fourteen cells, and the draws they return are the data behind every
+result in the paper. In the table, $N$, $k$, and $p$ are the inputs; every other
 column is computed from them: the absences $N - k$, the silence-blind belief
 $\bpos$ and the correct posterior $\qz$, and the levels $\lpos$
 and $\lcor$ that those two beliefs occupy.
 
-\begin{table}[t]
+
+\begin{table}[H]
   \caption{The fourteen cells. $N$, $k$, and $p$ are inputs; the remaining
   columns are computed from them. $\bpos$ is the belief that ignores the
   absences and $\qz$ the correct posterior, with $\lpos$ and
@@ -1528,13 +1285,14 @@ and $\lcor$ that those two beliefs occupy.
   \end{tabular}
 \end{table}
 
+
 The cells fall into four blocks. \textbf{A} is the span-three backbone: the
 silence-blind belief sits at the top level ($\lpos = 3$) while the correct answer
 sits at the bottom ($\lcor = 0$), the widest displacement the scale allows, with
-$N$ and $k$ varied so that a level-three blind belief is built from different
+$N$ and $k$ varied so that a level-three silence-blind belief is built from different
 amounts of evidence. \textbf{B} is the span-two backbone, the same construction
-one level before, with the blind belief at level two; together A and B measure
-under-weighting at the two levels the blind belief can occupy. \textbf{C} is a
+one level before, with the silence-blind belief at level two; together A and B measure
+under-weighting at the two levels the silence-blind belief can occupy. \textbf{C} is a
 count control at level three: $\bpos$ is held essentially constant ($0.982$
 across the block) while $k$ varies, so a configuration that reasons about the
 evidence answers the same across C1--C3 whereas one that merely tracks the number
@@ -1546,6 +1304,8 @@ over-weighting expressible. D is the only block where an answer can land above
 the target as well as below it, and we built it that way on purpose so that
 under-weighting can be tested against over-weighting rather than only measured.
 
+
+
 %% =====================================================================
 \section{The calibration pre-test}\label{app:calib}
 %% =====================================================================
@@ -1554,12 +1314,12 @@ under-weighting can be tested against over-weighting rather than only measured.
 %% frozen_outputs_2026-08-21/w1_analyze.txt and w1_addendum_lowside.txt
 %% (edges + symmetry). Confirmed 2026-08-28.
 
-An observer answers responds with a candidate and
+An observer responds with a candidate and
 confidence, both binary, producing the four ordinal levels from
 Section~\ref{sec:instrument}. The probability ranges those levels occupy are not
 assumed; the boundaries between the four levels are measured by a separate
 pre-test that hands each configuration a stated probability and records how the
-LLM maps that numeric value onto the ordinal levels. The pre-test are separate
+LLM maps that numeric value onto the ordinal levels. The pre-test is separate
 from the reported campaign: its
 records use the assay strength $p = 0.60$, which the main grid never uses
 (Appendix~\ref{app:cells}). It runs the same seven configurations
@@ -1570,8 +1330,7 @@ the schema below, and the probability bands are never shown to the model.
 
 The response is a strict JSON object with two enumerated fields; the confidence
 field carries the two terms of whichever wording is in force, and the candidate
-field is one of the two printed names. This is the same schema that carries the
-main campaign (Appendix~\ref{app:prompts}):
+field is one of the two printed names:
 
 {\small\begin{verbatim}
 {"type": "json_schema", "json_schema": {"name": "silence_probe_ordinal",
@@ -1583,7 +1342,7 @@ main campaign (Appendix~\ref{app:prompts}):
 \end{verbatim}}
 
 \noindent Two confidence wordings were tested: wording~A
-("Slightly"/"Strongly') and wording~B ("Somewhat confident"/"Very
+("Slightly"/"Strongly") and wording~B ("Somewhat confident"/"Very
 confident"). The campaign and the map of Figure~\ref{fig:calmap} use wording~B,
 so the enum above shows its two terms.
 
@@ -1610,11 +1369,11 @@ Reply with only a JSON object with keys "candidate" and "confidence".
 
 \noindent The stated probability is swept over
 $\{0.10, 0.20, 0.30, 0.40, 0.60, 0.70, 0.80, 0.90\}$ in steps of $0.10$, with $0.50$
-omitted, since there is no favoured candidate there. The sweep is
+omitted, since there is no favored candidate there. The sweep is
 mirrored, as $0.10/0.90$, $0.20/0.80$, $0.30/0.70$ and $0.40/0.60$ are
 mirror pairs, so the low edge and the high edge are measured separately rather
 than one assumed from the other. Taking each configuration's modal answer across
-its three draws, the outermost stated probability that still answered "Very
+its three draws, the outermost stated probability at which the model still answered "Very
 confident" marks the switch edge. Under wording~B, six of the seven
 configurations switch at $0.20$ and $0.80$, while
 \texttt{llama} is the exception, holding "Very confident" one step further in 
@@ -1622,6 +1381,19 @@ on the low side to $0.30$. Because the sweep samples in steps
 of $0.10$, the measured low edge at $0.20$ and a nominal cut at $0.25$ fall in
 the same step and cannot be told apart, so the band assignment agreeing under
 either is a resolution fact, not a robustness result.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\textwidth]{figures/confidence_map.pdf}
+  \caption{The calibration confidence map. Each row is one configuration;
+  reading its cells outward from even odds, the answer switches from somewhat to
+  very confident. Six of the seven switch together at the $0.20$ and $0.80$ ticks
+  (bold); \texttt{llama} is the exception, holding very confident one step
+  further in, to $0.30$ on the low side (boxed). Color encodes the answer given
+  most often in each cell: hue is the chosen candidate, $\Sigma$ or $\Theta$, and shade its
+  confidence, dark for very and pale for somewhat.}
+  \label{fig:calmap}
+\end{figure}
 
 \paragraph{The response bands.} The same modal answers fix the whole four-level
 scale, not only the outer switch. Keeping the intervals where all seven
@@ -1644,10 +1416,10 @@ $0$ & Very confident / other        & $[0.00,\,0.20]$ \\
 
 \noindent The three gaps are exactly where the sweep is not unanimous. The low
 gap runs from $0.20$ to $0.40$ rather than $0.30$ because \texttt{llama} answers "Very
-confident" at $0.30$ where the other six answer ``Somewhat confident,'' so no
+confident" at $0.30$ where the other six answer "Somewhat confident", so no
 level is agreed there. The $0.70$--$0.80$ gap is the matching high-side transition.
 The $0.45$--$0.55$ gap is deliberately placed around the $0.50$ prior, where the
-favoured candidate would flip. Every predicted belief in the grid
+favored candidate would flip. Every predicted belief in the grid
 (Appendix~\ref{app:cells}) is built to land inside a band, so no cell's correct
 level depends on where a model's personal threshold sits.
 
@@ -1692,8 +1464,8 @@ Reply with only a JSON object with keys "candidate" and "confidence".
 \end{verbatim}}
 
 \noindent All seven configurations moved the confidence term in the intended
-direction, answering ``Somewhat confident'' at $k = 1$ and ``Very confident'' at
-$k = 6$, which solidfied the four-level
+direction, answering "Somewhat confident" at $k = 1$ and "Very confident" at
+$k = 6$, which solidified the four-level
 scale.
 
 %% =====================================================================
@@ -1736,7 +1508,7 @@ prior probability, likelihood ratio, probability that, update your,
 calculate, compute
 \end{verbatim}}
 
-Below is one fully rendered stimulus per condition, all from cell \texttt{A1}
+Below is one fully rendered stimulus per condition, all from cell A1
 ($N=5$, $k=2$, positive rates $0.81$ and $0.19$), first label ordering. Only the
 middle block changes across conditions; the preamble, the assay description, and
 the elicitation are identical.
@@ -1774,6 +1546,13 @@ Reply with only a JSON object with keys "candidate" and "confidence".
 
 \paragraph{\cond{blind}.} Neither $N$ nor the filing rule is stated.
 {\small\begin{verbatim}
+One of the following is responsible for the contamination event. Exactly one is.
+
+    Candidate SIGMA
+    Candidate THETA
+
+Before any testing, each candidate is considered equally likely.
+
 Analysts were each assigned a different assay. Each assay returns POSITIVE or
 NEGATIVE, and the assays have the following known characteristics:
 
@@ -1785,11 +1564,24 @@ Assay results are independent of one another given which candidate is responsibl
 REPORTS ON FILE
     Assay returned POSITIVE
     Assay returned POSITIVE
+
+Name the candidate you believe is responsible, and how strongly you hold that.
+
+Reply with only a JSON object with keys "candidate" and "confidence".
+"candidate" must be exactly SIGMA or THETA.
+"confidence" must be exactly Somewhat confident or Very confident.
 \end{verbatim}}
 
 \paragraph{\cond{ruled}.} $N$ and the filing rule are stated; the
 absences are derivable but not printed.
 {\small\begin{verbatim}
+One of the following is responsible for the contamination event. Exactly one is.
+
+    Candidate SIGMA
+    Candidate THETA
+
+Before any testing, each candidate is considered equally likely.
+
 5 analysts were each assigned a different assay. Each assay returns POSITIVE or
 NEGATIVE, and the assays have the following known characteristics:
 
@@ -1803,10 +1595,31 @@ Each analyst files a report only when their assay returns POSITIVE.
 REPORTS ON FILE
     Assay returned POSITIVE
     Assay returned POSITIVE
+
+Name the candidate you believe is responsible, and how strongly you hold that.
+
+Reply with only a JSON object with keys "candidate" and "confidence".
+"candidate" must be exactly SIGMA or THETA.
+"confidence" must be exactly Somewhat confident or Very confident.
 \end{verbatim}}
 
 \paragraph{\cond{arith}.} The absences are printed as filing lines.
 {\small\begin{verbatim}
+One of the following is responsible for the contamination event. Exactly one is.
+
+    Candidate SIGMA
+    Candidate THETA
+
+Before any testing, each candidate is considered equally likely.
+
+5 analysts were each assigned a different assay. Each assay returns POSITIVE or
+NEGATIVE, and the assays have the following known characteristics:
+
+    If SIGMA is responsible, an assay returns POSITIVE with probability 0.81.
+    If THETA is responsible, an assay returns POSITIVE with probability 0.19.
+
+Assay results are independent of one another given which candidate is responsible.
+
 Each analyst files a report only when their assay returns POSITIVE.
 
 COMPLETE FILING RECORD, ALL 5 ANALYSTS
@@ -1816,6 +1629,12 @@ COMPLETE FILING RECORD, ALL 5 ANALYSTS
     Filed nothing at all
     Filed nothing at all
 Each analyst appears exactly once above.
+
+Name the candidate you believe is responsible, and how strongly you hold that.
+
+Reply with only a JSON object with keys "candidate" and "confidence".
+"candidate" must be exactly SIGMA or THETA.
+"confidence" must be exactly Somewhat confident or Very confident.
 \end{verbatim}}
 
 \paragraph{Both label orderings.} Every stimulus appears in two orderings; the
@@ -1831,8 +1650,8 @@ lines, so a fixed label bias is separable from a competent answer:
 \section{Models and inference}\label{app:models}
 %% =====================================================================
 
-Reasoning setting and token budget move together; the ``-high'' member of a pair
-raises both. The gate score is mean $s_1$ on the printed-negatives condition
+Reasoning setting and token budget move together; the "-high" member of a pair
+raises both. The gate score is the draw-weighted mean $s_1$ on the printed-negatives condition
 (\cond{full}), the competence gate of Section~\ref{sec:instrument}.
 
 \begin{table}[h]
@@ -1873,17 +1692,12 @@ immediately). Transient failures were retried up to three times with exponential
 backoff; authentication failures were not retried. The run resumes by keying on
 successful draws only, so a failed draw is re-attempted rather than skipped.
 Token budgets are per configuration, and reasoning tokens are drawn from the same
-budget, which is why the ``-high'' configurations carry the larger \texttt{max\_tokens}.
+budget, which is why the "-high" configurations carry the larger \texttt{max\_tokens}.
 
 No claim in Sections~\ref{sec:ex1}, \ref{sec:ex2}, or \ref{sec:blind} compares
 two configurations that share a model slug; every comparison is across conditions
 or across the roster, so the reasoning-and-budget difference within a pair does
 not enter any reported result.
-
-Draw records carry no wall-clock field, so exact collection dates are not
-recorded; the only date signal is the modification time of each arm's results
-file. We describe this in the provenance statement rather than treating those
-mtimes as collection dates.
 
 %% =====================================================================
 \section{Data and licensing}\label{app:data}
@@ -1905,8 +1719,9 @@ executing and iterating the analysis pipeline in the repository, including data
 analysis and figure generation, and drafting and editing the manuscript. Every
 numeric quantity in the paper was verified independently of that assistance,
 recomputed from the draw records at the cited commit or, where the quantity is
-analytic, re-derived from the model's closed form; the design, the claims, and
-their scoping are the author's.
+analytic, re-derived from the model's closed form; every citation was checked
+against its primary source; the design, the claims, and their scoping are the
+author's.
 
 \end{document}
 

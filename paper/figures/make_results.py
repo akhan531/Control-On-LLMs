@@ -25,7 +25,7 @@ import numpy as np
 
 ROOT = Path(__file__).resolve().parents[2]
 FIGDIR = ROOT / "paper" / "figures"
-sys.path.insert(0, str(ROOT))
+sys.path.insert(0, str(ROOT / "stimuli"))
 import silence_v2_stimuli as S  # noqa: E402  (target_level lives with the stimuli)
 
 import matplotlib  # noqa: E402
@@ -133,15 +133,15 @@ def ingest(res_rel, stim_rel, cond_map, p4, draws, usable, attempted, fails):
 
 
 def load():
-    p4 = json.load(open(resolve("results_v2/v2_gates.json")))["P4_excluded"]
+    p4 = json.load(open(resolve("results/campaign/v2_gates.json")))["P4_excluded"]
     draws = defaultdict(list)
     usable, attempted, fails = Counter(), Counter(), Counter()
     # RULED and FULL rungs, delta=0 main campaign
-    ingest("results_v2/v2_results_live.json", "silence_v2_stimuli.json",
+    ingest("results/campaign/v2_results_live.json", "stimuli/silence_v2_stimuli.json",
            {"PARTIAL_RULED": "RULED", "FULL": "FULL"}, p4, draws, usable, attempted, fails)
     # ARITH rung, the enumerated-absences campaign
-    ingest("scratch_2_4c/example_2/results_arith_d0/arith_d0_results_live.json",
-           "scratch_2_4c/example_2/arith_d0_stimuli.json",
+    ingest("results/arith/arith_d0_results_live.json",
+           "stimuli/arith_d0_stimuli.json",
            {"ARITH_D0": "ARITH"}, p4, draws, usable, attempted, fails)
     return draws, usable, attempted, fails
 
@@ -266,34 +266,9 @@ def run_assertions(draws, usable, attempted, fails):
 
     # ARITH_D0 campaign denominators: 980 attempted / 959 usable (whole campaign)
     araw = json.load(open(resolve(
-        "scratch_2_4c/example_2/results_arith_d0/arith_d0_results_live.json")))["records"]
+        "results/arith/arith_d0_results_live.json")))["records"]
     check(len(araw) == 980, f"ARITH_D0 980 calls (got {len(araw)})")
     check(sum(1 for r in araw if r.get("ok")) == 959, "ARITH_D0 959 usable")
-
-    # ---- Section 5 dropout: enumeration makes three of seven WORSE at delta=0.3.
-    # Mean s1 (|target_level - level(q_0.3)|) per config over cells minus P4; the
-    # banked stimuli store level_target = level(q_0.3). Increase = ARITH_D30 - RULED_D30.
-    p4 = json.load(open(resolve("results_v2/v2_gates.json")))["P4_excluded"]
-    d30 = {}
-    for arm, rrel, srel in (
-        ("RULED_D30", "results_v2/v2_results_live_banked.json",
-         "silence_v2_stimuli_banked.json"),
-        ("ARITH_D30", "scratch_fable/results_arith/arith_results_live.json",
-         "scratch_fable/arith_d30_stimuli.json")):
-        recs = json.load(open(resolve(rrel)))["records"]
-        st = {s["id"]: s for s in json.load(open(resolve(srel)))["stimuli"]}
-        acc = defaultdict(list)
-        for r in recs:
-            s = st[r["stimulus_id"]]
-            if s["cell"] in p4.get(r["config"], []) or not r.get("ok"):
-                continue
-            acc[r["config"]].append(abs(S.target_level(
-                r["candidate"], r["confidence"], s["target_label"]) - s["level_target"]))
-        d30[arm] = {c: sum(v) / len(v) for c, v in acc.items()}
-    for cfg, exp in (("deepseek-high", 0.034), ("glm", 0.100), ("deepseek", 0.232)):
-        inc = d30["ARITH_D30"][cfg] - d30["RULED_D30"][cfg]
-        check(round(inc, 3) == exp,
-              f"{cfg} delta=0.3 enumeration increase == {exp:+.3f} (got {inc:+.4f})")
 
     print("All Section 2 assertions passed.")
 

@@ -28,7 +28,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 FIGDIR = ROOT / "paper" / "figures"
-sys.path.insert(0, str(ROOT))
+sys.path.insert(0, str(ROOT / "stimuli"))
 import silence_v2_stimuli as S  # noqa: E402  (target_level lives with the stimuli)
 
 import matplotlib  # noqa: E402
@@ -122,10 +122,10 @@ def ingest(res_rel, stim_rel, cond_map, p4, draws, usable, attempted, fails):
 
 
 def load():
-    p4 = json.load(open(resolve("results_v2/v2_gates.json")))["P4_excluded"]
+    p4 = json.load(open(resolve("results/campaign/v2_gates.json")))["P4_excluded"]
     draws = defaultdict(list)
     usable, attempted, fails = Counter(), Counter(), Counter()
-    ingest("results_v2/v2_results_live.json", "silence_v2_stimuli.json",
+    ingest("results/campaign/v2_results_live.json", "stimuli/silence_v2_stimuli.json",
            {"PARTIAL_RULED": "RULED", "FULL": "FULL"}, p4, draws, usable, attempted, fails)
     return draws, usable, attempted, fails
 

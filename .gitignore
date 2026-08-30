@@ -1,13 +1,38 @@
-.env
+# The public repository is scoped to the reviewer-facing artifacts for
+# "Channels to Targets" (EIML3 @ NeurIPS 2026). Development scratch, other
+# experiments, and internal working notes stay local and are not tracked.
+#
+# Strategy: ignore everything at the top level, then re-include the clean tree.
+
+/*
+!/.gitignore
+!/README.md
+!/paper/
+!/design/
+!/stimuli/
+!/harness/
+!/results/
+
+# Within the tracked tree, keep build junk, internal notes, unused figures,
+# and inherited clutter out.
+/paper/context/
+/paper/audit/
+/paper/CLAUDE.md
+/paper/references.bib
+/paper/main.synctex.gz
+/paper/main.log
+/paper/figures/results_geometry_check.txt
+/paper/figures/results_mass.pdf
+/paper/figures/results_abs_error.pdf
+/results/README.md
+/results/task_1_0_checkpoint.json
+/results/task_1_0_results.json
+/results/task_1_0_smoke.json
+/results/task_1_0_trajectory.png
+
+# Python / OS junk
 __pycache__/
 *.pyc
-
+.vscode/
 .DS_Store
-results_70b_smoke/
-results_70b_smoke2/
 *.log
-results_*_smoke/
-
-# Internal working documents, not for publication
-paper_framing_v3.md
-scratch_fable/findings.md

@@ -27,7 +27,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 FIGDIR = ROOT / "paper" / "figures"
-sys.path.insert(0, str(ROOT))
+sys.path.insert(0, str(ROOT / "stimuli"))
 import w1_stimuli as W  # noqa: E402  (WORDINGS, LABELS, CAL_P_FIRST live with the stimuli)
 
 import matplotlib  # noqa: E402
@@ -97,8 +97,8 @@ def mode(vals):
 # data ingest -- CAL family, wording B, usable draws only
 # --------------------------------------------------------------------------
 def load():
-    recs = json.load(open(resolve("results_w1/w1_results_live.json")))["records"]
-    stim = {s["id"]: s for s in json.load(open(resolve("w1_stimuli.json")))["stimuli"]}
+    recs = json.load(open(resolve("results/calibration/w1_results_live.json")))["records"]
+    stim = {s["id"]: s for s in json.load(open(resolve("stimuli/w1_stimuli.json")))["stimuli"]}
     bucket = defaultdict(list)
     for r in recs:
         if r.get("family") != "CAL" or r.get("wording") != "B" or not r.get("ok"):
