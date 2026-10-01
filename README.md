@@ -1,6 +1,5 @@
 # Channels to Targets: A Closed-Form Coordinate System for Silence-Blindness in LLM Observers
 
-Code, stimuli, and draw records for the EIML3 @ NeurIPS 2026 workshop paper.
 The paper is in [`paper/main.pdf`](paper/main.pdf).
 
 ## What the paper does
